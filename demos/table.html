@@ -125,12 +125,17 @@
 					console.log("column table create......");
 					$table.table( { mode : "columntoggle" } );
 					// $table.table( { mode : "reflow" } );
-					// classes = $table.table("option", "classes");
+					classes = $.extend( {}, $table.table("option", "classes") );
 					// $( "#reflow-option1 .initValue").text( classes.cellLabels ).css("color", "blue");
 					// $( "#reflow-option2 .initValue").text( classes.reflowTable ).css("color", "blue");
+					// optClassesCBtn
 					$rTable.find("#optBtnText .first").text( $table.table("option", "columnBtnText") );
 					$rTable.find("#optCBTheme .first").text( $table.table("option", "columnBtnTheme") );
 					$rTable.find("#optCPTheme .first").text( $table.table("option", "columnPopupTheme") );
+					$rTable.find("#optClassesCBtn .first").text( classes.columnBtn );
+					$rTable.find("#optClassesCTT .first").text( classes.columnToggleTable );
+					$rTable.find("#optClassesP .first").text( classes.popup );
+					$rTable.find("#optClassesPP .first").text( classes.priorityPrefix );
 				}
 			}).on( "click", "#toggleCBTheme", function ( event ) {
 				var $table = $( " #movie-column-table" ),
@@ -196,6 +201,7 @@
 					value = "Columns...";
 				}
 				$table.table( "option", "columnBtnText", value ).table("rebuild");
+				$table.table("refresh");
 				isChanged = $( ".ui-table-columntoggle-btn ").text() === value;
 				console
 				if ( $button.length === 1 && isChanged ) {
@@ -210,6 +216,41 @@
 				}
 				$rTable.find( "#optBtnText .current" ).text( value );
 				$rTable.find("#optBtnText .result").text( msg).css("color", style );
+
+			}).on( "click", "#optClassesCBtn", function ( event ) {
+				var $table = $( " #movie-column-table" ),
+					$rTable = $( "#ctResultTable"),
+					$button = $( ".ui-table-columntoggle-btn "),
+					value, msg, style, classes, isReady = false;
+				console.log("optClassesCBtn clicked");
+				// Get
+				classes = $.extend( {}, $table.table("option", "classes") );
+				// Toggle				
+				if (  classes.columnBtnType !== "ui-table-columntoggle-btn" ) {
+					value = "ui-table-columntoggle-btn";
+				} else {
+					value = "ui-cto-table-columntoggle-btn";
+				}
+				isReady = $( "."+classes.columnBtnType ).length > 0 ? true : false ;
+				
+				// Set
+				classes.columnBtnType = value;
+				$table.table("option", "classes", classes ).table("rebuild");
+				$table.table("refresh");
+
+
+				if ( $( "."+value ).length > 0 && isReady ) {
+					msg = "Success : is changed.";
+					style = "blue";
+				} else if ( $( "."+value ).length > 0 && !isReady ) {
+					msg = "Fail : is not ready.";
+					style = "red";
+				} else {
+					msg = "Fail : is not changed.";
+					style = "red";
+				}
+				$rTable.find( "#optClassesCBtn .current" ).text( value );
+				$rTable.find("#optClassesCBtn .result").text( msg).css("color", style );
 
 			}).on( "click", "#refreshBtn", function ( event ) {
 				var $table = $( " #movie-column-table" ),
@@ -453,7 +494,7 @@
 							<td class="first"> - </td>
 							<td class="current"> - </td>
 							<td class="result"> - </td>
-							<td><button id="toggleCBtnText" data-mini="true">toggle button text</button></td>
+							<td><button id="toggleCBtnText" data-mini="true">toggle option</button></td>
 						</tr>
 						<tr id="optCBTheme">
 							<th>Option</th>
@@ -461,7 +502,7 @@
 							<td class="first"> - </td>
 							<td class="current"> - </td>
 							<td class="result"> - </td>
-							<td><button id="toggleCBTheme" data-mini="true">toggle button text</button></td>
+							<td><button id="toggleCBTheme" data-mini="true">toggle option</button></td>
 						</tr>
 						<tr id="optCPTheme">
 							<th>Option</th>
@@ -469,7 +510,39 @@
 							<td class="first"> - </td>
 							<td class="current"> - </td>
 							<td class="result"> - </td>
-							<td><button id="toggleCPTheme" data-mini="true">toggle button text</button></td>
+							<td><button id="toggleCPTheme" data-mini="true">toggle option</button></td>
+						</tr>
+						<tr id="optClassesCBtn">
+							<th>Option</th>
+							<td>classes.columnBtn</td>
+							<td class="first"> - </td>
+							<td class="current"> - </td>
+							<td class="result"> - </td>
+							<td><button id="toggleClassesCBtn" data-mini="true">toggle option</button></td>
+						</tr>
+						<tr id="optClassesCTT">
+							<th>Option</th>
+							<td>classes.columnToggleTable</td>
+							<td class="first"> - </td>
+							<td class="current"> - </td>
+							<td class="result"> - </td>
+							<td><button id="toggleClassesCBtn" data-mini="true">toggle option</button></td>
+						</tr>
+						<tr id="optClassesP">
+							<th>Option</th>
+							<td>classes.popup</td>
+							<td class="first"> - </td>
+							<td class="current"> - </td>
+							<td class="result"> - </td>
+							<td><button id="toggleClassesCBtn" data-mini="true">toggle option</button></td>
+						</tr>
+						<tr id="optClassesPP">
+							<th>Option</th>
+							<td>classes.priorityPrefix</td>
+							<td class="first"> - </td>
+							<td class="current"> - </td>
+							<td class="result"> - </td>
+							<td><button id="togglePP" data-mini="true">toggle option</button></td>
 						</tr>
 						<tr id="mthRefresh">
 							<th>Method</th>
@@ -483,9 +556,7 @@
 				</table>
 
 				<hr>
-				<!--
-				<table id="movie-column-table" data-role="table" data-mode="columntoggle" class="ui-responsive table-stroke">
-				-->
+				<br>
 				<table id="movie-column-table" class="ui-responsive table-stroke" data-column-btn-theme="a" data-column-popup-theme="a">
 					<thead>
 						<tr>
