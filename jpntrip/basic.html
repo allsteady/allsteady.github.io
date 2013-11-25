@@ -42,15 +42,30 @@
 
 			// console.log (" startPos [ name %s, lat %s, lng :%s ]",startPos.name, parseFloat( startPos.lat ), parseFloat( startPos.lng ) );
 			// console.log (" destPos [ name %s, lat %s, lng :%s ]", destPos.name, parseFloat( destPos.lat ), parseFloat( destPos.lng ) );
-			googleMap.cleanRoute()
+			window.googleMap.cleanRoute()
 			window.googleMap.drawRoute({
 				origin: [ parseFloat( startPos.lat ), parseFloat( startPos.lng )],
 				destination: [ parseFloat( destPos.lat ) , parseFloat( destPos.lng )],
 				travelMode: 'walking',
 				strokeColor: '#131540',
 				strokeOpacity: 0.6,
-				strokeWeight: 6
+				strokeWeight: 6,
+				callback : function ( e ) {
+					var routeInfos,
+						panel = $("#configPanel");
+					console.log (" [RUN] : callback..............");
+					if ( e.legs && e.legs.length > 0 ) {
+						console.log (" [get informations] : callback..............");
+						routeInfos = e.legs [ 0 ];
+						panel.find("#startAddr").text( routeInfos.start_address );
+						panel.find("#endAddr").text( routeInfos.end_address );
+						panel.find("#distance").text( routeInfos.distance.text );
+						panel.find("#duration").text( routeInfos.duration.text );
+
+					}
+				}
 			});
+			window.googleMap.setCenter(parseFloat( startPos.lat ), parseFloat( startPos.lng ));
 
 
 
@@ -69,7 +84,9 @@
 <body>
 	<div data-role="page" id="fastscroll-demo" data-fit-page-to-window="true">
 		<div data-role="header" data-position="fixed">
-			<a href="#frontPage" class="hide-loading ui-btn-left" data-icon="back">Back</a>
+			<!--
+				<a href="#frontPage" class="hide-loading ui-btn-left" data-icon="back">Back</a>
+			-->
 			<h1>훗카이도 ( 北海道 ) 여행</h1>
 			<a href="#configPanel" id="configBtnH" class="hide-loading ui-btn-right" data-icon="info">Info</a>
 		</div><!-- header -->
@@ -119,10 +136,20 @@
 		<div data-role="panel" id="configPanel" data-theme="b">	
 			<div class="panel-content">
 			<h3>설정</h3>
-			<p>This panel has all the default options: positioned on the left with the reveal display mode. The panel markup is <em>before</em> the header, content and footer in the source order.</p>
-			<p>To close, click off the panel, swipe left or right, hit the Esc key, or use the button below:</p>
+			<p>
+				도착지 주소 : <span id="startAddr"> </span>
+			</p>
+			<br>
+			<p>
+				출발지 주소 : <span id="endAddr"> </span>
+			</p>
+			<br>
+			<p>
+				거리 : <span id="distance"> </span><br>
+				소요시간 : <span id="duration"> </span>
+			</p>
+			
 			<a href="#demo-links" data-rel="close" data-role="button" data-theme="c" data-icon="delete" data-inline="true">Close panel</a>
-			<a href="#demo-links" data-rel="close" id="searchBtn"  data-role="button" data-theme="c" data-icon="search" data-inline="true">Search</a>
 			</div><!-- /content wrapper for padding -->
 		</div><!-- /defaultpanel -->
 	</div><!-- page -->
