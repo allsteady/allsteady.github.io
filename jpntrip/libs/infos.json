@@ -1,0 +1,37 @@
+var JSON_DATA = [
+	{
+		"name" : "치토세공항",
+		"id"	:"airport",
+		"lat" : "42.787599",
+		"lng" : "141.681436"
+	}, {
+		"name" : "삿뽀로역",
+		"id"	:"sapporo_station",
+		"lat" : "43.067892",
+		"lng" : "141.350591"
+	}, {
+		"name" : "쉐라톤호텔",
+		"id"	:"hotel",
+		"lat" : "43.062096",
+		"lng" : "141.354376"
+	}, {
+		"name" : "오타루역",
+		"id"	:"otaru_station",
+		"lat" : "43.197642",
+		"lng" : "140.993731"
+	}
+];
+
+
+
+
+
+var idx = 0,
+	item,
+	infos = {};
+for ( idx = 0 ; idx < JSON_DATA.length ; idx++ ) {
+	item = JSON_DATA[idx];
+	console.log("idx  " + idx);
+	infos[ item.id ] = item;
+}
+window.infos = infos;

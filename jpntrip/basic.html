@@ -34,16 +34,34 @@
 			});
 			window.googleMap = googleMap;
 		}).on("vclick", "#searchBtn", function ( event ) {
-			console.log("...............");
+			var $startPos = $("#startPos"),
+				$destPos = $("#endPos"),
+				startPos = infos[ $startPos.val() ],
+				destPos = infos[ $destPos.val() ];
 
+
+			// console.log (" startPos [ name %s, lat %s, lng :%s ]",startPos.name, parseFloat( startPos.lat ), parseFloat( startPos.lng ) );
+			// console.log (" destPos [ name %s, lat %s, lng :%s ]", destPos.name, parseFloat( destPos.lat ), parseFloat( destPos.lng ) );
+			googleMap.cleanRoute()
 			window.googleMap.drawRoute({
-				origin: [43.067892, 141.350591],
-				destination: [42.787599, 141.681436],
-				travelMode: 'transit',
+				origin: [ parseFloat( startPos.lat ), parseFloat( startPos.lng )],
+				destination: [ parseFloat( destPos.lat ) , parseFloat( destPos.lng )],
+				travelMode: 'walking',
 				strokeColor: '#131540',
 				strokeOpacity: 0.6,
 				strokeWeight: 6
 			});
+
+
+
+			// window.googleMap.drawRoute({
+			// 	origin: [43.067892, 141.350591],
+			// 	destination: [42.787599, 141.681436],
+			// 	travelMode: 'transit',
+			// 	strokeColor: '#131540',
+			// 	strokeOpacity: 0.6,
+			// 	strokeWeight: 6
+			// });
 		});
 
 	</script>
@@ -63,13 +81,11 @@
 
 					<option value="airport">치토세 공항</option>
 					<option value="hotel">쉐라톤 호텔 (in 삿뽀로)</option>
-					<optgroup label="Sapporo">
-						<option value="jrtower">Express: next day</option>
-						<option value="overnight">Overnight</option>
+					<optgroup label="삿뽀루">
+						<option value="sapporo_station">삿뽀루 역</option>
 					</optgroup>
-					<optgroup label="Otaru">
-						<option value="express">Express: next day</option>
-						<option value="overnight">Overnight</option>
+					<optgroup label="오타루">
+						<option value="otaru_station">오타루역</option>
 					</optgroup>
 
 				</select>
@@ -78,10 +94,14 @@
 			<div data-role="fieldcontain">
 				<label for="endPos" class="select">도착지</label>
 				<select name="endPos" id="endPos" >
-					<option value="standard">Standard: 7 day</option>
-					<option value="rush">Rush: 3 days</option>
-					<option value="express">Express: next day</option>
-					<option value="overnight">Overnight</option>
+					<option value="airport">치토세 공항</option>
+					<option value="hotel">쉐라톤 호텔 (in 삿뽀로)</option>
+					<optgroup label="삿뽀루">
+						<option value="sapporo_station">삿뽀루 역</option>
+					</optgroup>
+					<optgroup label="오타루">
+						<option value="otaru_station">오타루역</option>
+					</optgroup>
 				</select>
 			</div>
 			<div data-role="fieldcontain">
@@ -89,7 +109,7 @@
 				<select name="travelMode" id="travelMode" >
 					<option value="walking">WALKING</option>
 					<option value="driving">DRIVING</option>
-					<option value="transit">TRANSIT</option>
+					<option value="transit">TRANSIT</option>mv
 				</select>
 			</div>
 
