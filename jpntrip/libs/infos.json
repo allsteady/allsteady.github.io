@@ -1,37 +1,63 @@
 var JSON_DATA = [
 	{
 		"name" : "치토세공항",
-		"id"	:"airport",
+		"code"	:"airport",
+		"type" : "traffic",
 		"lat" : "42.787599",
 		"lng" : "141.681436"
 	}, {
-		"name" : "삿뽀로역",
-		"id"	:"sapporo_station",
-		"lat" : "43.067892",
-		"lng" : "141.350591"
-	}, {
 		"name" : "쉐라톤호텔",
-		"id"	:"hotel",
+		"code"	:"hotel",
+		"type" : "traffic",
 		"lat" : "43.040113",
 		"lng" : "141.473314"
 	}, {
+		"name" : "삿뽀로역",
+		"code"	:"sapporo_station",
+		"type" : "traffic",
+		"lat" : "43.067892",
+		"lng" : "141.350591"
+	}, {
+		"name" : "삿뽀로 애플스토어",
+		"code"	:"applestore",
+		"type" : "shop",
+		"lat" : "43.059262",
+		"lng" : "141.353499",
+		"maker" : true
+	}, {
+		"name" : "라면 고조겐",
+		"code"	:"noodleGoJoKen",
+		"type" : "res",
+		"lat" : "43.051119",
+		"lng" : "141.345897",
+		"maker" : true
+	}, {
+		"name" : "징기스칸 다루마",
+		"code"	:"daruma_main",
+		"type" : "res",
+		"lat" : "43.053828",
+		"lng" : "141.35255",
+		"maker" : true
+	}, {
 		"name" : "오타루역",
-		"id"	:"otaru_station",
+		"code"	:"otaru_station",
+		"type" : "traffic",
 		"lat" : "43.197642",
 		"lng" : "140.993731"
 	}
 ];
 
 
-
-
-
-var idx = 0,
+var index = 0,
 	item,
-	infos = {};
-for ( idx = 0 ; idx < JSON_DATA.length ; idx++ ) {
-	item = JSON_DATA[idx];
-	console.log("idx  " + idx);
-	infos[ item.id ] = item;
+	infos = {},
+	makers = [];
+for ( index = 0 ; index < JSON_DATA.length ; index++ ) {
+	item = JSON_DATA[index];
+	infos[ item.code ] = item;
+	if ( !!item.maker ) {
+		makers.push( item.code );
+	}
 }
 window.infos = infos;
+window.makers = makers;
