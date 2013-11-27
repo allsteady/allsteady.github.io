@@ -55,7 +55,18 @@ var JSON_DATA = [
 		"b_url"	: "http://www.cyworld.com/sam2star/13433436/",
 		"ctg"	: "ctg_newsapporo",
 		"maker"	: true
-	},{
+	}, {
+		"name"	: "풍월 - 오코노미야끼",
+		"code"	: "okonomiyaki",
+		"type"	: "res",
+		"icon"	: "restaurant",
+		"addr"	: "5 Chome-6-3 Atsubetsuchuo 2 JoAtsubetsu Ward, Sapporo, Hokkaido Prefecture 004-0052 japan",
+		"lat"	: "43.038475",
+		"lng"	: "141.472634",
+		"b_url"	: "http://www.menupan.com/Waple/Travel/Travel_view.asp?id=5700",
+		"ctg"	: "ctg_newsapporo",
+		"maker"	: true
+	}, {
 		"name"	: "DONGURI-B2F",
 		"code"	: "donguri",
 		"type"	: "res",
