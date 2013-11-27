@@ -54,13 +54,23 @@ $( document ).ready(function(){
 		strokeWeight: 6,
 		callback : function ( e ) {
 			var routeInfos,
-				panel = $("#configPanel");
+				steps,idx = 0,
+				panel = $("#configPanel"),
+				listview;
 			if ( e.legs && e.legs.length > 0 ) {
 				routeInfos = e.legs [ 0 ];
 				panel.find("#startAddr").text( routeInfos.start_address );
 				panel.find("#endAddr").text( routeInfos.end_address );
 				panel.find("#distance").text( routeInfos.distance.text );
 				panel.find("#duration").text( routeInfos.duration.text );
+				if ( routeInfos.steps ) {
+					listview = panel.find("#stepInfos");
+					for ( idx = 0 ; idx < routeInfos.steps.length ; idx ++ ) {
+						dom = stepToDom (routeInfos.steps[idx]);
+						listview.append( dom );
+					}
+					listview.listview("refresh", "true");
+				}
 
 			}
 		}
@@ -107,6 +117,21 @@ $( document ).ready(function(){
 
 function makeInfowindow( item ) {
 
+}
+
+function stepToDom ( step ) {
+	var distance,
+		duration,
+		dom,
+		instructions;
+
+	if ( step ) {
+		distance = step.distance.text;
+		duration = step.duration.text;
+		instructions = step.instructions;
+		dom = $ ( "<li" +"> " + instructions + "<br>(" + distance +"/" + duration +")" + "</li>");
+	}
+	return dom;
 }
 
 function makeCustomMarker( item ) {

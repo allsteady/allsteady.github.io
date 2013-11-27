@@ -33,6 +33,14 @@ var JSON_DATA = [
 		"ctg" : "ctg_newsapporo",
 		"maker" : true
 	}, {
+		"name" : "홋카이도 박물관",
+		"code" : "museum",
+		"type" : "see",
+		"lat" : "43.052958",
+		"lng" : "141.496621",
+		"ctg" : "ctg_newsapporo",
+		"maker" : true
+	}, {
 		"name" : "빗쿠리돈키",
 		"code"	:"donkey",
 		"type" : "res",
@@ -74,6 +82,14 @@ var JSON_DATA = [
 		"type" : "shop",
 		"lat" : "43.059262",
 		"lng" : "141.353499",
+		"maker" : true
+	}, {
+		"name" : "구 사포로 청사",
+		"code"	:"old_cityhall",
+		"ctg": "ctg_sapporo",
+		"type" : "see",
+		"lat" : "43.063604",
+		"lng" : "141.348091",
 		"maker" : true
 	}, {
 		"name" : "스스키노역",
