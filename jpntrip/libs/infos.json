@@ -90,6 +90,7 @@ var JSON_DATA = [
 		"code"	:"sapporo_station",
 		"ctg"	: "ctg_sapporo",
 		"type"	: "traffic",
+		"icon"	: "train",
 		"lat"	: "43.068619",
 		"lng"	: "141.350763",
 		"maker"	: true
@@ -126,6 +127,7 @@ var JSON_DATA = [
 		"code"	:"susukino_station",
 		"ctg"	: "ctg_sapporo",
 		"type"	: "traffic",
+		"icon"	: "train",
 		"lat"	: "43.055616",
 		"lng"	: "141.353252",
 		"maker"	: true
