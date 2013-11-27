@@ -139,14 +139,18 @@ function makeCustomMarker( item ) {
 			details : item
 		};
 	marker = new google.maps.Marker( markerOption );
-	if ( item.type == "res" ) {
-		marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-	} else if ( item.type == "shop") {
-		marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-	} else if ( item.type == "see" ) {
-		marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+	if ( item.icon ) {
+		marker.setIcon('http://allsteady.github.io/jpntrip/resources/icons/' + item.icon +'.png');
 	} else {
-		marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+		// if ( item.type == "res" ) {
+		// 	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+		// } else if ( item.type == "shop") {
+		// 	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+		// } else if ( item.type == "see" ) {
+		// 	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+		// } else {
+			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+		// }
 	}
 	return marker;
 }
