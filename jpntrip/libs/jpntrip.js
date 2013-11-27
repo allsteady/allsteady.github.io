@@ -37,6 +37,7 @@ $( document ).ready(function(){
 
 	$("#configPanel").css("height", innerHeight + "px");
 	$("#configPanel").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
+	
 	window.googleMap = googleMap;
 }).on("vclick", "#searchBtn", function ( event ) {
 	var $startPos = $("#startPos"),
@@ -95,19 +96,6 @@ $( document ).ready(function(){
 			unitSystem: google.maps.UnitSystem.IMPERIAL
 		};
 
-		// reqOptions = {
-		// 	origin: [ startPos.lat , startPos.lng  ],
-		// 	destination: [ destPos.lat , destPos.lng ],
-		// 	origin: "Sapporo+Station%2C+Hokkaido+Prefecture%2C+Japan",
-			// destination: "New+Chitose+Airport%2C+Chitose%2C+Hokkaido+Prefecture%2C+Japan",
-		// 	travelMode: google.maps.TravelMode.TRANSIT,
-		// 	transitOptions: {
-		// 	departureTime: new Date(1337675679473)
-		// 	},
-		// 	unitSystem: google.maps.UnitSystem.IMPERIAL
-		// };
-	// reqOptions.origin = /string/.test(typeof reqOptions.origin) ? reqOptions.origin : new google.maps.LatLng(reqOptions.origin[0], reqOptions.origin[1]);
-// 		reqOptions.destination = /string/.test(typeof reqOptions.destination) ? reqOptions.destination : new google.maps.LatLng(reqOptions.destination[0], reqOptions.destination[1]);
 	service.route( reqOptions, function ( result, status ) {
 		console.log("callback status : " + status );
 		if (status === google.maps.DirectionsStatus.OK) {
@@ -116,6 +104,12 @@ $( document ).ready(function(){
 
 		}
 	});
+});
+
+$( window ).bind ("resize", function ( event ) {
+	var innerHeight = $( window ).innerHeight ();
+	$("#configPanel").css("height", innerHeight + "px");
+	$("#configPanel").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
 });
 
 function makeInfowindow( item ) {
