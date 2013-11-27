@@ -76,6 +76,14 @@ var JSON_DATA = [
 		"lng" : "141.353499",
 		"maker" : true
 	}, {
+		"name" : "스스키노역",
+		"code"	:"susukino_station",
+		"ctg": "ctg_sapporo",
+		"type" : "traffic",
+		"lat" : "43.055616",
+		"lng" : "141.353252",
+		"maker" : true
+	}, {
 		"name" : "피카테-PICANTE",
 		"code"	:"PICANTE",
 		"ctg": "ctg_sapporo",
