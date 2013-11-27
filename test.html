@@ -4,14 +4,28 @@
 	<script>
 	window.addEventListener("orientationchange", function() {
 		// Announce the new orientation number
-		alert(window.orientation);
 		var dom = document.getElementById("status");
 		dom.innerText = window.orientation;
 	});
+
+	var mql = window.matchMedia("(orientation: portrait)");
+	mql.addListener(function( m ) {
+		var dom = document.getElementById("mqlStatus");
+		if(m.matches) {
+			// Changed to portrait			
+			dom.innerText = "portrait";
+		}
+		else {
+			// Changed to landscape
+			dom.innerText = "landscape";
+		}
+	});
+
 	</script>
 </head>
 <body>
 </body>
 	Hellow!! :-) <br>
-	Current orientation : <span id="status"> </span>
+	Current orientation ( event ): <span id="status"> </span>
+	Current orientation ( media ): <span id="mqlStatus"> </span>
 </html>
