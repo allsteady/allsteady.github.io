@@ -72,16 +72,8 @@ var JSON_DATA = [
 		"code"	:"sapporo_station",
 		"ctg": "ctg_sapporo",
 		"type" : "traffic",
-		"lat" : "43.067892",
-		"lng" : "141.350591",
-		"maker" : true
-	}, {
-		"name" : "삿뽀로 애플스토어",
-		"code"	:"applestore",
-		"ctg": "ctg_sapporo",
-		"type" : "shop",
-		"lat" : "43.059262",
-		"lng" : "141.353499",
+		"lat" : "43.068619",
+		"lng" : "141.350763",
 		"maker" : true
 	}, {
 		"name" : "구 사포로 청사",
@@ -90,6 +82,23 @@ var JSON_DATA = [
 		"type" : "see",
 		"lat" : "43.063604",
 		"lng" : "141.348091",
+		"maker" : true
+	}, {
+		"name" : "JR Tower",
+		"code"	:"jrTower",
+		"ctg": "ctg_sapporo",
+		"addr" : "2-5 Kita 5 Jonishi, SapporoChuo Ward, Hokkaido Prefecture, Japan",
+		"type" : "see",
+		"lat" : "43.067884",
+		"lng" : "141.350538",
+		"maker" : true
+	}, {
+		"name" : "삿뽀로 애플스토어",
+		"code"	:"applestore",
+		"ctg": "ctg_sapporo",
+		"type" : "shop",
+		"lat" : "43.059262",
+		"lng" : "141.353499",
 		"maker" : true
 	}, {
 		"name" : "스스키노역",

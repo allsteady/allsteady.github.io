@@ -5,11 +5,13 @@
 	window.addEventListener("orientationchange", function() {
 		// Announce the new orientation number
 		alert(window.orientation);
+		var dom = document.getElementById("status");
+		dom.text = window.orientation;
 	});
 	</script>
 </head>
 <body>
 </body>
 	Hellow!! :-) <br>
-	Current orientation : <span id="status"></span>
+	Current orientation : <span id="status"> </span>
 </html>

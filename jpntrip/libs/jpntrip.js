@@ -36,7 +36,9 @@ $( document ).ready(function(){
 	}
 
 	$("#configPanel").css("height", innerHeight + "px");
-	$("#configPanel").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
+	$("#configPanel").find(".ui-content").css("height", parseInt( innerHeight * 0.7 ) + "px");
+	// $("#configPanel").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
+	// 
 	
 	window.googleMap = googleMap;
 }).on("vclick", "#searchBtn", function ( event ) {
@@ -45,9 +47,7 @@ $( document ).ready(function(){
 		startPos = infos[ $startPos.val() ],
 		destPos = infos[ $destPos.val() ];
 
-	// console.log (" startPos [ name %s, lat %s, lng :%s ]",startPos.name, parseFloat( startPos.lat ), parseFloat( startPos.lng ) );
-	// console.log (" destPos [ name %s, lat %s, lng :%s ]", destPos.name, parseFloat( destPos.lat ), parseFloat( destPos.lng ) );
-	
+	window.scrollTop = 0;
 	window.googleMap.cleanRoute()
 	window.googleMap.drawRoute({
 		origin: [ parseFloat( startPos.lat ), parseFloat( startPos.lng ) ],
@@ -59,7 +59,8 @@ $( document ).ready(function(){
 		callback : function ( e ) {
 			var routeInfos,
 				steps,idx = 0,
-				panel = $("#configPanel"),
+				panel = $("#dialogPage"),
+				// panel = $("#configPanel"),
 				listview;
 			if ( e.legs && e.legs.length > 0 ) {
 				routeInfos = e.legs [ 0 ];
@@ -73,7 +74,7 @@ $( document ).ready(function(){
 						dom = stepToDom (routeInfos.steps[idx]);
 						listview.append( dom );
 					}
-					listview.listview("refresh", "true");
+					listview.listview( "refresh" );
 				}
 
 			}
@@ -97,7 +98,6 @@ $( document ).ready(function(){
 		};
 
 	service.route( reqOptions, function ( result, status ) {
-		console.log("callback status : " + status );
 		if (status === google.maps.DirectionsStatus.OK) {
 
 		} else {
@@ -108,8 +108,9 @@ $( document ).ready(function(){
 
 $( window ).bind ("resize", function ( event ) {
 	var innerHeight = $( window ).innerHeight ();
-	$("#configPanel").css("height", innerHeight + "px");
-	$("#configPanel").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
+	console.log ( "resize :: " + innerHeight );
+	$("#dialogPage").css("height", innerHeight + "px");
+	$("#dialogPage").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
 });
 
 function makeInfowindow( item ) {
