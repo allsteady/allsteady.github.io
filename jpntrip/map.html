@@ -75,20 +75,21 @@
 		<div data-role="header">
 			<h2>Information</h2>
 		</div>
-  		<div data-role="content" style="overflow:hidden;">
+  		<div data-role="content" id="dialogbody" >
     			<p>
 				도착지 주소 : <span id="startAddr"> </span>
 			</p>
-			<p>
-				출발지 주소 : <span id="endAddr"> </span>
-			</p>
+			
 			<p>
 				거리 : <span id="distance"> </span><br>
 				소요시간 : <span id="duration"> </span>
 			</p>
-			<div style="overflow:scroll;" id="steps">
-				<ul data-role="listview" id="stepInfos" data-mini="true" style="font-size:0.8rem;" >
-				</ul>
+
+			<div style="overflow:auto;" id="steps">
+				<div style="margin-top: 15px;margin-left: 15px;" >
+					<ul data-role="listview" id="stepInfos" data-mini="true" style="font-size:0.8rem;" >
+					</ul>
+				</div>
 			</div>
   		</div>
 	</div>

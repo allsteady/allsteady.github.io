@@ -35,8 +35,8 @@ $( document ).ready(function(){
 
 	}
 
-	$("#configPanel").css("height", innerHeight + "px");
-	$("#configPanel").find(".ui-content").css("height", parseInt( innerHeight * 0.7 ) + "px");
+	$("#dialogPage").css("height", innerHeight + "px");
+	$("#steps").css("height", parseInt( innerHeight * 0.5 ) + "px");
 	// $("#configPanel").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
 	// 
 	
@@ -74,7 +74,7 @@ $( document ).ready(function(){
 						dom = stepToDom (routeInfos.steps[idx]);
 						listview.append( dom );
 					}
-					listview.listview( "refresh" );
+						listview.listview( "refresh" );
 				}
 
 			}
