@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="./libs/jpntrip.js"></script>
 </head>
 <body>
-	<div data-role="page" id="fastscroll-demo" data-fit-page-to-window="true">
+	<div data-role="page" id="fastscroll-demo" data-fit-page-to-window="true" >
 		<div data-role="header" data-position="fixed">
 			<!--
 				<a href="#frontPage" class="hide-loading ui-btn-left" data-icon="back">Back</a>
@@ -65,22 +65,19 @@
   			<a id="testBtn"  data-role="button" data-theme="c" data-icon="search" data-inline="true">Search</a>
 
 		</div><!-- content -->
-		<div data-role="panel" id="configPanel" data-theme="b">	
-			<div class="panel-content">
-			<h3>설정</h3>
+		<div data-role="panel" id="configPanel" data-theme="b" style="overflow:hidden;margin:0px;">	
+			<div class="panel-content" >
 			<p>
 				도착지 주소 : <span id="startAddr"> </span>
 			</p>
-			<br>
 			<p>
 				출발지 주소 : <span id="endAddr"> </span>
 			</p>
-			<br>
 			<p>
 				거리 : <span id="distance"> </span><br>
 				소요시간 : <span id="duration"> </span>
 			</p>
-			<div>
+			<div style="overflow:scroll;" id="steps">
 				<ul data-role="listview" id="stepInfos" data-mini="true" style="font-size:0.8rem;" >
 				</ul>
 			</div>

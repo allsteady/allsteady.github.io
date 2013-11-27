@@ -2,7 +2,8 @@
 var map;
 
 $( document ).ready(function(){
-	var idx = 0, item, gMaker, infoWindow;
+	var idx = 0, item, gMaker, infoWindow,
+	innerHeight = $(window).innerHeight();
 	googleMap = new GMaps({
 			el: '#map',
 			lat: 43.067892,
@@ -34,6 +35,8 @@ $( document ).ready(function(){
 
 	}
 
+	$("#configPanel").css("height", innerHeight + "px");
+	$("#configPanel").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
 	window.googleMap = googleMap;
 }).on("vclick", "#searchBtn", function ( event ) {
 	var $startPos = $("#startPos"),
