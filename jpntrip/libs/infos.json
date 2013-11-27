@@ -5,6 +5,7 @@ var JSON_DATA = [
 		"type" : "traffic",
 		"lat" : "42.787599",
 		"lng" : "141.681436",
+		"addr": "New Chitose Airport, Chitose, Hokkaido Prefecture, Japan",
 		"ctg" : "ctg_newsapporo",
 		"maker" : true
 	}, {
@@ -13,6 +14,7 @@ var JSON_DATA = [
 		"type" : "traffic",
 		"lat" : "43.040113",
 		"lng" : "141.473314",
+		"addr" : "Sheraton Sapporo Hotel, 5-5-25 Atsubetsuchuo 2 Jo, Atsubetsu Ward, Sapporo, Hokkaido Prefecture, Japan",
 		"ctg" : "ctg_newsapporo",
 		"maker" : true
 	}, {
@@ -59,7 +61,7 @@ var JSON_DATA = [
 		"ctg" : "ctg_newsapporo",
 		"maker" : true
 	}, {
-		"name" : "무지-신삿뽀루",
+		"name" : "무지-신삿포루",
 		"code"	:"muji_shin",
 		"type" : "shop",
 		"lat" : "43.03894",

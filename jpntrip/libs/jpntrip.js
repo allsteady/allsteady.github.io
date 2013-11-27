@@ -108,9 +108,8 @@ $( document ).ready(function(){
 
 $( window ).bind ("resize", function ( event ) {
 	var innerHeight = $( window ).innerHeight ();
-	console.log ( "resize :: " + innerHeight );
 	$("#dialogPage").css("height", innerHeight + "px");
-	$("#dialogPage").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
+	$("#steps").css("height", parseInt( innerHeight * 0.5 ) + "px");
 });
 
 function makeInfowindow( item ) {
