@@ -230,11 +230,24 @@ var JSON_DATA = [
 		"lng"	: "140.994967",
 		"maker"	: true
 	}, {
+		"name"	: "르타오 케익",
+		"jname"	: "ルタオ",
+		"code"	: "otaru_naruto",
+		"icon"	: "restaurant",
+		"ctg"	: "ctg_otaru",
+		"b_url"	: "http://blog.naver.com/spring83?Redirect=Log&logNo=110178255891",
+		"img"	: "http://blogfiles.naver.net/20131022_236/spring83_1382435928565nMg6H_JPEG/%B8%A3%C5%B8%BF%C006.JPG",
+		"lat"	: "43.200336",
+		"lng"	: "140.994967",
+		"maker"	: true
+	}, {
 		"name" 	: "오르골당 본점",
 		"code"	: "otaru_oreg",
 		"addr"	: "4-1 Sumiyoshicho, Otaru, Hokkaido Prefecture, japan",
 		"ctg"	: "ctg_otaru",
+		"img"	: "http://postfiles8.naver.net/20130813_23/lovelyhyejin_1376404824862IpYoy_JPEG/P1012531.JPG",
 		"icon"	: "market",
+		"b_url"	: "http://blog.naver.com/blue_ash?Redirect=Log&logNo=10159421533",
 		"lat"	: "43.190516",
 		"lng"	: "141.008111",
 		"maker"	: true
