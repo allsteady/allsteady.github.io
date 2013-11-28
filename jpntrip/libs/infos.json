@@ -2,17 +2,16 @@ var JSON_DATA = [
 	{
 		"name"	: "치토세공항",
 		"code"	: "airport",
-		"type"	: "traffic",
 		"icon"	: "airport",
 		"lat"	: "42.787599",
 		"lng"	: "141.681436",
 		"addr"	: "New Chitose Airport, Chitose, Hokkaido Prefecture, Japan",
 		"ctg"	: "ctg_newsapporo",
+		"desc"	: "",
 		"maker"	: true
 	}, {
 		"name"	: "쉐라톤호텔",
 		"code"	: "hotel",
-		"type"	: "traffic",
 		"icon"	: "hotel",
 		"lat"	: "43.040113",
 		"lng"	: "141.473314",
@@ -31,16 +30,27 @@ var JSON_DATA = [
 	}, {
 		"name"	: "선피아자 수족관",
 		"code"	: "sunpizza",
-		"type"	: "see",
+		"icon"	: "glasses",
 		"lat"	: "43.036762",
 		"lng"	: "141.471816",
 		"b_url"	: "http://blog.naver.com/2004ms?Redirect=Log&logNo=110175082407",
 		"ctg"	: "ctg_newsapporo",
 		"maker"	: true
 	}, {
+		"name"	: "죽순라멘",
+		"jname"	: "麺屋　菜々兵衛",
+		"code"	: "bamboo",
+		"icon"	: "restaurant",
+		"lat"	: "43.049475",
+		"lng"	: "141.445955",
+		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197979346",
+		"img"	: "http://postfiles14.naver.net/20130912_221/kking654_1378977982449VEoDS_JPEG/1.jpg",
+		"ctg"	: "ctg_newsapporo",
+		"maker"	: true
+	}, {
 		"name"	: "홋카이도 박물관",
 		"code"	: "museum",
-		"type"	: "see",
+		"icon"	: "glasses",
 		"lat"	: "43.052958",
 		"lng"	: "141.496621",
 		"ctg"	: "ctg_newsapporo",
@@ -48,7 +58,6 @@ var JSON_DATA = [
 	}, {
 		"name"	: "빗쿠리돈키",
 		"code"	: "donkey",
-		"type"	: "res",
 		"lat"	: "43.039048",
 		"icon"	: "restaurant",
 		"lng"	: "141.472731",
@@ -58,7 +67,6 @@ var JSON_DATA = [
 	}, {
 		"name"	: "풍월 - 오코노미야끼",
 		"code"	: "okonomiyaki",
-		"type"	: "res",
 		"icon"	: "restaurant",
 		"addr"	: "5 Chome-6-3 Atsubetsuchuo 2 JoAtsubetsu Ward, Sapporo, Hokkaido Prefecture 004-0052 japan",
 		"lat"	: "43.038475",
@@ -69,7 +77,6 @@ var JSON_DATA = [
 	}, {
 		"name"	: "DONGURI-B2F",
 		"code"	: "donguri",
-		"type"	: "res",
 		"icon"	: "bread",
 		"lat"	: "43.037569",
 		"lng"	: "141.473098",
@@ -78,27 +85,25 @@ var JSON_DATA = [
 		"maker"	: true
 	}, {
 		"name"	: "무지-신삿포루",
-		"code"	:"muji_shin",
-		"type"	: "shop",
+		"code"	: "muji_shin",
 		"lat"	: "43.03894",
+		"icon"	: "market",
 		"lng"	: "141.472522",
 		"b_url"	: "http://www.cyworld.com/sam2star/13433436/",
 		"ctg"	: "ctg_newsapporo",
 		"maker"	: true
 	}, {
 		"name"	: "삿뽀로역",
-		"code"	:"sapporo_station",
+		"code"	: "sapporo_station",
 		"ctg"	: "ctg_sapporo",
-		"type"	: "traffic",
 		"icon"	: "train",
 		"lat"	: "43.068619",
 		"lng"	: "141.350763",
 		"maker"	: true
 	}, {
 		"name"	: "구 사포로 청사",
-		"code"	:"old_cityhall",
+		"code"	: "old_cityhall",
 		"ctg"	: "ctg_sapporo",
-		"type"	: "see",
 		"icon"	: "glasses",
 		"lat"	: "43.063604",
 		"lng"	: "141.348091",
@@ -108,7 +113,6 @@ var JSON_DATA = [
 		"code"	: "jrTower",
 		"ctg"	: "ctg_sapporo",
 		"addr"	: "2-5 Kita 5 Jonishi, SapporoChuo Ward, Hokkaido Prefecture, Japan",
-		"type"	: "see",
 		"icon"	: "glasses",
 		"lat"	: "43.067884",
 		"lng"	: "141.350538",
@@ -117,23 +121,21 @@ var JSON_DATA = [
 		"name"	: "삿뽀로 애플스토어",
 		"code"	: "applestore",
 		"ctg"	: "ctg_sapporo",
-		"type"	: "shop",
 		"icon"	: "computers",
 		"lat"	: "43.059262",
 		"lng"	: "141.353499",
 		"maker"	: true
 	}, {
 		"name"	: "스스키노역",
-		"code"	:"susukino_station",
+		"code"	: "susukino_station",
 		"ctg"	: "ctg_sapporo",
-		"type"	: "traffic",
 		"icon"	: "train",
 		"lat"	: "43.055616",
 		"lng"	: "141.353252",
 		"maker"	: true
 	}, {
 		"name"	: "피카테-PICANTE",
-		"code"	:"PICANTE",
+		"code"	: "PICANTE",
 		"ctg"	: "ctg_sapporo",
 		"type"	: "res",
 		"icon"	: "restaurant",
@@ -146,25 +148,22 @@ var JSON_DATA = [
 		"name"	: "라면 고조겐",
 		"code"	: "noodleGoJoKen",
 		"ctg"	: "ctg_sapporo",
-		"type"	: "res",
 		"icon"	: "restaurant",
 		"lat"	: "43.051119",
 		"lng"	: "141.345897",
 		"maker"	: true
 	}, {
 		"name"	: "징기스칸 다루마",
-		"code"	:"daruma_main",
+		"code"	: "daruma_main",
 		"ctg"	: "ctg_sapporo",
-		"type"	: "res",
 		"icon"	: "restaurant",
 		"lat"	: "43.053828",
 		"lng"	: "141.35255",
 		"maker"	: true
 	}, {
 		"name"	: "도큐핸즈",
-		"code"	:"tokyuhands",
+		"code"	: "tokyuhands",
 		"ctg"	: "ctg_sapporo",
-		"type"	: "shop",
 		"icon"	: "market",
 		"lat"	: "43.058157",
 		"lng"	: "141.34885",
@@ -173,7 +172,6 @@ var JSON_DATA = [
 		"name"	: "돈키호테",
 		"code"	: "Don-Quixote",
 		"ctg"	: "ctg_sapporo",
-		"type"	: "shop",
 		"icon"	: "market",
 		"lat"	: "43.057538",
 		"lng"	: "141.353399",
@@ -182,7 +180,6 @@ var JSON_DATA = [
 		"name"	: "오타루역",
 		"code"	: "otaru_station",
 		"ctg"	: "ctg_otaru",
-		"type"	: "traffic",
 		"icon"	: "train",
 		"lat"	: "43.197642",
 		"lng"	: "140.993731",
@@ -192,7 +189,6 @@ var JSON_DATA = [
 		"code"	: "otaru_oreg",
 		"addr"	: "4-1 Sumiyoshicho, Otaru, Hokkaido Prefecture, japan",
 		"ctg"	: "ctg_otaru",
-		"type"	: "shop",
 		"lat"	: "43.190516",
 		"lng"	: "141.008111",
 		"maker"	: true
