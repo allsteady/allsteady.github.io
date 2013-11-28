@@ -1,14 +1,65 @@
+/* iPhone landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : landscape) {
+  /* STYLES GO HERE */
+  .map-class {
+
+  }
+  #configBtnH{
+    background-color:  blue;
+  }
+}
+
+/* iPhone portrait */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait ) {
+  /* STYLES GO HERE */
+  #configBtnH{
+    background-color:  blue;
+  }
+}
+
+/* iPhone portrait */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) { /* STYLES GO HERE */
+  #configBtnH{
+    background-color:  red;
+  }
+}
+
+/* iPad portrait */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) { /* STYLES GO HERE */ 
+  #configBtnH{
+    background-color:  red;
+  }
+}
+
 body{
-  font-family: 'Droid Sans', 'Helvetica', Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, '돋움', Dotum, helvetica, sans-serif;
   margin:5px;
 }
-#map{
+  #configBtnH{
+    background-color:  black;
+  }
+
+#map {
   display: block;
   width: 85%;
   height: 300px;
   margin: 0 auto;
   -moz-box-shadow: 0px 5px 20px #ccc;
   -webkit-box-shadow: 0px 5px 20px #ccc;
+  -o-box-shadow: 0px 5px 20px #ccc;
+  -ms-box-shadow: 0px 5px 20px #ccc;
   box-shadow: 0px 5px 20px #ccc;
 }
 
