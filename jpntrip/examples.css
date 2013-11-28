@@ -47,9 +47,6 @@ body{
   font-family: 'Helvetica Neue', Helvetica, Arial, '돋움', Dotum, helvetica, sans-serif;
   margin:5px;
 }
-  #configBtnH{
-    background-color:  black;
-  }
 
 #map {
   display: block;

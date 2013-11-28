@@ -19,7 +19,7 @@ and (max-device-width : 568px)
 and (orientation : portrait ) {
 	/* STYLES GO HERE */
 	#configBtnH{
-		background-color:	blue;
+		background-color:	yellow;
 	}
 }
 
@@ -39,6 +39,6 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : portrait) { /* STYLES GO HERE */ 
 	#configBtnH{
-		background-color:	red;
+		background-color:	ivory;
 	}
 }
