@@ -114,9 +114,29 @@ var JSON_DATA = [
 		"code"	: "jrTower",
 		"ctg"	: "ctg_sapporo",
 		"addr"	: "2-5 Kita 5 Jonishi, SapporoChuo Ward, Hokkaido Prefecture, Japan",
-		"icon"	: "glasses",
+		"icon"	: "tower",
 		"lat"	: "43.067884",
 		"lng"	: "141.350538",
+		"maker"	: true
+	}, {
+		"name"	: "오도리 공원",
+		"code"	: "odori_park",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "park",
+		"img"	: "http://postfiles6.naver.net/20130927_261/kmi9843_1380271308512Uf7pY_JPEG/1.jpg",
+		"b_url"	: "http://blog.naver.com/kmi9843?Redirect=Log&logNo=195830663",
+		"lat"	: "43.059855",
+		"lng"	: "141.348563",
+		"maker"	: true
+	}, {
+		"name"	: "삿뽀로 TV 타워",
+		"code"	: "s_tv_tower",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "tower",
+		"img"	: "http://postfiles6.naver.net/20130927_261/kmi9843_1380271308512Uf7pY_JPEG/1.jpg",
+		"b_url"	: "http://blog.naver.com/kmi9843?Redirect=Log&logNo=195830663",
+		"lat"	: "43.061102",
+		"lng"	: "141.356412",
 		"maker"	: true
 	}, {
 		"name"	: "삿뽀로 애플스토어",
@@ -233,7 +253,7 @@ var JSON_DATA = [
 		"name"	: "르타오 케익",
 		"jname"	: "ルタオ",
 		"code"	: "otaru_naruto",
-		"icon"	: "restaurant",
+		"icon"	: "bread",
 		"ctg"	: "ctg_otaru",
 		"b_url"	: "http://blog.naver.com/spring83?Redirect=Log&logNo=110178255891",
 		"img"	: "http://blogfiles.naver.net/20131022_236/spring83_1382435928565nMg6H_JPEG/%B8%A3%C5%B8%BF%C006.JPG",

@@ -34,7 +34,6 @@ $( document ).ready(function(){
 	$("#steps").css("height", parseInt( innerHeight * 0.5 ) + "px");
 	// $("#configPanel").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
 	// 
-	
 	window.googleMap = googleMap;
 }).on("vclick", "#searchBtn", function ( event ) {
 	var $startPos = $("#startPos"),
