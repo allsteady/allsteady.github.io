@@ -90,7 +90,7 @@ function makeInfowindow( item ) {
 		nameDom = "<p class='info-name'>"+ item.name + "</p>";
 
 	if ( item.img ) {
-		innerHtml += "<img src='" + item.img + "' style ='width:45px;height:45px;'></img>"
+		innerHtml += "<img src='" + item.img + "' style ='width:50px;height:50px;'></img>"
 	}
 	if ( item.jname ) {
 		innerHtml += "<span>" + item.jname + "</span>"	
@@ -134,15 +134,7 @@ function makeCustomMarker( item ) {
 	if ( item.icon ) {
 		marker.setIcon('http://allsteady.github.io/jpntrip/resources/icons/' + item.icon +'.png');
 	} else {
-		// if ( item.type == "res" ) {
-		// 	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-		// } else if ( item.type == "shop") {
-		// 	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-		// } else if ( item.type == "see" ) {
-		// 	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
-		// } else {
-			marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-		// }
+		marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 	}
 	return marker;
 }
