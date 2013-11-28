@@ -1,48 +1,3 @@
-/* iPhone landscape */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 568px) 
-and (orientation : landscape) {
-  /* STYLES GO HERE */
-  .map-class {
-
-  }
-  #configBtnH{
-    background-color:  blue;
-  }
-}
-
-/* iPhone portrait */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 568px) 
-and (orientation : portrait ) {
-  /* STYLES GO HERE */
-  #configBtnH{
-    background-color:  blue;
-  }
-}
-
-/* iPhone portrait */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : landscape) { /* STYLES GO HERE */
-  #configBtnH{
-    background-color:  red;
-  }
-}
-
-/* iPad portrait */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : portrait) { /* STYLES GO HERE */ 
-  #configBtnH{
-    background-color:  red;
-  }
-}
-
 body{
   font-family: 'Helvetica Neue', Helvetica, Arial, '돋움', Dotum, helvetica, sans-serif;
   margin:5px;
@@ -60,7 +15,11 @@ body{
   box-shadow: 0px 5px 20px #ccc;
 }
 
-
+.my-label {
+  float: left;
+  font-weight: bold !important;
+  margin: .5em 2% 0 0 !important;
+}
 .overlay{
   display:block;
   text-align:center;
@@ -96,3 +55,22 @@ body{
   border-bottom:16px solid #336699;
 }
 
+.info-content {
+  display: block;
+   margin: 0px;
+}
+
+.info-content img {
+  float : right;
+  top : -1px;
+}
+
+.info-content span {
+  float : right;
+  top : -1px;
+}
+
+.info-name {
+  top:-3px;
+  margin: 0px;
+}

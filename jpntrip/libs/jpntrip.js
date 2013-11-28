@@ -21,18 +21,13 @@ $( document ).ready(function(){
 
 	for ( ; idx < makers.length ; idx++ ) {
 		item = infos [ makers[ idx ] ];
-		typeColor = item.type === "res" ? 'blue'  : 'red';
-		console.log(item.name + "] typeColor : " + typeColor);
+		console.log( "[" + item.name + "] typeColor : " + item.icon );
 
 		gMarker = makeCustomMarker( item );
 		googleMap.addMarker ( gMarker );
 		
-		infoWindow = new google.maps.InfoWindow( {
-			content:  "<p id='" + item.code+"'>"+ gMarker.title + "</p>"
-		});
-		
+		infoWindow = makeInfowindow( item );
 		makeInfowindowEvent( googleMap, infoWindow, gMarker, item.code );
-
 	}
 
 	$("#dialogPage").css("height", innerHeight + "px");
@@ -81,29 +76,6 @@ $( document ).ready(function(){
 		}
 	});
 	window.googleMap.setCenter(parseFloat( startPos.lat ), parseFloat( startPos.lng ));
-}).on("vclick", "#testBtn", function ( event ) {
-	var service = new google.maps.DirectionsService(),
-		$startPos = $("#startPos"),
-		$destPos = $("#endPos"),
-		startPos = infos[ $startPos.val() ],
-		destPos = infos[ $destPos.val() ],
-		reqOptions = {
-			origin: "Seoul station",
-			destination: "Incheon Airport",
-			travelMode: google.maps.TravelMode.TRANSIT,
-			transitOptions: {
-			departureTime: new Date()
-			},
-			unitSystem: google.maps.UnitSystem.IMPERIAL
-		};
-
-	service.route( reqOptions, function ( result, status ) {
-		if (status === google.maps.DirectionsStatus.OK) {
-
-		} else {
-
-		}
-	});
 });
 
 $( window ).bind ("resize", function ( event ) {
@@ -113,7 +85,27 @@ $( window ).bind ("resize", function ( event ) {
 });
 
 function makeInfowindow( item ) {
+	var infoWindow,
+		innerHtml = "",
+		nameDom = "<p class='info-name'>"+ item.name + "</p>";
 
+	if ( item.img ) {
+		innerHtml += "<img src='" + item.img + "' style ='width:45px;height:45px;'></img>"
+	}
+	if ( item.jname ) {
+		innerHtml += "<span>" + item.jname + "</span>"	
+	}
+	if ( item.b_url ) {
+		innerHtml += "<a href='" + item.b_url + "' target='_blank'>Go to blog</a>"	
+	}
+
+	innerHtml = "<div id='iw_" + item.code+"'  style='width: 140px; height: 78px; overflow: hidden;'> "+
+				nameDom + "<div class='info-content'>" +  innerHtml + "</div></div>";
+
+	infoWindow = new google.maps.InfoWindow( {
+		content: innerHtml
+	});
+	return infoWindow;
 }
 
 function stepToDom ( step ) {
