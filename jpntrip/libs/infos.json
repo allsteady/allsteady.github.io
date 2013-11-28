@@ -80,6 +80,7 @@ var JSON_DATA = [
 		"icon"	: "bread",
 		"lat"	: "43.037569",
 		"lng"	: "141.473098",
+		"img"	: "http://postfiles11.naver.net/20110502_234/dungmi_1304324232754oqUrw_PNG/ph_reco_02_02_b.png",
 		"b_url"	: "http://blog.naver.com/seulgi2601?Redirect=Log&logNo=30159517764",
 		"ctg"	: "ctg_newsapporo",
 		"maker"	: true
@@ -137,11 +138,22 @@ var JSON_DATA = [
 		"name"	: "피카테-PICANTE",
 		"code"	: "PICANTE",
 		"ctg"	: "ctg_sapporo",
-		"type"	: "res",
 		"icon"	: "restaurant",
 		"lat"	: "43.076948",
 		"lng"	: "141.348651",
-		"b_url"	: "http://blog.naver.com/dungmi?Redirect=Log&logNo=130107992303",
+		"img"	: "http://postfiles6.naver.net/20110123_53/78cupid_1295711180693jSOCk_JPEG/DSC00330-1.jpg",
+		"b_url"	: "http://78cupid.blog.me/20120898727",
+		"desc"	: "soup curry",
+		"maker"	: true
+	}, {
+		"name"	: "SOUP CALYI",
+		"code"	: "soup_calyi",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "restaurant",
+		"img"	: "http://postfiles12.naver.net/20130912_91/kking654_1378977225417bvQ9R_JPEG/4.jpg",
+		"lat"	: "43.088377",
+		"lng"	: "141.34316",
+		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197979346",
 		"desc"	: "soup curry",
 		"maker"	: true
 	}, {
@@ -185,10 +197,33 @@ var JSON_DATA = [
 		"lng"	: "140.993731",
 		"maker"	: true
 	}, {
+		"name"	: "계원",
+		"jname"	: "桂苑",
+		"code"	: "otaru_noodle",
+		"icon"	: "restaurant",
+		"ctg"	: "ctg_otaru",
+		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197979346",
+		"img"	: "http://postfiles4.naver.net/20130911_275/kking654_1378882021073EYB9X_JPEG/5.jpg",
+		"lat"	: "43.196309",
+		"lng"	: "140.996863",
+		"maker"	: true
+	}, {
+		"name"	: "이시미즈 - 튀김전문점",
+		"jname"	: "石水, いしみず",
+		"code"	: "otaru_denppura",
+		"icon"	: "restaurant",
+		"ctg"	: "ctg_otaru",
+		"b_url"	: "http://awaromi.blog.me/80178428099",
+		"img"	: "http://postfiles1.naver.net/20130726_16/awaromi_1374848181414Q2Vbr_JPEG/%BF%A1%BA%F1%B5%BF.jpg",
+		"lat"	: "43.197313",
+		"lng"	: "141.002862",
+		"maker"	: true
+	}, {
 		"name" 	: "오르골당 본점",
 		"code"	: "otaru_oreg",
 		"addr"	: "4-1 Sumiyoshicho, Otaru, Hokkaido Prefecture, japan",
 		"ctg"	: "ctg_otaru",
+		"icon"	: "market",
 		"lat"	: "43.190516",
 		"lng"	: "141.008111",
 		"maker"	: true
