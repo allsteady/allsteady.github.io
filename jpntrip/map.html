@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.css" />
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/git/jquery.mobile-git.css">
 	<link rel="stylesheet" type="text/css" href="examples.css" />
+	<link rel="stylesheet" type="text/css" media="only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape)" href="iphone.css" />
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
 	
@@ -29,13 +30,13 @@
 				<a href="#frontPage" class="hide-loading ui-btn-left" data-icon="back">Back</a>
 			-->
 			<h1>훗카이도 ( 北海道 ) 여행</h1>
-			<a href="#dialogPage" data-rel="dialog" id="configBtnH" class="hide-loading ui-btn-right" data-icon="info">Info</a>
+			<a href="#dialogPage" data-rel="dialog" id="configBtnH" class="hide-loading ui-btn-right" data-mini="true" data-iconpos="notext" data-icon="info">Info</a>
 		</div><!-- header -->
 		<div class="content" data-role="content" data-scroll="y">
-			<div id="map" style="heigh: 50%;"></div>
+			<div id="map" class="map-class"></div>
 			<div data-role="fieldcontain">
 				<label for="startPos" class="select">출발지</label>
-				<select name="startPos" id="startPos" >
+				<select name="startPos" id="startPos" data-mini="true">
 					<optgroup label="신삿포루" class='ctg_newsapporo'> 
 					</optgroup>
 					<optgroup label="삿포루" class='ctg_sapporo'> 
@@ -47,7 +48,7 @@
 
 			<div data-role="fieldcontain">
 				<label for="endPos" class="select">도착지</label>
-				<select name="endPos" id="endPos" >
+				<select name="endPos" id="endPos" data-mini="true" >
 					<optgroup label="신삿포루" class='ctg_newsapporo'> 
 					</optgroup>
 					<optgroup label="삿포루" class='ctg_sapporo'> 
@@ -57,17 +58,15 @@
 				</select>
 			</div>
 			<div data-role="fieldcontain">
-				<label for="travelMode" class="select">이동수단</label>
-				<select name="travelMode" id="travelMode" >
+				<label for="travelMode" class="select" >이동수단</label>
+				<select name="travelMode" id="travelMode" data-mini="true">
 					<option value="walking">WALKING</option>
 					<option value="driving">DRIVING</option>
 					<option value="transit">TRANSIT</option>
 				</select>
 			</div>
 
-  			<a id="searchBtn"  data-role="button" data-theme="c" data-icon="search" data-inline="true">Search</a>
-  			<a id="testBtn"  data-role="button" data-theme="c" data-icon="search" data-inline="true">Search</a>
-
+  			<a id="searchBtn"  data-role="button" data-theme="c" data-icon="search" data-inline="true" data-mini="true" >Search</a>
 		</div><!-- content -->
 		
 	</div><!-- page -->
