@@ -219,6 +219,17 @@ var JSON_DATA = [
 		"lng"	: "141.002862",
 		"maker"	: true
 	}, {
+		"name"	: "나루토 - 치킨",
+		"jname"	: "石水, いしみず",
+		"code"	: "otaru_naruto",
+		"icon"	: "restaurant",
+		"ctg"	: "ctg_otaru",
+		"b_url"	: "http://blog.naver.com/blue_ash?Redirect=Log&logNo=10159421533",
+		"img"	: "http://postfiles6.naver.net/20130207_101/blue_ash_1360244758855tVzNk_JPEG/IMG_2734-001.JPG",
+		"lat"	: "43.200336",
+		"lng"	: "140.994967",
+		"maker"	: true
+	}, {
 		"name" 	: "오르골당 본점",
 		"code"	: "otaru_oreg",
 		"addr"	: "4-1 Sumiyoshicho, Otaru, Hokkaido Prefecture, japan",
