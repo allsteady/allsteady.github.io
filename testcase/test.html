@@ -3,24 +3,28 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
-	window.addEventListener("orientationchange", function() {
-		// Announce the new orientation number
-		var dom = document.getElementById("status");
-		dom.innerText = window.orientation;
-	});
+		window.addEventListener("orientationchange", function() {
+			// Announce the new orientation number
+			var dom = document.getElementById("status");
+			dom.innerText = window.orientation;
+			dom = document.getElementById("windowHeight");
+			dom.innerText = screen.height;
+			dom = document.getElementById("windowWidth");
+			dom.innerText = screen.width;
+		});
 
-	var mql = window.matchMedia("(orientation: portrait)");
-	mql.addListener(function( m ) {
-		var dom = document.getElementById("mqlStatus");
-		if(m.matches) {
-			// Changed to portrait			
-			dom.innerText = "portrait";
-		}
-		else {
-			// Changed to landscape
-			dom.innerText = "landscape";
-		}
-	});
+		var mql = window.matchMedia("(orientation: portrait)");
+		mql.addListener(function( m ) {
+			var dom = document.getElementById("mqlStatus");
+			if(m.matches) {
+				// Changed to portrait			
+				dom.innerText = "portrait";
+			}
+			else {
+				// Changed to landscape
+				dom.innerText = "landscape";
+			}
+		});
 
 	</script>
 	<title>orientationchange</title>
@@ -30,5 +34,6 @@
 	Hellow!! :-) <br>
 	orientationchange test <br>
 	Current orientation ( event ): <span id="status"> </span> <br>
-	Current orientation ( media ): <span id="mqlStatus"> </span>
+	Current orientation ( media ): <span id="mqlStatus"> </span> <br>
+	Current screen resoultion  : <span id="windowHeight"></span>  &nbsp;/&nbsp; <span id="windowWidth"></span>
 </html>
