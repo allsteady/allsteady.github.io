@@ -1,5 +1,7 @@
 window._currencyDataLoad = false;
 window._currencyPageLoad = false;
+window._isRecently = false;
+window._refreshTime = 3600000;
 Number.prototype.format = function(){
 	if( this == 0 ) {
 		return 0;	
@@ -33,7 +35,7 @@ $( document ).bind(" dataload pageshow ", function ( event ) {
 		serviceUnvaliableErrorHander( );
 
 	}
-	if ( window._currencyDataLoad && window._currencyPageLoad  ) {
+	if ( ( window._currencyDataLoad && window._currencyPageLoad ) || window._isRecently ) {
 		updateCurrencyInfo( "green" );
 	}
 }).on("click", "#calc, #keyEquals", function ( event ) {
@@ -72,6 +74,12 @@ $( document ).bind(" dataload pageshow ", function ( event ) {
 });
 
 function loadCurrency () {
+	var exchangeData = $.localStorage.get( "exchange_data" ),
+		curTime = ( new Date );
+	if ( exchangeData && ( curTime - new Date( exchangeData.date ) ) < window._refreshTime  ) {
+		window._isRecently = true;
+		return ;
+	}
 	$.ajax ({
 		url : "http://rate-exchange.appspot.com/currency?from=JPY&to=KRW",
 		// url : "http://finance.yahoo.com/d/quotes.csv?e=.json&f=sl1d1t1&s=USDINR=X",
