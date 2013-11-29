@@ -33,7 +33,6 @@ $( document ).bind(" dataload pageshow ", function ( event ) {
 	if ( event.type === "pageshow" ) {
 		window._currencyPageLoad = true;
 		serviceUnvaliableErrorHander( );
-
 	}
 	if ( ( window._currencyDataLoad && window._currencyPageLoad ) || window._isRecently ) {
 		updateCurrencyInfo( "green" );
@@ -58,7 +57,7 @@ $( document ).bind(" dataload pageshow ", function ( event ) {
 	loadCurrency ( );
 }).on( "focus", "#fromA", function (event ) {
 	window._$inputValue.val("");
-}).on( "click" , ".ui-grid-c button", function( event ) {
+}).on( "vclick click" , ".ui-grid-c button", function( event ) {
 	var value = $( this).attr("data-val"),
 		current = window._$inputValue.val();
 	if ( value ) {
@@ -69,8 +68,10 @@ $( document ).bind(" dataload pageshow ", function ( event ) {
 
 		}
 	}
+	event.preventDefault();
 }).on( "click" , "#keyC", function( event ) {
 	 window._$inputValue.val( " ");
+	 event.preventDefault();
 });
 
 function loadCurrency () {
