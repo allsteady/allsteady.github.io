@@ -7,110 +7,66 @@
 
 	<title>환율계산기</title>
 
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/git/jquery.mobile-git.css">
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-	<script>
-		window._currencyDataLoad = false;
-		window._currencyPageLoad = false;
-		Number.prototype.format = function(){
-    if(this==0) return 0;
- 
-    var reg = /(^[+-]?\d+)(\d{3})/;
-    var n = (this + '');
- 
-    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
- 
-    return n;
-};
- 
-// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
-String.prototype.format = function(){
-    var num = parseFloat(this);
-    if( isNaN(num) ) return "0";
- 
-    return num.format();
-};
-		$( document ).bind(" dataload pageshow ", function ( event ) {
-			if ( event.type === "dataload" ) {
-				window._currencyDataLoad = true;
-			}
-			if ( event.type === "pageshow" ) {
-				window._currencyPageLoad = true;
-			}
-			if ( window._currencyDataLoad && window._currencyPageLoad  ) {
-				$( "#fromN" ).text( window.currencyData.from );
-				$( "#toN" ).text( window.currencyData.to );
-				$( "#currency" ).val( window.currencyData.rate );
-			}
-
-		}).on("click", "#calc", function ( event ) {
-			var cash = parseInt( $( "#fromA" ).val() ),
-				result;
-			result  = parseInt (cash * window.currencyData.rate * 100 ) / 100 ;
-			console.log ( "%s * %s = %s  ",cash,   window.currencyData.rate , result.format() );
-
-			$( "#toA" ).val( result.format() + "" );
-		});
-		$.ajax ({
-			url : "http://rate-exchange.appspot.com/currency?from=JPY&to=KRW",
-			dataType: "jsonp",
-			crossDomain: true,
-			error : function ( jqXHR, textStatus, errorThrown ) {
-				console.log (" error....." + errorThrown.message);
-			},
-			success : function ( data ) {
-				console.log (" success..... ("+data.from+" -> "+data.to+"): " + data.rate );
-				window.currencyData = data;
-				$( document ).trigger( "dataload" );
-			}
-		})
-	</script>
-	<script type="text/javascript" src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script>
-
+	<link rel="stylesheet" href="./libs/jquery.mobile-git.css">
+	<link rel="stylesheet" href="./calculator.css">
+	<script src="http://code.jquery.com/jquery-1.10.0.js"></script>
+	<script src="./libs/jquery.storageapi.js"></script>
+	<script src="./libs/calculator.js"></script>
+	<script type="text/javascript" src="./libs/jquery.mobile-git.js"></script>
 </head>
 <body>
 	<div data-role="page">
 		<div data-role="header">
 			<h1> Calculator </h1>
+			<a href="#" id="infoIcon" class="ui-btn-right" data-mini="true" data-iconpos="notext" data-icon="info">Info</a>
 		</div>
 		<div data-role="content">
-			<div data-role="filedcontains" style="margin: 1em 0;">
-				<label for="currency" class="select my-label">환율</label>
-				<input id="currency" name="currency" type="number" disabled id="displayControl" style="text-align: right;" value="0" />
+
+			<div data-role="fieldcontain">
+				<label for="currency" style="width : 12%;margin-left:-10px;">환율</label>
+				<input id="currency" name="currency" type="number" disabled  class="calcualtor-input" style="text-align: right" />
 			</div>
 
-			<div data-role="filedcontain"  style="margin: 1em 0;">
-				<label for="fromA" id="fromN" class="select my-label">환율</label>
-				<input id="fromA" name="fromA" type="number"  id="displayControl" style="text-align: right;" value="0" />
+			<div data-role="fieldcontain">
+				<label for="fromA" id="fromN"  style="width : 12%;margin-left:-10px;">--</label>
+				<input id="fromA" name="fromA" type="number" />
 			</div>
-			<div data-role="filedcontain"  style="margin: 1em 0;">
-				<label for="toA" id="toN" class="select my-label">환율</label>
-				<input id="toA" name="toA"  id="displayControl" style="text-align: right;" value="0" disabled />
+			<div data-role="fieldcontain">
+				<label for="itemCount"  style="width : 12%;margin-left:-10px;">수량</label>
+				<input id="itemCount" name="itemCount" type="number" value='1'/>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="toA" id="toN"  style="width : 12%;margin-left:-10px;">--</label>
+				<input id="toA" name="toA" style="text-align: right; font-weight:bold;" value="0" disabled />
 			</div>
 
 			
 			<div class="ui-grid-b">
-				<div class="ui-block-a"><button data-theme="a" id="keyC" data-rockncoder-tag="C" data-mini="true">C</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="keyCe" data-rockncoder-tag="CE" data-mini="true">CE</button></div>
-				<div class="ui-block-c"><button data-theme="a" id="calc" data-rockncoder-tag="CE" data-mini="true">Calc</button></div>
+				<div class="ui-block-a"><button data-theme="a" id="keyC" data-val="C" data-mini="true">C</button></div>
+				<div class="ui-block-b"><button data-theme="a" id="keyCe" data-val="CE" data-mini="true">Calc</button></div>
+				<div class="ui-block-c"><button data-theme="a" id="calc" data-val="CE" data-mini="true">Load</button></div>
 			</div>
 			<div class="ui-grid-c" data-mini="true">
-				<div class="ui-block-a"><button data-theme="a" id="key7" data-rockncoder-tag="7">7</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="key8" data-rockncoder-tag="8" >8</button></div>
-				<div class="ui-block-c"><button data-theme="a" id="key9" data-rockncoder-tag="9" >9</button></div>
-				<div class="ui-block-d"><button data-theme="b" id="keyDivide" >/</button></div>
-				<div class="ui-block-a"><button data-theme="a" id="key4" data-rockncoder-tag="4" >4</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="key5" data-rockncoder-tag="5" >5</button></div>
-				<div class="ui-block-c"><button data-theme="a" id="key6" data-rockncoder-tag="6" >6</button></div>
-				<div class="ui-block-d"><button data-theme="b" id="keyMultiply" >*</button></div>
-				<div class="ui-block-a"><button data-theme="a" id="key1" data-rockncoder-tag="1" >1</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="key2" data-rockncoder-tag="2" >2</button></div>
-				<div class="ui-block-c"><button data-theme="a" id="key3" data-rockncoder-tag="3" >3</button></div>
-				<div class="ui-block-d"><button data-theme="b" id="keySubtract" >-</button></div>
-				<div class="ui-block-a"><button data-theme="b" id="keyDecimalPoint" data-rockncoder-tag="." data-mini="true">.</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="key0" data-rockncoder-tag="0" data-mini="true">0</button></div>
+				<div class="ui-block-a"><button data-theme="a" id="key7" data-val="7" data-mini="true" >7</button></div>
+				<div class="ui-block-b"><button data-theme="a" id="key8" data-val="8" data-mini="true" >8</button></div>
+				<div class="ui-block-c"><button data-theme="a" id="key9" data-val="9" data-mini="true">9</button></div>
+				<div class="ui-block-d"><button data-theme="b" id="keyDivide" data-mini="true">/</button></div>
+				<div class="ui-block-a"><button data-theme="a" id="key4" data-val="4" data-mini="true">4</button></div>
+				<div class="ui-block-b"><button data-theme="a" id="key5" data-val="5" data-mini="true">5</button></div>
+				<div class="ui-block-c"><button data-theme="a" id="key6" data-val="6" data-mini="true">6</button></div>
+				<div class="ui-block-d"><button data-theme="b" id="keyMultiply" data-mini="true">*</button></div>
+				<div class="ui-block-a"><button data-theme="a" id="key1" data-val="1" data-mini="true" >1</button></div>
+				<div class="ui-block-b"><button data-theme="a" id="key2" data-val="2" data-mini="true" >2</button></div>
+				<div class="ui-block-c"><button data-theme="a" id="key3" data-val="3" data-mini="true">3</button></div>
+				<div class="ui-block-d"><button data-theme="b" id="keySubtract" data-mini="true">-</button></div>
+				<div class="ui-block-a"><button data-theme="b" id="keyDecimalPoint" data-val="." data-mini="true">.</button></div>
+				<div class="ui-block-b"><button data-theme="a" id="key0" data-val="0" data-mini="true">0</button></div>
 				<div class="ui-block-c"><button data-theme="b" id="keyEquals" data-mini="true">=</button></div>
 				<div class="ui-block-d"><button data-theme="b" id="keyAdd" data-mini="true">+</button></div>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="currencyDate" id=""  style="width : 15%;margin-left:-10px;">날짜</label>
+				<input id="currencyDate" name="currencyDate" style="text-align: right; font-weight:bold;" value="0" disabled />
 			</div>
 		</div>
 	</div>
