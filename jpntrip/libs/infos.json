@@ -43,8 +43,8 @@ var JSON_DATA = [
 		"icon"	: "restaurant",
 		"lat"	: "43.049475",
 		"lng"	: "141.445955",
-		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197979346",
-		"img"	: "http://postfiles14.naver.net/20130912_221/kking654_1378977982449VEoDS_JPEG/1.jpg",
+		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197944031",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/bamboo_noodle.JPG",
 		"ctg"	: "ctg_newsapporo",
 		"maker"	: true
 	}, {
@@ -71,6 +71,7 @@ var JSON_DATA = [
 		"addr"	: "5 Chome-6-3 Atsubetsuchuo 2 JoAtsubetsu Ward, Sapporo, Hokkaido Prefecture 004-0052 japan",
 		"lat"	: "43.038475",
 		"lng"	: "141.472634",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/okonomiyaki.JPG",
 		"b_url"	: "http://www.menupan.com/Waple/Travel/Travel_view.asp?id=5700",
 		"ctg"	: "ctg_newsapporo",
 		"maker"	: true
@@ -80,7 +81,7 @@ var JSON_DATA = [
 		"icon"	: "bread",
 		"lat"	: "43.037569",
 		"lng"	: "141.473098",
-		"img"	: "http://postfiles11.naver.net/20110502_234/dungmi_1304324232754oqUrw_PNG/ph_reco_02_02_b.png",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/donguri.png",
 		"b_url"	: "http://blog.naver.com/seulgi2601?Redirect=Log&logNo=30159517764",
 		"ctg"	: "ctg_newsapporo",
 		"maker"	: true
@@ -123,7 +124,7 @@ var JSON_DATA = [
 		"code"	: "odori_park",
 		"ctg"	: "ctg_sapporo",
 		"icon"	: "park",
-		"img"	: "http://postfiles6.naver.net/20130927_261/kmi9843_1380271308512Uf7pY_JPEG/1.jpg",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/odori_park.JPG",
 		"b_url"	: "http://blog.naver.com/kmi9843?Redirect=Log&logNo=195830663",
 		"lat"	: "43.059855",
 		"lng"	: "141.348563",
@@ -133,7 +134,7 @@ var JSON_DATA = [
 		"code"	: "s_tv_tower",
 		"ctg"	: "ctg_sapporo",
 		"icon"	: "tower",
-		"img"	: "http://postfiles15.naver.net/20130927_110/kmi9843_1380271310050wayI9_JPEG/3.jpg",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/sapporo_tv_tower.JPG",
 		"b_url"	: "http://blog.naver.com/kmi9843?Redirect=Log&logNo=195830663",
 		"lat"	: "43.061102",
 		"lng"	: "141.356412",
@@ -161,7 +162,7 @@ var JSON_DATA = [
 		"icon"	: "restaurant",
 		"lat"	: "43.076948",
 		"lng"	: "141.348651",
-		"img"	: "http://postfiles6.naver.net/20110123_53/78cupid_1295711180693jSOCk_JPEG/DSC00330-1.jpg",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/picante.JPG",
 		"b_url"	: "http://78cupid.blog.me/20120898727",
 		"desc"	: "soup curry",
 		"maker"	: true
@@ -170,10 +171,10 @@ var JSON_DATA = [
 		"code"	: "soup_calyi",
 		"ctg"	: "ctg_sapporo",
 		"icon"	: "restaurant",
-		"img"	: "http://postfiles12.naver.net/20130912_91/kking654_1378977225417bvQ9R_JPEG/4.jpg",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/soup_calyi.JPG",
 		"lat"	: "43.088377",
 		"lng"	: "141.34316",
-		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197979346",
+		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197943636",
 		"desc"	: "soup curry",
 		"maker"	: true
 	}, {
@@ -181,10 +182,35 @@ var JSON_DATA = [
 		"code"	: "noodleGoJoKen",
 		"ctg"	: "ctg_sapporo",
 		"icon"	: "restaurant",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/noodle_gojoken.JPG",
+		"b_url"	: "http://cafe.naver.com/jkglobalfrontier/942",
 		"lat"	: "43.051119",
 		"lng"	: "141.345897",
 		"maker"	: true
 	}, {
+		"name"	: "라멘요코초",
+		"jname"	: "ラ メン 丁",
+		"code"	: "noodleYoKoCho",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "restaurant",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/nodle_yokojo.JPG",
+		"b_url"	: "http://cafe.naver.com/jkglobalfrontier/930",
+		"lat"	: "43.054959",
+		"lng"	: "141.354433",
+		"maker"	: true
+	}, {
+		"name"	: "라멘 공화국",
+		"jname"	: "ラーメン共和国",
+		"code"	: "noodle_repbulic",
+		"desc"	: "ESAT 백화점 10층",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "restaurant",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/noodle_republic.JPG",
+		"b_url"	: "http://cafe.naver.com/jkglobalfrontier/936",
+		"lat"	: "43.067499",
+		"lng"	: "141.353048",
+		"maker"	: true
+	},{
 		"name"	: "징기스칸 다루마",
 		"code"	: "daruma_main",
 		"ctg"	: "ctg_sapporo",
@@ -204,7 +230,7 @@ var JSON_DATA = [
 		"name"	: "돈키호테",
 		"code"	: "Don-Quixote",
 		"ctg"	: "ctg_sapporo",
-		"img"	: "http://postfiles12.naver.net/20130224_91/8ydragon8_1361636165403jbDdV_JPEG/DSC02469.JPG",
+		"img"	:  "http://allsteady.github.io/jpntrip/resources/images/donquixote.JPG",
 		"b_url"	: "http://blog.naver.com/8ydragon8?Redirect=Log&logNo=40181577370",
 		"icon"	: "market",
 		"lat"	: "43.057538",
@@ -225,7 +251,7 @@ var JSON_DATA = [
 		"icon"	: "restaurant",
 		"ctg"	: "ctg_otaru",
 		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197979346",
-		"img"	: "http://postfiles4.naver.net/20130911_275/kking654_1378882021073EYB9X_JPEG/5.jpg",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/otaru_noddle.JPG",
 		"lat"	: "43.196309",
 		"lng"	: "140.996863",
 		"maker"	: true
@@ -236,38 +262,38 @@ var JSON_DATA = [
 		"icon"	: "restaurant",
 		"ctg"	: "ctg_otaru",
 		"b_url"	: "http://awaromi.blog.me/80178428099",
-		"img"	: "http://postfiles1.naver.net/20130726_16/awaromi_1374848181414Q2Vbr_JPEG/%BF%A1%BA%F1%B5%BF.jpg",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/denppura.jpg",
 		"lat"	: "43.197313",
 		"lng"	: "141.002862",
 		"maker"	: true
 	}, {
 		"name"	: "나루토 - 치킨",
-		"jname"	: "石水, いしみず",
+		"jname"	: "若鶏時代 なると",
 		"code"	: "otaru_naruto",
 		"icon"	: "restaurant",
 		"ctg"	: "ctg_otaru",
 		"b_url"	: "http://blog.naver.com/blue_ash?Redirect=Log&logNo=10159421533",
-		"img"	: "http://postfiles6.naver.net/20130207_101/blue_ash_1360244758855tVzNk_JPEG/IMG_2734-001.JPG",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/naruto_chicken.jpg",
 		"lat"	: "43.200336",
 		"lng"	: "140.994967",
 		"maker"	: true
 	}, {
 		"name"	: "르타오 케익",
 		"jname"	: "ルタオ",
-		"code"	: "otaru_naruto",
+		"code"	: "otaru_letao",
 		"icon"	: "coffee",
 		"ctg"	: "ctg_otaru",
 		"b_url"	: "http://blog.naver.com/spring83?Redirect=Log&logNo=110178255891",
-		"img"	: "http://blogfiles.naver.net/20131022_236/spring83_1382435928565nMg6H_JPEG/%B8%A3%C5%B8%BF%C006.JPG",
-		"lat"	: "43.200336",
-		"lng"	: "140.994967",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/letao_cake.JPG",
+		"lat"	: "43.191312",
+		"lng"	: "141.007433",
 		"maker"	: true
 	}, {
 		"name" 	: "오르골당 본점",
 		"code"	: "otaru_oreg",
 		"addr"	: "4-1 Sumiyoshicho, Otaru, Hokkaido Prefecture, japan",
 		"ctg"	: "ctg_otaru",
-		"img"	: "http://postfiles8.naver.net/20130813_23/lovelyhyejin_1376404824862IpYoy_JPEG/P1012531.JPG",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/otaru_oreg.JPG",
 		"icon"	: "market",
 		"b_url"	: "http://blog.naver.com/blue_ash?Redirect=Log&logNo=10159421533",
 		"lat"	: "43.190516",
@@ -288,6 +314,7 @@ for ( index = 0 ; index < JSON_DATA.length ; index++ ) {
 		makers.push( item.code );
 	}
 }
+
 window.infos = infos;
 window.makers = makers;
 $( document ).ready(function(){
