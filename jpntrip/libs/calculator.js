@@ -34,28 +34,47 @@ $( document ).bind(" dataload pageshow ", function ( event ) {
 
 	}
 	if ( window._currencyDataLoad && window._currencyPageLoad  ) {
-		serviceUnvaliableErrorHander( );
+		updateCurrencyInfo( "green" );
 	}
-}).on("click", "#calc", function ( event ) {
+}).on("click", "#calc, #keyEquals", function ( event ) {
 	var cash = parseInt( $( "#fromA" ).val() ),
 		count = parseInt( $( "#itemCount" ).val() ),
-		result;
+		color = "black",	result;
 	result  = parseInt (cash * window.currencyData.rate *  count * 100 ) / 100 ;
 
 	console.log ( "%s * %s = %s (%s)  ",cash,   window.currencyData.rate , result.format(), Math.round(result).format() );
+	if ( result >= 100000 ) {
+		color = "red";
+	} else if ( result >= 50000 ){
+		color = "orange";
+	}
 
-	$( "#toA" ).val( Math.round(result).format() );
+	$( "#toA" ).val( Math.round(result).format() ).css( "color", color );
+
 }).on( "click", "#infoIcon", function ( event ) {
 	window._currencyDataLoad = false;
 	loadCurrency ( );
 }).on( "focus", "#fromA", function (event ) {
-	$( "#fromA" ).val("");
+	window._$inputValue.val("");
+}).on( "click" , ".ui-grid-c button", function( event ) {
+	var value = $( this).attr("data-val"),
+		current = window._$inputValue.val();
+	if ( value ) {
+		if ( current && current.length > 0 ) {
+			window._$inputValue.val( current + "" + value );
+		} else {
+			window._$inputValue.val( value );
+
+		}
+	}
+}).on( "click" , "#keyC", function( event ) {
+	 window._$inputValue.val( " ");
 });
 
 function loadCurrency () {
 	$.ajax ({
 		url : "http://rate-exchange.appspot.com/currency?from=JPY&to=KRW",
-		// url : " http://finance.yahoo.com/d/quotes.csv?e=.json&f=sl1d1t1&s=USDINR=X",
+		// url : "http://finance.yahoo.com/d/quotes.csv?e=.json&f=sl1d1t1&s=USDINR=X",
 		// url : "http://finance.yahoo.com/currency-converter/#from=JPY;to=KRW;amt=1",
 		// url : "http://www.webservicex.net/CurrencyConvertor.asmx/ConversionRate?FromCurrency=JPY&ToCurrency=KRW",
 		dataType: "jsonp",
@@ -109,5 +128,5 @@ function updateCurrencyInfo( color ) {
 }
 
 $( document ).ready( function ( event ) {
-
+	window._$inputValue = $( "#fromA" );
 });
