@@ -132,7 +132,7 @@ function updateCurrencyInfo( color ) {
 	$( "#fromN" ).text( window.currencyData.from );
 	$( "#toN" ).text( window.currencyData.to );
 	$( "#currency" ).val( window.currencyData.rate );
-	$( "#currencyDate" ).val( window.currencyData.date );
+	$( "#currencyDate" ).val( new Date( window.currencyData.date ) );
 	$( "#infoIcon" ).css("background-color", color );
 }
 
