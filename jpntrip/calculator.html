@@ -23,28 +23,43 @@
 		<div data-role="content">
 
 			<div data-role="fieldcontain">
-				<label for="currency" style="width : 12%;margin-left:-10px;">환율</label>
-				<input id="currency" name="currency" type="number" disabled  class="calcualtor-input" style="text-align: right" />
+				<label for="currency" style="width : 20%;margin-left:-10px;">환율</label>
+				<input id="currency" name="currency" type="number" disabled  class="calcualtor-input" style="text-align: right;font-size:24px;" />
 			</div>
 
-			<div data-role="fieldcontain">
-				<label for="fromA" id="fromN"  style="width : 12%;margin-left:-10px;">--</label>
+			<!-- <div data-role="fieldcontain">
+				<label for="fromA" id="fromN"  style="width : 20%;margin-left:-10px;">--</label>
 				<input id="fromA" name="fromA" type="number" />
 			</div>
 			<div data-role="fieldcontain">
-				<label for="itemCount"  style="width : 12%;margin-left:-10px;">수량</label>
-				<input id="itemCount" name="itemCount" type="number" value='1'/>
-			</div>
-			<div data-role="fieldcontain">
-				<label for="toA" id="toN"  style="width : 12%;margin-left:-10px;">--</label>
-				<input id="toA" name="toA" style="text-align: right; font-weight:bold;" value="0" disabled />
+				<label for="itemCount"  style="width : 20%;margin-left:-10px;">수량</label>
+				<input id="itemCount" name="itemCount" type="number" value='1' style="text-align: right;"/>
+			</div> -->
+
+			<div class="ui-grid-c">
+				<div class="ui-block-a" style="width:18%; align: center;padding-top: 10px;">
+				<label for="fromA" id="fromN"  style="text-align:center" >--</label>
+				</div>
+				<div class="ui-block-b" style="width:40%;padding:0px;">
+				<input id="fromA" name="fromA" type="number" />
+				</div>
+				<div class="ui-block-c" style="width:18%; align: center;padding-top: 10px;">
+				<label for="itemCount" style="text-align:center"  >수량</label>
+				</div>
+				<div class="ui-block-d"  style="width:20%;">
+				<input id="itemCount" name="itemCount" type="number" value='1' style="text-align: right;"/>
+				</div>
 			</div>
 
+			<div data-role="fieldcontain">
+				<label for="toA" id="toN"  style="width : 20%;margin-left:-10px;">--</label>
+				<input id="toA" name="toA" style="text-align: right; font-weight:bold; font-size:24px;" value="0" disabled />
+			</div>
 			
 			<div class="ui-grid-b">
 				<div class="ui-block-a"><button data-theme="a" id="keyC" data-val="C" data-mini="true">C</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="keyCe" data-val="CE" data-mini="true">Calc</button></div>
-				<div class="ui-block-c"><button data-theme="a" id="calc" data-val="CE" data-mini="true">Load</button></div>
+				<div class="ui-block-b"><button data-theme="a" id="calc" data-val="CE" data-mini="true">CE</button></div>
+				<div class="ui-block-c"><button data-theme="a" id="calc" data-val="CE" data-mini="true">Calc</button></div>
 			</div>
 			<div class="ui-grid-c" data-mini="true">
 				<div class="ui-block-a"><button data-theme="a" id="key7" data-val="7" data-mini="true" >7</button></div>
@@ -65,7 +80,7 @@
 				<div class="ui-block-d"><button data-theme="b" id="keyAdd" data-mini="true">+</button></div>
 			</div>
 			<div data-role="fieldcontain">
-				<label for="currencyDate" id=""  style="width : 15%;margin-left:-10px;">날짜</label>
+				<label for="currencyDate" id=""  style="width : 20%;margin-left:-10px;">날짜</label>
 				<input id="currencyDate" name="currencyDate" style="text-align: right; font-weight:bold;" value="0" disabled />
 			</div>
 		</div>

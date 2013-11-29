@@ -30,24 +30,29 @@ $( document ).bind(" dataload pageshow ", function ( event ) {
 	}
 	if ( event.type === "pageshow" ) {
 		window._currencyPageLoad = true;
+		serviceUnvaliableErrorHander( );
+
 	}
 	if ( window._currencyDataLoad && window._currencyPageLoad  ) {
-		
+		serviceUnvaliableErrorHander( );
 	}
 }).on("click", "#calc", function ( event ) {
 	var cash = parseInt( $( "#fromA" ).val() ),
+		count = parseInt( $( "#itemCount" ).val() ),
 		result;
-	result  = parseInt (cash * window.currencyData.rate * 100 ) / 100 ;
-	console.log ( "%s * %s = %s  ",cash,   window.currencyData.rate , result.format() );
+	result  = parseInt (cash * window.currencyData.rate *  count * 100 ) / 100 ;
 
-	$( "#toA" ).val( result.format() + "" );
+	console.log ( "%s * %s = %s (%s)  ",cash,   window.currencyData.rate , result.format(), Math.round(result).format() );
+
+	$( "#toA" ).val( Math.round(result).format() );
 }).on( "click", "#infoIcon", function ( event ) {
 	window._currencyDataLoad = false;
 	loadCurrency ( );
+}).on( "focus", "#fromA", function (event ) {
+	$( "#fromA" ).val("");
 });
 
-function loadCurrency ( ) {
-	console.log("loadCurrency.... ");
+function loadCurrency () {
 	$.ajax ({
 		url : "http://rate-exchange.appspot.com/currency?from=JPY&to=KRW",
 		// url : " http://finance.yahoo.com/d/quotes.csv?e=.json&f=sl1d1t1&s=USDINR=X",
@@ -62,39 +67,28 @@ function loadCurrency ( ) {
 		complete : function ( jqXHR, textStatus ) {
 			console.log ("complete : error....." + textStatus );
 		},
-		statusCode : {
-			"503" : serviceUnvaliableErrorHander,
-			"503 (Service Unavailable)" : function( ) {console.log("test")},
-			404 : serviceUnvaliableErrorHander,
-			503 : serviceUnvaliableErrorHander
-		},
 		success : function ( data ) {
 			console.log (" success..... (" + data.from + " -> " + data.to + "): " + data.rate );
+			window._currencyDataLoad = true;
 			window.currencyData = $.localStorage.set( "exchange_data", { 
 				"date"	: new Date(),
 				"from"	: data.from,
 				"to"		: data.to,
 				"rate"	: data.rate
 			});
-			$( "#infoIcon" ).css("background-color", "blue");
 			$( document ).trigger( "dataload" );
 		}
 	});
-	setTimeout(serviceUnvaliableErrorHander, 10000);
 }
-loadCurrency ( );
 
-$(document).ajaxError(function (event, request, settings, thrownError) {
-	console.log(request.status  + ' : ' + thrownError);
-});
+ loadCurrency ();
 
 function serviceUnvaliableErrorHander ( ) {
-	console.log(".serviceUnvaliableErrorHander.............500");
-	$( "#infoIcon" ).css("background-color", "orange" );
+	var color = "orange";
 	if ( window._currencyDataLoad === false ) {
-		window.currencyData = $.localStorage.get(  "exchange_data" );
+		window.currencyData = $.extend( {}, $.localStorage.get(  "exchange_data" ) );
 		if ( window.currencyData === null  ) {
-			$( "#infoIcon" ).css("background-color", "red" );
+			color = "red";
 			window.currencyData = $.localStorage.set( "exchange_data", { 
 				"date"	: new Date( 1385701384985),
 				"from"	: "JPY",
@@ -102,14 +96,16 @@ function serviceUnvaliableErrorHander ( ) {
 				"rate"	: 10.3405
 			});
 		}
-		updateCurrencyInfo();
 	}
+	console.log( "serviceUnvaliableErrorHander : " + color  );
+	updateCurrencyInfo( color );
 }
-function updateCurrencyInfo() {
+function updateCurrencyInfo( color ) {
 	$( "#fromN" ).text( window.currencyData.from );
 	$( "#toN" ).text( window.currencyData.to );
 	$( "#currency" ).val( window.currencyData.rate );
 	$( "#currencyDate" ).val( window.currencyData.date );
+	$( "#infoIcon" ).css("background-color", color );
 }
 
 $( document ).ready( function ( event ) {
