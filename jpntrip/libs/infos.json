@@ -111,6 +111,15 @@ var JSON_DATA = [
 		"lng"	: "141.348091",
 		"maker"	: true
 	}, {
+		"name"	: "홋카이도 대학 식물원",
+		"code"	: "plants",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "glasses",
+		"b_url"	: "http://avnet75.blog.me/90181207480",
+		"lat"	: "43.063665",
+		"lng"	: "141.344631",
+		"maker"	: true
+	}, {
 		"name"	: "JR Tower",
 		"code"	: "jrTower",
 		"ctg"	: "ctg_sapporo",
@@ -193,7 +202,7 @@ var JSON_DATA = [
 		"code"	: "noodleYoKoCho",
 		"ctg"	: "ctg_sapporo",
 		"icon"	: "restaurant",
-		"img"	: "http://allsteady.github.io/jpntrip/resources/images/nodle_yokojo.JPG",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/noodle_yokojo.JPG",
 		"b_url"	: "http://cafe.naver.com/jkglobalfrontier/930",
 		"lat"	: "43.054959",
 		"lng"	: "141.354433",
@@ -210,13 +219,35 @@ var JSON_DATA = [
 		"lat"	: "43.067499",
 		"lng"	: "141.353048",
 		"maker"	: true
-	},{
+	}, {
 		"name"	: "징기스칸 다루마",
 		"code"	: "daruma_main",
 		"ctg"	: "ctg_sapporo",
 		"icon"	: "restaurant",
-		"lat"	: "43.053828",
-		"lng"	: "141.35255",
+		"price"	: "<ul><li>주요 메뉴</li><li> 양고기 1인분 : 735엔</li><li> 엄마가 만든 김치 : 315엔</li><li>밥 큰 공기 : 315엔</li><li>양파 등 채소 추가 : 210엔</li><li>생맥주 : 525엔</li></ul>",
+		"b_url"	: "http://blog.naver.com/paris_luv?Redirect=Log&logNo=10149513330",
+		"lat"	: "43.053829",
+		"lng"	: "141.352579",
+		"maker"	: true
+	}, {
+		"name"	: "징기스칸 다루마 6.4",
+		"code"	: "daruma_6",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "restaurant",
+		"price"	: "<ul><li>주요 메뉴</li><li> 양고기 1인분 : 735엔</li><li> 엄마가 만든 김치 : 315엔</li><li>밥 큰 공기 : 315엔</li><li>양파 등 채소 추가 : 210엔</li><li>생맥주 : 525엔</li></ul>",
+		"b_url"	: "http://blog.naver.com/paris_luv?Redirect=Log&logNo=10149513330",
+		"lat"	: "43.052986",
+		"lng"	: "141.353163",
+		"maker"	: true
+	}, {
+		"name"	: "징기스칸 다루마 4.4",
+		"code"	: "daruma_4",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "restaurant",
+		"price"	: "<ul><li>주요 메뉴</li><li> 양고기 1인분 : 735엔</li><li> 엄마가 만든 김치 : 315엔</li><li>밥 큰 공기 : 315엔</li><li>양파 등 채소 추가 : 210엔</li><li>생맥주 : 525엔</li></ul>",
+		"b_url"	: "http://blog.naver.com/paris_luv?Redirect=Log&logNo=10149513330",
+		"lat"	: "43.054868",
+		"lng"	: "141.352356",
 		"maker"	: true
 	}, {
 		"name"	: "도큐핸즈",
@@ -245,13 +276,21 @@ var JSON_DATA = [
 		"lng"	: "140.993731",
 		"maker"	: true
 	}, {
+		"name"	: "미나미 오타루역",
+		"code"	: "minami_otaru_station",
+		"ctg"	: "ctg_otaru",
+		"icon"	: "train",
+		"lat"	: "43.187133",
+		"lng"	: "141.007601",
+		"maker"	: true
+	}, {
 		"name"	: "계원",
 		"jname"	: "桂苑",
 		"code"	: "otaru_noodle",
 		"icon"	: "restaurant",
 		"ctg"	: "ctg_otaru",
-		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197979346",
-		"img"	: "http://allsteady.github.io/jpntrip/resources/images/otaru_noddle.JPG",
+		"b_url"	: "http://blog.naver.com/kking654?Redirect=Log&logNo=80197867088",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/otaru_noddle.jpg",
 		"lat"	: "43.196309",
 		"lng"	: "140.996863",
 		"maker"	: true
@@ -287,6 +326,28 @@ var JSON_DATA = [
 		"img"	: "http://allsteady.github.io/jpntrip/resources/images/letao_cake.JPG",
 		"lat"	: "43.191312",
 		"lng"	: "141.007433",
+		"maker"	: true
+	}, {
+		"name"	: "니이쿠라야-당고",
+		"jname"	: "新倉屋花園本店",
+		"code"	: "otaru_nikuraya",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_otaru",
+		"b_url"	: "http://magoson.blog.me/10139833436",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/otaru_nikuraya.JPG",
+		"lat"	: "43.193666",
+		"lng"	: "140.999325",
+		"maker"	: true
+	}, {
+		"name"	: "오타루 자연 공방",
+		"jname"	: "小樽自然工房",
+		"code"	: "otaru_natural_crafts",
+		"icon"	: "market",
+		"ctg"	: "ctg_otaru",
+		"b_url"	: "http://blog.daum.net/seed-rabbit/844",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/natural_crafts.JPG",
+		"lat"	: "43.195034",
+		"lng"	: "141.005336",
 		"maker"	: true
 	}, {
 		"name" 	: "오르골당 본점",
