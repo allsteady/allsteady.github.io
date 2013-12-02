@@ -2,6 +2,7 @@ window._currencyDataLoad = false;
 window._currencyPageLoad = false;
 window._isRecently = false;
 window._refreshTime = 3600000;
+
 Number.prototype.format = function(){
 	if( this == 0 ) {
 		return 0;	
@@ -48,29 +49,21 @@ $( document ).bind(" dataload pageshow ", function ( event ) {
 		color = "red";
 	} else if ( result >= 50000 ){
 		color = "orange";
+	}  else if ( result >= 30000 ){
+		color = "yellow";
+	} else {
+		color = "blue";
 	}
 
-	$( "#toA" ).val( Math.round(result).format() ).css( "color", color );
+	$( "#toA" ).val( Math.round( result ).format() ).css( "color", color );
 
 }).on( "click", "#infoIcon", function ( event ) {
 	window._currencyDataLoad = false;
-	loadCurrency ( );
-}).on( "focus", "#fromA", function (event ) {
-	window._$inputValue.val("");
-}).on( "vclick click" , ".ui-grid-c button", function( event ) {
-	var value = $( this).attr("data-val"),
-		current = window._$inputValue.val();
-	if ( value ) {
-		if ( current && current.length > 0 ) {
-			window._$inputValue.val( current + "" + value );
-		} else {
-			window._$inputValue.val( value );
-
-		}
-	}
-	event.preventDefault();
+	loadCurrency();
+}).on( "focus", "#fromA", function ( event ) {
+	window._$inputValue.val( "" );
 }).on( "click" , "#keyC", function( event ) {
-	 window._$inputValue.val( " ");
+	 window._$inputValue.val( "" );
 	 event.preventDefault();
 });
 
@@ -92,9 +85,6 @@ function loadCurrency () {
 			console.log (" error....." + errorThrown.message);
 			$( "#infoIcon" ).css("background-color", "red");
 		},
-		complete : function ( jqXHR, textStatus ) {
-			console.log ("complete : error....." + textStatus );
-		},
 		success : function ( data ) {
 			console.log (" success..... (" + data.from + " -> " + data.to + "): " + data.rate );
 			window._currencyDataLoad = true;
@@ -108,8 +98,7 @@ function loadCurrency () {
 		}
 	});
 }
-
- loadCurrency ();
+loadCurrency ();
 
 function serviceUnvaliableErrorHander ( ) {
 	var color = "orange";
@@ -125,7 +114,6 @@ function serviceUnvaliableErrorHander ( ) {
 			});
 		}
 	}
-	console.log( "serviceUnvaliableErrorHander : " + color  );
 	updateCurrencyInfo( color );
 }
 function updateCurrencyInfo( color ) {
@@ -138,4 +126,17 @@ function updateCurrencyInfo( color ) {
 
 $( document ).ready( function ( event ) {
 	window._$inputValue = $( "#fromA" );
+
+	$( ".ui-grid-c .btn-block" ).bind( "click" , function( event ) {
+		var value = $( this ).children( "button" ).attr( "data-val" ),
+			current = window._$inputValue.val();
+		if ( value ) {
+			if ( current && current.length > 0 ) {
+				window._$inputValue.val( current + "" + value );
+			} else {
+				window._$inputValue.val( value );
+			}
+		}
+		event.preventDefault();
+	});
 });

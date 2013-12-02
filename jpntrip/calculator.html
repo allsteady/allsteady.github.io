@@ -24,7 +24,7 @@
 
 			<div class="ui-grid-a">
 				<div class="ui-block-a" style="width : 20%;padding : 10px;"><label for="currency" >환율</label> </div>
-				<div class="ui-block-b"  style="width : 70%;"><input id="currency" name="currency" type="number" disabled  class="calcualtor-input" style="text-align: right;font-size:18px;" /></div>
+				<div class="ui-block-b"  style="width : 80%;"><input id="currency" name="currency" type="number" disabled  class="calcualtor-input" style="text-align: right;font-size:18px;" /></div>
 			</div>
 
 			<div class="ui-grid-c">
@@ -32,10 +32,10 @@
 				<label for="fromA" id="fromN"  style="text-align:center" >--</label>
 				</div>
 				<div class="ui-block-b" style="width:40%;padding:0px;">
-				<input id="fromA" name="fromA" type="number" />
+				<input id="fromA" name="fromA" type="number" style="text-align:center"/>
 				</div>
 				<div class="ui-block-c" style="width:18%; align: center;padding : 10px;">
-				<label for="itemCount" style="text-align:center"  >수량</label>
+				<label for="itemCount" style="text-align:center" style="text-align:center">수량</label>
 				</div>
 				<div class="ui-block-d"  style="width:20%;">
 				<input id="itemCount" name="itemCount" type="number" value='1' style="text-align: right;"/>
@@ -47,7 +47,7 @@
 					<label for="toA" id="toN"  style="width : 20%;margin-left:-10px;">--</label>
 				</div>
 
-				<div class="ui-block-b"  style="width : 70%;">
+				<div class="ui-block-b"  style="width : 80%;">
 					<input id="toA" name="toA" style="text-align: right; font-weight:bold; font-size:18px;" value="0" disabled />
 				</div>
 			</div>
@@ -58,26 +58,26 @@
 				<div class="ui-block-c"><button data-theme="a" id="calc" data-val="CE" data-mini="true">Calc</button></div>
 			</div>
 			<div class="ui-grid-c" data-mini="true">
-				<div class="ui-block-a"><button data-theme="a" id="key7" data-val="7" data-mini="true" >7</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="key8" data-val="8" data-mini="true" >8</button></div>
-				<div class="ui-block-c"><button data-theme="a" id="key9" data-val="9" data-mini="true">9</button></div>
-				<div class="ui-block-d"><button data-theme="b" id="keyDivide" data-mini="true">/</button></div>
-				<div class="ui-block-a"><button data-theme="a" id="key4" data-val="4" data-mini="true">4</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="key5" data-val="5" data-mini="true">5</button></div>
-				<div class="ui-block-c"><button data-theme="a" id="key6" data-val="6" data-mini="true">6</button></div>
-				<div class="ui-block-d"><button data-theme="b" id="keyMultiply" data-mini="true">*</button></div>
-				<div class="ui-block-a"><button data-theme="a" id="key1" data-val="1" data-mini="true" >1</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="key2" data-val="2" data-mini="true" >2</button></div>
-				<div class="ui-block-c"><button data-theme="a" id="key3" data-val="3" data-mini="true">3</button></div>
-				<div class="ui-block-d"><button data-theme="b" id="keySubtract" data-mini="true">-</button></div>
-				<div class="ui-block-a"><button data-theme="b" id="keyDecimalPoint" data-val="." data-mini="true">.</button></div>
-				<div class="ui-block-b"><button data-theme="a" id="key0" data-val="0" data-mini="true">0</button></div>
-				<div class="ui-block-c"><button data-theme="b" id="keyEquals" data-mini="true">=</button></div>
-				<div class="ui-block-d"><button data-theme="b" id="keyAdd" data-mini="true">+</button></div>
+				<div class="ui-block-a btn-block"><button data-theme="a" id="key7" data-val="7" data-mini="true" >7</button></div>
+				<div class="ui-block-b btn-block"><button data-theme="a" id="key8" data-val="8" data-mini="true" >8</button></div>
+				<div class="ui-block-c btn-block"><button data-theme="a" id="key9" data-val="9" data-mini="true">9</button></div>
+				<div class="ui-block-d btn-block"><button data-theme="b" id="keyDivide" data-mini="true">/</button></div>
+				<div class="ui-block-a btn-block"><button data-theme="a" id="key4" data-val="4" data-mini="true">4</button></div>
+				<div class="ui-block-b btn-block"><button data-theme="a" id="key5" data-val="5" data-mini="true">5</button></div>
+				<div class="ui-block-c btn-block"><button data-theme="a" id="key6" data-val="6" data-mini="true">6</button></div>
+				<div class="ui-block-d btn-block"><button data-theme="b" id="keyMultiply" data-mini="true">*</button></div>
+				<div class="ui-block-a btn-block"><button data-theme="a" id="key1" data-val="1" data-mini="true" >1</button></div>
+				<div class="ui-block-b btn-block"><button data-theme="a" id="key2" data-val="2" data-mini="true" >2</button></div>
+				<div class="ui-block-c btn-block"><button data-theme="a" id="key3" data-val="3" data-mini="true">3</button></div>
+				<div class="ui-block-d btn-block"><button data-theme="b" id="keySubtract" data-mini="true">-</button></div>
+				<div class="ui-block-a btn-block"><button data-theme="b" id="keyDecimalPoint" data-val="." data-mini="true">.</button></div>
+				<div class="ui-block-b btn-block"><button data-theme="a" id="key0" data-val="0" data-mini="true">0</button></div>
+				<div class="ui-block-c btn-block"><button data-theme="b" id="keyEquals" data-mini="true">=</button></div>
+				<div class="ui-block-d btn-block"><button data-theme="b" id="keyAdd" data-mini="true">+</button></div>
 			</div>
 			<div class="ui-grid-a">
-				<div class="ui-block-a"  style="width : 20%;p adding : 10px;"><label for="currencyDate" >날짜</label></div>
-				<div class="ui-block-b" style="width : 70%;"><input id="currencyDate" name="currencyDate" style="text-align: right; font-weight:bold;" value="0" disabled /></div>
+				<div class="ui-block-a"  style="width : 20%;padding : 12px;"><label for="currencyDate" >날짜</label></div>
+				<div class="ui-block-b" style="width : 80%;"><input id="currencyDate" name="currencyDate" style="text-align: right; font-weight:bold;" value="0" disabled /></div>
 			</div>
 		</div>
 	</div>
