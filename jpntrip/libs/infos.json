@@ -350,6 +350,17 @@ var JSON_DATA = [
 		"lng"	: "141.005336",
 		"maker"	: true
 	}, {
+		"name"	: "키타이치가라스 3호과 - 유리 공예",
+		"jname"	: "北一硝子三号館",
+		"code"	: "otaru_kitaichigaras",
+		"icon"	: "market",
+		"ctg"	: "ctg_otaru",
+		"b_url"	: "http://blog.naver.com/kiha16?Redirect=Log&logNo=40099518724",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/otaru_kitaichigaras.JPG",
+		"lat"	: "43.19226",
+		"lng"	: "141.007164",
+		"maker"	: true
+	},  {
 		"name" 	: "오르골당 본점",
 		"code"	: "otaru_oreg",
 		"addr"	: "4-1 Sumiyoshicho, Otaru, Hokkaido Prefecture, japan",
