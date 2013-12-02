@@ -1,7 +1,7 @@
 
 var map;
 
-$( document ).ready(function(){
+$( document ).ready( function(){
 	var idx = 0, item, gMaker, infoWindow,
 	innerHeight = $(window).innerHeight();
 	googleMap = new GMaps({
@@ -75,6 +75,10 @@ $( document ).ready(function(){
 		}
 	});
 	window.googleMap.setCenter(parseFloat( startPos.lat ), parseFloat( startPos.lng ));
+}).on("vclick", "#centerBtn", function ( event ) {
+	var $POIName = $("#endPos"),
+		POI = infos[ $POIName.val() ];
+	window.googleMap.setCenter( POI.lat, POI.lng );
 });
 
 $( window ).bind ("resize", function ( event ) {
