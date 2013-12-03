@@ -154,7 +154,6 @@ function stopTrace() {
 
 function showCurrentPos( ) {
 	if (navigator.geolocation) {
-		window._destPos = destPos;
 		navigator.geolocation.getCurrentPosition( startTrace, gpsError);
 	} else {  
 		gpsText.innerText = "No GPS Functionality.";  
