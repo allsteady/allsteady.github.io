@@ -45,8 +45,8 @@
 			<!--
 				<a href="#frontPage" class="hide-loading ui-btn-left" data-icon="back">Back</a>
 			-->
-			<h1>훗카이도 ( 北海道 ) 여행</h1>
-			<a href="#dialogPage" data-rel="dialog" id="configBtnH" class="hide-loading ui-btn-right" data-mini="true" data-iconpos="notext" data-icon="info">Info</a>
+			<h1>홋카이도 ( 北海道 ) 여행</h1>
+			<a href="#dialogPage" data-rel="dialog" id="configBtnH" class="hide-loading ui-btn-right" data-mini="true" data-iconpos="notext" data-icon="info"></a>
 		</div><!-- header -->
 		<div class="content" data-role="content" data-scroll="y">
 			<div id="map" class="map-class"></div>
@@ -54,6 +54,7 @@
 			<div style="margin: 1em 0;">
 				<label for="startPos" class="select my-label">출 발 지  </label>
 				<select name="startPos" id="startPos" data-mini="true">
+					<option value="currentPos">내 위치</option>
 					<optgroup label="신삿포루" class='ctg_newsapporo'> 
 					</optgroup>
 					<optgroup label="삿포루" class='ctg_sapporo'> 
@@ -86,6 +87,7 @@
 			<div data-role="controlgroup" data-type="horizontal">
 				<a id="searchBtn" data-role="button" data-mini="true" data-icon="search">Search</a>
 				<a id="centerBtn" data-role="button" data-mini="true" data-icon="home">Center</a>
+				<a id="traceBtn" data-role="button" data-mini="true" data-icon="edit">Show</a>
 				<a id="reloadBtn" data-role="button" data-mini="true" data-icon="refresh">Reload</a>
 			</div>
 
