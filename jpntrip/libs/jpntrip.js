@@ -69,6 +69,23 @@ $( window ).bind ("resize", function ( event ) {
 	$("#steps").css("height", parseInt( innerHeight * 0.5 ) + "px");
 });
 
+$( document ).bind("pageshow", function (event ) {
+	var screenHieght = $( window ).innerHeight() - $(".ui-header").outerHeight(),
+		$content = $( ".ui-content" ),
+		diffHeight = 0,
+		contentHeight = $content.innerHeight();
+	console.log(" page show : " + contentHeight + " / " + screenHieght );
+	if ( contentHeight < screenHieght ) {
+		diffHeight = screenHieght - contentHeight;
+		var map = $content.find("#map"),
+			height = map.height()  + diffHeight;
+
+		if ( height < screenHieght ) {
+			map.height( height );
+		}
+	}
+});
+	
 function makeInfowindow( item ) {
 	var infoWindow,
 		innerHtml = "",
