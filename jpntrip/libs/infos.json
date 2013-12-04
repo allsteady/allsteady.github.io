@@ -202,6 +202,17 @@ var JSON_DATA = [
 		"desc"	: "soup curry",
 		"maker"	: true
 	}, {
+		"name"	: "북두성",
+		"code"	: "north_star",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "restaurant",
+		"lat"	: "43.057034",
+		"lng"	: "141.350811",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/north_star.JPG",
+		"b_url"	: "http://blog.naver.com/lmr6631?Redirect=Log&logNo=30180408181",
+		"desc"	: "soup curry",
+		"maker"	: true
+	}, {
 		"name"	: "오쿠시바쇼텐-B 1F",
 		"jname"	: "奥芝商店",
 		"code"	: "okushiba_shouten_b1",
