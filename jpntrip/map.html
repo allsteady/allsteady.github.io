@@ -21,8 +21,12 @@
 			console.log(" page show : " + contentHeight + " / " + screenHieght );
 			if ( contentHeight < screenHieght ) {
 				diffHeight = screenHieght - contentHeight;
-				var map = $content.find("#map");
-				map.height( map.height() + diffHeight );
+				var map = $content.find("#map"),
+					height = map.height()  + diffHeight;
+
+				if ( height < screenHieght ) {
+					map.height( height );
+				}
 			}
 		});
 	</script>
@@ -49,7 +53,7 @@
 			<div id="map" class="map-class"></div>
 			<!-- <div data-role="fieldcontain"> -->
 			<div style="margin: 1em 0;">
-				<label for="startPos" class="select my-label">출 발 지  </label>
+				<label for="startPos" class="select my-label">출 발 지</label>
 				<select name="startPos" id="startPos" data-mini="true">
 					<option value="currentPos">내 위치</option>
 					<optgroup label="신삿포루" class='ctg_newsapporo'> 
