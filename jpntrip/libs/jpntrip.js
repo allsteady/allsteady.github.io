@@ -3,6 +3,10 @@ var map,
 	buffer_infowindows = [];
 window.buffer_infowindows = buffer_infowindows;
 window._myPosition = null;
+window._isTrace = false;
+window._walkPath = null;
+window._pathPosition = [];
+
 $( document ).ready( function(){
 	var idx = 0, item, gMaker, infoWindow,
 	innerHeight = $(window).innerHeight();
@@ -23,44 +27,40 @@ $( document ).ready( function(){
 
 	for ( ; idx < makers.length ; idx++ ) {
 		item = infos [ makers[ idx ] ];
-		console.log( "[" + item.name + "] typeColor : " + item.icon );
-
 		gMarker = makeCustomMarker( item );
 		googleMap.addMarker ( gMarker );
-		
 		infoWindow = makeInfowindow( item );
 		makeInfowindowEvent( googleMap, infoWindow, gMarker, item.code );
 	}
 
 	$("#dialogPage").css("height", innerHeight + "px");
 	$("#steps").css("height", parseInt( innerHeight * 0.5 ) + "px");
-	// $("#configPanel").find("#steps").css("height", parseInt( innerHeight * 0.8 ) + "px");
-	// 
 	window.googleMap = googleMap;
 }).on("vclick", "#searchBtn", function ( event ) {
 	var $startPos = $("#startPos"),
 		$destPos = $("#endPos"),
 		startPos = infos[ $startPos.val() ],
 		destPos = infos[ $destPos.val() ];
-
 	window.scrollTop = 0;
 	window.googleMap.cleanRoute();
-
 	if ( !startPos && $startPos.val() === "currentPos") {
 		getCurrentLocation( destPos );
 	} else {
 		drawRouteInMap( startPos, destPos );
 	}
-
-	
 }).on("vclick", "#centerBtn", function ( event ) {
 	var $POIName = $("#endPos"),
 		POI = infos[ $POIName.val() ];
 	window.googleMap.setCenter( POI.lat, POI.lng );
 }).on("vclick", "#traceBtn", function ( event ) {
-	showCurrentPos( ) ;
+	if ( !window._isTrace ) {
+		window._isTrace = true;
+		showCurrentPos( );
+	} else {
+		stopTrace( );
+	}
 }).on("vclick", "#reloadBtn", function ( event ) {
-	stopTrace( ) ;
+
 });
 
 $( window ).bind ("resize", function ( event ) {
@@ -125,36 +125,63 @@ function makeCustomMarker( item ) {
 }
 
 function startTrace( position ) {
-	var option = {
+	var curPos = new google.maps.LatLng( position.coords.latitude, position.coords.longitude ),
+		option = {
 			animation: google.maps.Animation.DROP,
-			position : new google.maps.LatLng( position.coords.latitude, position.coords.longitude ),
+			position : curPos,
 			title : "내 위치",
 			icon : "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
 		}, marker;
-	console.log( "Latitude: "+position.coords.latitude+"\nLongitude: "+position.coords.longitude );
+
 	marker = new google.maps.Marker( option );
 	window.googleMap.addMarker ( marker );
 	window.googleMap.setCenter( position.coords.latitude, position.coords.longitude );
 	window._myPosition = marker;
+
+	window._pathPosition.push( curPos );
+	window._walkPath = window.googleMap.drawPolyline( {
+		path: window._pathPosition,
+		strokeColor: "#FF0000",
+		strokeOpacity: 1.0,
+		strokeWeight: 2
+	});
+
 	window._timerID = setInterval( function(){
 		navigator.geolocation.getCurrentPosition( trace, gpsError);
-	}, 5000);
+	}, 5000 );
 }
 
 function trace( position ) {
-	var marker = window._myPosition;
-	console.log( "setPosition \nLatitude: "+position.coords.latitude+"\nLongitude: "+position.coords.longitude );
-	marker.setPosition( new google.maps.LatLng( position.coords.latitude, position.coords.longitude ) );
+	var marker = window._myPosition,
+		path = window._walkPath,
+		latlng = new google.maps.LatLng( position.coords.latitude, position.coords.longitude );
+	marker.setPosition( latlng );
+	window._pathPosition.push( latlng );
+	path.setPath( window._pathPosition );
 }
 
 function stopTrace() {
 	window.googleMap.removeMarkers( window._myPosition );
-	clearInterval( window._timerID );
+	window._myPosition.setMap( null );
+	window._walkPath.setMap( null );
+	if ( window._timerID != null ) {
+		clearInterval( window._timerID );
+	}
+	window._isTrace = false;
+	window._timerID = null;
+
+	delete window._myPosition;
+	window._myPosition = null;
+	delete window._walkPath;
+	window._walkPath = null;
+	delete window._pathPosition;
+	window._pathPosition = [];
 }
 
 function showCurrentPos( ) {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition( startTrace, gpsError);
+		navigator.geolocation.getCurrentPosition( startTrace, traceError);
+		window._isTrace = true;
 	} else {  
 		gpsText.innerText = "No GPS Functionality.";  
 	}
@@ -186,9 +213,7 @@ function drawRouteInMap( startPos, destPos ) {
 						dom = stepToDom (routeInfos.steps[idx]);
 						listview.append( dom );
 					}
-					// listview.listview( "refresh" );
 				}
-
 			}
 		}
 	});
@@ -199,12 +224,16 @@ function gpsError(error) {
 	alert("GPS Error: "+error.code+", "+error.message);
 }
 
+function traceError( error ) {
+	alert("GPS Error: "+error.code+", "+error.message);
+	stopTrace();
+}
+
 function showGPS(position) {
 	var startPos = {
 		lat : position.coords.latitude,
 		lng : position.coords.longitude
 	};
-	console.log( "Latitude: "+position.coords.latitude+"\nLongitude: "+position.coords.longitude );
 	drawRouteInMap( startPos, window._destPos );
 }
 
@@ -223,24 +252,18 @@ function makeInfowindowEvent( map, infowindow, marker, code ) {
 			var oldInfoWindow = window.buffer_infowindows.shift();
 			oldInfoWindow.close();
 		}
-
 		infowindow.POI_code = code;
 		infowindow.open(map, marker);
-
 		window.buffer_infowindows.push( infowindow );
-
 		google.maps.event.addListener(infowindow, 'closeclick', function() { 
 			var index = 0, temp = [], item;
 			for ( ; index <  window.buffer_infowindows.length ; index++ ) {
 				item = window.buffer_infowindows[ index ];
 				if (  item.POI_code !== infowindow.POI_code ){
-					console.log ( "item.POI_code : " + item.POI_code );
 					temp.push( item );
 				}
-
 			}
 			window.buffer_infowindows = temp;
 		});
-
 	});
 }
