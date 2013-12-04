@@ -230,7 +230,7 @@ var JSON_DATA = [
 		"jname"	: "ミルク村",
 		"code"	: "milk_mura",
 		"ctg"	: "ctg_sapporo",
-		"icon"	: "coffee",
+		"icon"	: "icecream",
 		"lat"	: "43.056085",
 		"lng"	: "141.35403",
 		"img"	: "http://allsteady.github.io/jpntrip/resources/images/milk_mura.JPG",
