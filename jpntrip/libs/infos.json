@@ -6,7 +6,14 @@ var JSON_DATA = [
 		"lat"	: "37.377482",
 		"lng"	: "127.113517",
 		"addr"	: "New Chitose Airport, Chitose, Hokkaido Prefecture, Japan",
-		"desc"	: "",
+		"maker"	: true
+	}, {
+		"name"	: "샤론약국",
+		"code"	: "ms_drug",
+		"icon"	: "airport",
+		"lat"	: "37.440932",
+		"lng"	: "127.138124",
+		"addr"	: "New Chitose Airport, Chitose, Hokkaido Prefecture, Japan",
 		"maker"	: true
 	}, {
 		"name"	: "치토세공항",
@@ -185,7 +192,7 @@ var JSON_DATA = [
 		"desc"	: "soup curry",
 		"maker"	: true
 	}, {
-		"name"	: "오쿠시바쇼텐-스프카레-B 1F",
+		"name"	: "오쿠시바쇼텐-B 1F",
 		"jname"	: "奥芝商店",
 		"code"	: "okushiba_shouten_b1",
 		"ctg"	: "ctg_sapporo",
@@ -236,7 +243,7 @@ var JSON_DATA = [
 		"code"	: "noodleGoJoKen",
 		"ctg"	: "ctg_sapporo",
 		"icon"	: "restaurant",
-		"img"	: "http://allsteady.github.io/jpntrip/resources/images/noodle_gojoken.JPG",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/noodle_gojoken.jpg",
 		"b_url"	: "http://cafe.naver.com/jkglobalfrontier/942",
 		"lat"	: "43.051119",
 		"lng"	: "141.345897",

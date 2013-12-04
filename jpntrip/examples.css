@@ -66,11 +66,14 @@ body{
 }
 
 .info-content span {
-  float : right;
   top : -1px;
 }
 
 .info-name {
   top:-3px;
   margin: 0px;
+}
+.info-desc {
+  margin-top: 2px;
+  margin-bottom: 2px;
 }

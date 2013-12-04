@@ -85,23 +85,28 @@ $( document ).bind("pageshow", function (event ) {
 		}
 	}
 });
-	
+
 function makeInfowindow( item ) {
 	var infoWindow,
 		innerHtml = "",
 		nameDom = "<p class='info-name'>"+ item.name + "</p>";
 
-	if ( item.img ) {
-		innerHtml += "<img src='" + item.img + "' style ='width:50px;height:50px;'></img>"
-	}
 	if ( item.jname ) {
-		innerHtml += "<span>" + item.jname + "</span>"	
+		innerHtml += "<span class='info-jname'>" + item.jname + "</span><br>";
+	}
+	if ( item.desc ) {
+		innerHtml += "<span class='info-desc'>" + item.desc + "</span><br>";
 	}
 	if ( item.b_url ) {
-		innerHtml += "<a href='" + item.b_url + "' target='_blank'>Go to blog</a>"	
+		innerHtml += "<a href='" + item.b_url + "' target='_blank'>Go to blog</a><br>"	;
+	}
+	innerHtml = "<div style='float:left;top:0px;'>" + innerHtml + "</div>"
+		
+	if ( item.img ) {
+		innerHtml += "<div style='float:right'><img src='" + item.img + "' style ='width:50px;height:50px;'></img></div>"
 	}
 
-	innerHtml = "<div id='iw_" + item.code+"'  style='width: 140px; height: 78px; overflow: hidden;'> "+
+	innerHtml = "<div id='iw_" + item.code+"'  style='width: 140px; height: 100px; overflow: hidden;position:absoulte'> "+
 				nameDom + "<div class='info-content'>" +  innerHtml + "</div></div>";
 
 	infoWindow = new google.maps.InfoWindow( {
@@ -206,17 +211,20 @@ function showCurrentPos( ) {
 
 function drawRouteInMap( startPos, destPos ) {
 	window.googleMap.drawRoute({
-		origin: [ parseFloat( startPos.lat ), parseFloat( startPos.lng ) ],
-		destination: [ parseFloat( destPos.lat ) , parseFloat( destPos.lng )],
-		travelMode: $("#travelMode").val(),
+		origin: [ startPos.lat,  startPos.lng ],
+		// origin: new google.maps.LatLng( startPos.lat , startPos.lng ),
+		destination: [ destPos.lat, destPos.lng ],
+		travelMode: $( "#travelMode" ).val(),
 		strokeColor: '#131540',
 		strokeOpacity: 0.6,
 		strokeWeight: 6,
+		error : function ( e ) {
+			console.log( "error... : " + e.status );
+		},
 		callback : function ( e ) {
 			var routeInfos,
 				steps,idx = 0,
 				panel = $("#dialogPage"),
-				// panel = $("#configPanel"),
 				listview;
 			if ( e.legs && e.legs.length > 0 ) {
 				routeInfos = e.legs [ 0 ];
@@ -234,7 +242,8 @@ function drawRouteInMap( startPos, destPos ) {
 			}
 		}
 	});
-	window.googleMap.setCenter(parseFloat( startPos.lat ), parseFloat( startPos.lng ));
+	window.googleMap.setCenter( startPos.lat, startPos.lng );
+	// window.googleMap.setCenter( new google.maps.LatLng( startPos.lat , startPos.lng ) );
 }
 
 function gpsError(error) {
