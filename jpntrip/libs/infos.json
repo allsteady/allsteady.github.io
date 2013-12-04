@@ -176,6 +176,42 @@ var JSON_DATA = [
 		"desc"	: "soup curry",
 		"maker"	: true
 	}, {
+		"name"	: "오쿠시바쇼텐-스프카레-B 1F",
+		"jname"	: "奥芝商店",
+		"code"	: "okushiba_shouten_b1",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "restaurant",
+		"lat"	: "43.066725",
+		"lng"	: "141.354419",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/okushiba_shouten.JPG",
+		"b_url"	: "http://blog.naver.com/piya2453?Redirect=Log&logNo=30177489911",
+		"desc"	: "soup curry",
+		"maker"	: true
+	}, {
+		"name"	: "오쿠시바쇼텐-스프카레",
+		"jname"	: "奥芝商店",
+		"code"	: "okushiba_shouten",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "restaurant",
+		"lat"	: "43.048837",
+		"lng"	: "141.336896",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/okushiba_shouten.JPG",
+		"b_url"	: "http://blog.naver.com/oranworm?Redirect=Log&logNo=100151309113",
+		"desc"	: "soup curry",
+		"maker"	: true
+	}, {
+		"name"	: "밀크무라-아이스크림",
+		"jname"	: "ミルク村",
+		"code"	: "milk_mura",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "coffee",
+		"lat"	: "43.056085",
+		"lng"	: "141.35403",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/okushiba_shouten.JPG",
+		"b_url"	: "http://sweetestone.blog.me/140200219794",
+		"desc"	: "뉴-호쿠세이비루6층",
+		"maker"	: true
+	}, {
 		"name"	: "SOUP CALYI",
 		"code"	: "soup_calyi",
 		"ctg"	: "ctg_sapporo",
