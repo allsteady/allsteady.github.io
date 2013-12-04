@@ -1,5 +1,14 @@
 var JSON_DATA = [
 	{
+		"name"	: "미도약국",
+		"code"	: "mido_drug",
+		"icon"	: "airport",
+		"lat"	: "37.377482",
+		"lng"	: "127.113517",
+		"addr"	: "New Chitose Airport, Chitose, Hokkaido Prefecture, Japan",
+		"desc"	: "",
+		"maker"	: true
+	}, {
 		"name"	: "치토세공항",
 		"code"	: "airport",
 		"icon"	: "airport",
@@ -207,7 +216,7 @@ var JSON_DATA = [
 		"icon"	: "coffee",
 		"lat"	: "43.056085",
 		"lng"	: "141.35403",
-		"img"	: "http://allsteady.github.io/jpntrip/resources/images/okushiba_shouten.JPG",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/milk_mura.JPG",
 		"b_url"	: "http://sweetestone.blog.me/140200219794",
 		"desc"	: "뉴-호쿠세이비루6층",
 		"maker"	: true
