@@ -155,6 +155,16 @@ var JSON_DATA = [
 		"lng"	: "141.348563",
 		"maker"	: true
 	}, {
+		"name"	: "후르츠 팩토리",
+		"code"	: "fruit_factory",
+		"ctg"	: "ctg_sapporo",
+		"icon"	: "bread",
+		"img"	: "http://allsteady.github.io/jpntrip/resources/images/fruits.JPG",
+		"b_url"	: "http://yjoshjh.blog.me/110103259450",
+		"lat"	: "43.059033",
+		"lng"	: "141.351846",
+		"maker"	: true
+	}, {
 		"name"	: "삿뽀로 TV 타워",
 		"code"	: "s_tv_tower",
 		"ctg"	: "ctg_sapporo",
