@@ -100,13 +100,13 @@ function makeInfowindow( item ) {
 	if ( item.b_url ) {
 		innerHtml += "<a href='" + item.b_url + "' target='_blank'>Go to blog</a><br>"	;
 	}
-	innerHtml = "<div style='float:left;top:0px;'>" + innerHtml + "</div>"
+	innerHtml = "<div style='float:left;top:0px;overflow:hidden;width:70px;padding:0px;'>" + innerHtml + "</div>"
 		
 	if ( item.img ) {
-		innerHtml += "<div style='float:right'><img src='" + item.img + "' style ='width:50px;height:50px;'></img></div>"
+		innerHtml += "<div style='float:right;padding:0px;margin:0px;'><img src='" + item.img + "' style ='width:50px;height:50px;'></img></div>"
 	}
 
-	innerHtml = "<div id='iw_" + item.code+"'  style='width: 140px; height: 100px; overflow: hidden;position:absoulte'> "+
+	innerHtml = "<div id='iw_" + item.code+"'  style='width: 140px; height: 120px; overflow: hidden;position:absoulte'> "+
 				nameDom + "<div class='info-content'>" +  innerHtml + "</div></div>";
 
 	infoWindow = new google.maps.InfoWindow( {
