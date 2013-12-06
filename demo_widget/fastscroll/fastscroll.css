@@ -1,7 +1,7 @@
 /*
  * for virtualgrid
  */
-.ui-fastscroll {
+.ui-fastscroll { /* using */
 	position: fixed;
 	z-index: 999;
 	float: right;
@@ -21,12 +21,12 @@
 	*/
 	background-color: #d1cfc9;
 }
-.ui-fastscroll ul {
+.ui-fastscroll ul { /* using */
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
-.ui-fastscroll li {
+.ui-fastscroll li { /* using */
 	cursor: pointer;
 	color: #a09f9a;
 	background: #f8f6ef;
@@ -38,7 +38,11 @@
 	border: 0.06818181818181818rem solid transparent;
 	margin-bottom: 1px;
 }
-.ui-fastscroll.ui-fastscroll-hover {
+.ui-fastscroll li:first-child { /* using */
+	margin-top: 1px;
+}
+
+.ui-fastscroll li:hover { /* using */
 	background-color: #3b73b6;
 }
 li.ui-fastscroll-hover {
@@ -58,8 +62,8 @@ li.ui-fastscroll-hover-first-item {
 	margin-top: 0;
 	padding-top: 0;
 }
-.ui-fastscroll-popup {
-	position: absolute;
+.ui-fastscroll-popup { /* using */
+	position: fixed;
 	background: #3b73b6;
 	color: #ffffff;
 	padding: 0.4545454545454546rem;
@@ -71,5 +75,5 @@ li.ui-fastscroll-hover-first-item {
 	display: none;
 	box-sizing: border-box;
 	left: 50%;
-	top: 50%;
+	top: 40%;
 }
