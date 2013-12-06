@@ -243,7 +243,6 @@ function drawRouteInMap( startPos, destPos ) {
 		}
 	});
 	window.googleMap.setCenter( startPos.lat, startPos.lng );
-	// window.googleMap.setCenter( new google.maps.LatLng( startPos.lat , startPos.lng ) );
 }
 
 function gpsError(error) {
