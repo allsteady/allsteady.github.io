@@ -145,6 +145,106 @@ var JSON_DATA = [
 		"lng"	: "141.350538",
 		"maker"	: true
 	}, {
+		"name"	: "스벅_그랜드 호텔점",
+		"jname"	: "札幌グランドホテル店",
+		"code"	: "starbucks_333",
+		"lat"	: "43.063014",
+		"lng"	: "141.351145",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=333",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_스텔라플레이스 센터1",
+		"jname"	: "札幌ステラプレイス センター1階店",
+		"code"	: "starbucks_451",
+		"lat"	: "43.067863",
+		"lng"	: "141.3509",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=451",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_스텔라플레이스 이스트2",
+		"jname"	: "札幌ステラプレイス イースト2階店",
+		"code"	: "starbucks_1166",
+		"lat"	: "43.068103",
+		"lng"	: "141.352458",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=1166",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_이온 소엔점",
+		"jname"	: "イオン札幌桑園店",
+		"code"	: "starbucks_441",
+		"lat"	: "43.069165",
+		"lng"	: "141.332391",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=441",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_파르코 점",
+		"jname"	: "札幌パルコ店",
+		"code"	: "starbucks_846",
+		"lat"	: "43.058732",
+		"lng"	: "141.353583",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=846",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_미나미이치죠 상점",
+		"jname"	: "札幌南一条店",
+		"code"	: "starbucks_373",
+		"lat"	: "43.059156",
+		"lng"	: "141.354881",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=373",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_파세오 점",
+		"jname"	: "札幌パセオ店",
+		"code"	: "starbucks_1003",
+		"lat"	: "43.068187",
+		"lng"	: "141.349706",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=1003",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_札幌医科大学 부속 병원 상점",
+		"jname"	: "札幌医科大学附属病院店",
+		"code"	: "starbucks_788",
+		"lat"	: "43.055176",
+		"lng"	: "141.333479",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=788",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_스스 키노 이토 요 카도 상점",
+		"jname"	: "すすきのイトーヨーカドー店",
+		"code"	: "starbucks_372",
+		"lat"	: "43.055326",
+		"lng"	: "141.352763",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=372",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_아리오점",
+		"jname"	: "アリオ札幌店",
+		"code"	: "starbucks_649",
+		"lat"	: "43.071534",
+		"lng"	: "141.371188",
+		"b_url"	: "http://www.starbucks.co.jp//store/search/detail.php?id=649",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_sapporo",
+		"maker"	: true
+	}, {
 		"name"	: "오도리 공원",
 		"code"	: "odori_park",
 		"ctg"	: "ctg_sapporo",
