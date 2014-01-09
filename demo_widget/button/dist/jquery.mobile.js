@@ -1,6 +1,6 @@
 /*!
 * jQuery Mobile 1.4.1pre
-* Git HEAD hash: d8375b7bd86cb50c5e3561a2814561210fd80363 <> Date: Thu Jan 9 2014 06:13:02 UTC
+* Git HEAD hash: d8375b7bd86cb50c5e3561a2814561210fd80363 <> Date: Thu Jan 9 2014 07:15:36 UTC
 * http://jquerymobile.com
 *
 * Copyright 2010, 2014 jQuery Foundation, Inc. and other contributors
@@ -7827,7 +7827,7 @@ $.widget( "mobile.button", {
 			result.wrapperClasses += " ui-btn-inline";
 		}
 		//set inline
-		if ( matchedClass = classes.match(/ui-btn-mini/i) ) {
+		if ( matchedClass = classes.match(/ui-mini/i) ) {
 			result.wrapperClasses += " ui-btn-mini";
 		}
 		// set disabled
@@ -7852,16 +7852,6 @@ $.widget( "mobile.button", {
 	_button: function() {
 		var options = this.options,
 			iconClasses = this._getIconClasses( this.options );
-		// console.log( "current wrapper = [<div class='ui-btn ui-input-btn" +
-		// 	( options.wrapperClass ? " " + options.wrapperClass : "" ) +
-		// 	( options.theme ? " ui-btn-" + options.theme : "" ) +
-		// 	( options.corners ? " ui-corner-all" : "" ) +
-		// 	( options.shadow ? " ui-shadow" : "" ) +
-		// 	( options.inline ? " ui-btn-inline" : "" ) +
-		// 	( options.mini ? " ui-mini" : "" ) +
-		// 	( options.disabled ? " ui-state-disabled" : "" ) +
-		// 	( iconClasses ? ( " " + iconClasses ) : "" ) +
-		// 	"' >" + this.element.val() + "</div>]" );
 
 		return $("<div class='ui-btn ui-input-btn" +
 			( options.wrapperClass ? " " + options.wrapperClass : "" ) +
