@@ -1,6 +1,6 @@
 /*!
 * jQuery Mobile 1.4.1pre
-* Git HEAD hash: d8375b7bd86cb50c5e3561a2814561210fd80363 <> Date: Thu Jan 9 2014 07:15:36 UTC
+* Git HEAD hash: d8375b7bd86cb50c5e3561a2814561210fd80363 <> Date: Thu Jan 9 2014 07:24:12 UTC
 * http://jquerymobile.com
 *
 * Copyright 2010, 2014 jQuery Foundation, Inc. and other contributors
@@ -7828,7 +7828,7 @@ $.widget( "mobile.button", {
 		}
 		//set inline
 		if ( matchedClass = classes.match(/ui-mini/i) ) {
-			result.wrapperClasses += " ui-btn-mini";
+			result.wrapperClasses += " ui-mini";
 		}
 		// set disabled
 		if ( matchedClass = classes.match(/ui-state-disabled/i) ) {
