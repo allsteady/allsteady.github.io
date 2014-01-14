@@ -1,0 +1,112 @@
+var JSON_DATA = [
+	{
+		"name"	: "힐턴호텔",
+		"code"	: "hilton",
+		"icon"	: "hotel",
+		"lat"	: "13.504496",
+		"lng"	: "144.786101",
+		"ctg"	: "ctg_public",
+		"addr"	: "202 Hilton Road, Tamuning, 96913",
+		"maker"	: true
+	}, {
+		"name"	: "괌 공항",
+		"code"	: "airport",
+		"icon"	: "airport",
+		"lat"	: "13.483056",
+		"lng"	: "144.795556",
+		"ctg"	: "ctg_public",
+		"addr"	: "355 Chalan Pasaheru B224-A, Tamuning, 96913",
+		"maker"	: true
+	}, {
+		"name"	: "K 마트",
+		"code"	: "kmart",
+		"icon"	: "market",
+		"lat"	: "13.500794",
+		"lng"	: "144.800368",
+		"ctg"	: "ctg_shop",
+		"addr"	: "North Marine Drive, 404 Marine Corps Drive, Tamuning, Guam",
+		"maker"	: true
+	}, {
+		"name"	: "The Plaza",
+		"code"	: "plaza",
+		"icon"	: "market",
+		"lat"	: "13.509681",
+		"lng"	: "144.805591",
+		"ctg"	: "ctg_shop",
+		"time"	: "월~일 10:00~23:00",
+		"addr"	: "Tumon Sands Plaza, Pale San Vitores Rd, Guam",
+		"maker"	: true
+	}, {
+		"name"	: "GPO",
+		"code"	: "GPO",
+		"icon"	: "market",
+		"lat"	: "13.489656",
+		"lng"	: "144.782014",
+		"ctg"	: "ctg_shop",
+		"time"	: "월~토 10:00~21:00",
+		"addr"	: "Tamuning, 96913 Guam",
+		"maker"	: true
+	}, {
+		"name"	: "DFS_Galleria",
+		"code"	: "DFS",
+		"icon"	: "market",
+		"lat"	: "13.514188",
+		"lng"	: "144.806121",
+		"ctg"	: "ctg_shop",
+		"time"	: "월~일 10:00~23:00",
+		"addr"	: "Tamuning, 96913 Guam",
+		"maker"	: true
+	}, {
+		"name"	: "JP Super Store",
+		"code"	: "jpsuperstore",
+		"icon"	: "market",
+		"lat"	: "13.509852",
+		"lng"	: "144.805407",
+		"ctg"	: "ctg_shop",
+		"time"	: "월~일 09:00~23:00",
+		"addr"	: "Tamuning, 96913 Guam",
+		"maker"	: true
+	}, {
+		"name"	: "Micronesia mall",
+		"code"	: "Micronesia",
+		"icon"	: "market",
+		"lat"	: "13.520198",
+		"lng"	: "144.817598",
+		"ctg"	: "ctg_shop",
+		"time"	: "월~일 09:00~23:00",
+		"b_url"	: "http://blog.naver.com/larcbleu?Redirect=Log&logNo=60198493242",
+		"addr"	: "1088 Marine Corps Drive Tamuning, Guam",
+		"maker"	: true
+	}
+];
+
+var index = 0,
+	item,
+	infos = {},
+	makers = [];
+for ( index = 0 ; index < JSON_DATA.length ; index++ ) {
+	item = JSON_DATA[index];
+	infos[ item.code ] = item;
+	if ( !!item.maker ) {
+		makers.push( item.code );
+	}
+}
+
+window.infos = infos;
+window.makers = makers;
+$( document ).ready(function(){
+	var index = 0,
+		startSelect = $( "#startPos"),
+		endPos = $( "#endPos");
+
+	for ( index = 0 ; index < JSON_DATA.length ; index++ ) {
+		item = JSON_DATA[index];
+		if ( item. ctg != null ) {
+			startSelect.find( "." + item.ctg).append ( $( "<option value='"+ item.code+ "'>"+ item.name+ "</option>" ) );
+			endPos.find( "." + item.ctg).append ( $( "<option value='"+ item.code+ "'>"+ item.name+ "</option>" ) );
+		} else {
+			startSelect.append ( $( "<option value='"+ item.code+ "'>"+ item.name+ "</option>" ) );
+			endPos.append ( $( "<option value='"+ item.code+ "'>"+ item.name+ "</option>" ) );
+		}
+	}
+});

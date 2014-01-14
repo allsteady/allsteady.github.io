@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,  minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<title>괌(Guam) 여행</title>
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/git/jquery.mobile-git.css">
+	<link rel="stylesheet" type="text/css" href="examples.css" />
+	<link rel="stylesheet" type="text/css" media="only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape)" href="iphone.css" />
+
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="./libs/guam_poi.json"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&laguage=ko"></script>
+	<!--
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	-->
+	<script type="text/javascript" src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script>
+	<script type="text/javascript" src="./libs/gmaps.js"></script>
+	<script type="text/javascript" src="./libs/guamtrip.js"></script>
+</head>
+<body>
+	<div data-role="page" id="fastscroll-demo" data-fit-page-to-window="true" >
+		<div data-role="header" >
+			<h1>괌(Guam)</h1>
+			<a href="#dialogPage" data-rel="dialog" id="configBtnH" class="hide-loading ui-btn-right" data-mini="true" data-iconpos="notext" data-icon="info"></a>
+		</div><!-- header -->
+		<div class="content" data-role="content" data-scroll="y">
+			<div id="map" class="map-class"></div>
+			<!-- <div data-role="fieldcontain"> -->
+			<div style="margin: 1em 0;">
+				<label for="startPos" class="select my-label">출 발 지</label>
+				<select name="startPos" id="startPos" data-mini="true">
+					<option value="currentPos">내 위치</option>
+					<optgroup label="주요시설" class='ctg_public'> 
+					</optgroup>
+					<optgroup label="쇼핑시설" class='ctg_shop'> 
+					</optgroup>
+					<optgroup label="음식점" class='ctg_res'>
+					</optgroup>
+				</select>
+			</div>
+
+			<div style="margin: 1em 0;">
+				<label for="endPos" class="select  my-label">도 착 지</label>
+				<select name="endPos" id="endPos" data-mini="true" >
+					<option value="currentPos">내 위치</option>
+					<optgroup label="주요시설" class='ctg_public'> 
+					</optgroup>
+					<optgroup label="쇼핑시설" class='ctg_shop'> 
+					</optgroup>
+					<optgroup label="음식점" class='ctg_res'>
+					</optgroup>
+				</select>
+			</div>
+			<div style="margin: 1em 0;" >
+				<label for="travelMode" class="select  my-label" >이동수단</label>
+				<select name="travelMode" id="travelMode" data-mini="true">
+					<option value="walking">WALKING</option>
+					<option value="driving">DRIVING</option>
+					<option value="transit">TRANSIT</option>
+				</select>
+			</div>
+
+			<div data-role="controlgroup" data-type="horizontal">
+				<a id="searchBtn" data-role="button" data-mini="true" data-icon="search" data-iconpos="notext">Search</a>
+				<a id="centerBtn" data-role="button" data-mini="true" data-icon="home" data-iconpos="notext">Center</a>
+				<a id="traceBtn" data-role="button" data-mini="true" data-icon="edit" data-iconpos="notext">Show</a>
+				<a id="reloadBtn" data-role="button" data-mini="true" data-icon="refresh" data-iconpos="notext">Reload</a>
+			</div>
+
+		</div><!-- content -->
+		
+	</div><!-- page -->
+	<div data-role="page" id="dialogPage">
+		<div data-role="header">
+			<h2>Information</h2>
+		</div>
+  		<div data-role="content" id="dialogbody" >
+    			<p>
+				도착지 주소 : <span id="startAddr"> </span>
+			</p>
+			
+			<p>
+				거리 : <span id="distance"></span>
+				소요시간 : <span id="duration"> </span>
+			</p>
+
+			<div style="overflow-x:hidden;overflow-y:auto;" id="steps">
+				<div style="margin-top: 15px;margin-left: 15px;" >
+					<ul data-role="listview" id="stepInfos" data-mini="true" style="font-size:0.8rem;" >
+					</ul>
+				</div>
+			</div>
+  		</div>
+	</div>
+</body>
+</html>
