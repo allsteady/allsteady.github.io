@@ -67,18 +67,17 @@ $( document ).bind(" dataload pageshow ", function ( event ) {
 	 event.preventDefault();
 });
 
-function loadCurrency () {
+function loadCurrency ( fromN, toN ) {
 	var exchangeData = $.localStorage.get( "exchange_data" ),
-		curTime = ( new Date );
+		curTime = ( new Date ),
+		fromCurrency = fromN ? fromN : "JPY",
+		toCurrency = toN ? toN : "KRW";
 	if ( exchangeData && ( curTime - new Date( exchangeData.date ) ) < window._refreshTime  ) {
 		window._isRecently = true;
 		return ;
 	}
 	$.ajax ({
-		url : "http://rate-exchange.appspot.com/currency?from=JPY&to=KRW",
-		// url : "http://finance.yahoo.com/d/quotes.csv?e=.json&f=sl1d1t1&s=USDINR=X",
-		// url : "http://finance.yahoo.com/currency-converter/#from=JPY;to=KRW;amt=1",
-		// url : "http://www.webservicex.net/CurrencyConvertor.asmx/ConversionRate?FromCurrency=JPY&ToCurrency=KRW",
+		url : "http://rate-exchange.appspot.com/currency?from="+fromCurrency+"&to="+toCurrency,
 		dataType: "jsonp",
 		crossDomain: true,
 		error : function ( jqXHR, textStatus, errorThrown ) {

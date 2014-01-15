@@ -23,6 +23,7 @@ var JSON_DATA = [
 		"icon"	: "market",
 		"lat"	: "13.500794",
 		"lng"	: "144.800368",
+		"time"	: "월~일 10:00~24:00",
 		"ctg"	: "ctg_shop",
 		"addr"	: "North Marine Drive, 404 Marine Corps Drive, Tamuning, Guam",
 		"maker"	: true
@@ -77,8 +78,33 @@ var JSON_DATA = [
 		"b_url"	: "http://blog.naver.com/larcbleu?Redirect=Log&logNo=60198493242",
 		"addr"	: "1088 Marine Corps Drive Tamuning, Guam",
 		"maker"	: true
+	}, {
+		"name"	: "Sea Grill",
+		"code"	: "Sea_Grill",
+		"icon"	: "restaurant",
+		"lat"	: "13.514333",
+		"lng"	: "144.805935",
+		"ctg"	: "ctg_res",
+		"time"	: "월~일 09:00~23:00",
+		"b_url"	: "http://blog.naver.com/sivel77?Redirect=Log&logNo=30182884342",
+		"addr"	: "1254 Pale San Vitores Rd, Tamuning,",
+		"tel"	: "1 671-649-6337",
+		"maker"	: true
+	}, {
+		"name"	: "JeffBugger",
+		"code"	: "JeffBugger",
+		"icon"	: "bread",
+		"lat"	: "13.364108",
+		"lng"	: "144.769819",
+		"ctg"	: "ctg_res",
+		"b_url"	: "http://renamejun.blog.me/20202121600",
+		"addr"	: "1254 Pale San Vitores Rd, Tamuning,",
+		"tel"	: "1 671-649-6337",
+		"maker"	: true
 	}
 ];
+
+
 
 var index = 0,
 	item,

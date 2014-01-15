@@ -139,7 +139,7 @@ function makeCustomMarker( item ) {
 		};
 	marker = new google.maps.Marker( markerOption );
 	if ( item.icon ) {
-		marker.setIcon('http://allsteady.github.io/jpntrip/resources/icons/' + item.icon +'.png');
+		marker.setIcon('http://allsteady.github.io/tour/icons/' + item.icon +'.png');
 	} else {
 		marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 	}
