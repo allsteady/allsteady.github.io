@@ -1,6 +1,6 @@
 /*!
 * jQuery Mobile 1.5.0pre
-* Git HEAD hash: fec1e8545d590c30719bfb67102f481d75e1de21 <> Date: Fri Mar 21 2014 08:01:01 UTC
+* Git HEAD hash: 0254b18e7b1899961692aef347d3411b18ed719c <> Date: Tue Mar 25 2014 07:14:51 UTC
 * http://jquerymobile.com
 *
 * Copyright 2010, 2014 jQuery Foundation, Inc. and other contributors
@@ -8009,8 +8009,8 @@ $.widget( "mobile.button", {
 		icon: null,
 		iconpos: "left",
 		iconshadow: false, /* TODO: Deprecated in 1.4, remove in 1.5. */
-		corners: true,
-		shadow: true,
+		corners: false,
+		shadow: false,
 		inline: null,
 		mini: null,
 		wrapperClass: null,
@@ -8018,7 +8018,6 @@ $.widget( "mobile.button", {
 	},
 
 	_create: function() {
-
 		if ( this.element.is( ":disabled" ) ) {
 			this.options.disabled = true;
 		}
@@ -8046,19 +8045,42 @@ $.widget( "mobile.button", {
 
 	_enhance: function() {
 		this.element.wrap( this._button() );
+
+	},
+
+	// For backward compatability.
+	// $( selector ).button.("options", "XXX" )
+	_parseClasses : function ( clazz ) {
+		var opt = this.options,
+			classes,
+			index = 0;
+		if ( clazz ) {
+			classes = clazz.split( " " );
+			for ( ; index < classes.length ; index++ ) {
+				if ( classes[ index ] === "ui-corner-all" ) {
+					opt.corners = true;
+				}
+				if ( classes[ index ] === "ui-shadow" ) {
+					opt.shadow = true;
+				}
+				if ( classes[ index ] === "ui-btn-inline" ) {
+					opt.inline = true;
+				}
+				if ( classes[ index ] === "ui-mini" ) {
+					opt.mini = true;
+				}
+			}
+		}
 	},
 
 	_button: function() {
 		var options = this.options,
 			iconClasses = this._getIconClasses( this.options );
 
+		this._parseClasses( options.wrapperClass );
 		return $("<div class='ui-btn ui-input-btn" +
 			( options.wrapperClass ? " " + options.wrapperClass : "" ) +
 			( options.theme ? " ui-btn-" + options.theme : "" ) +
-			( options.corners ? " ui-corner-all" : "" ) +
-			( options.shadow ? " ui-shadow" : "" ) +
-			( options.inline ? " ui-btn-inline" : "" ) +
-			( options.mini ? " ui-mini" : "" ) +
 			( options.disabled ? " ui-state-disabled" : "" ) +
 			( iconClasses ? ( " " + iconClasses ) : "" ) +
 			"' >" + this.element.val() + "</div>" );
@@ -8081,7 +8103,6 @@ $.widget( "mobile.button", {
 
 	_setOptions: function( options ) {
 		var outer = this.widget();
-
 		if ( options.theme !== undefined ) {
 			outer
 				.removeClass( this.options.theme )
@@ -8119,7 +8140,6 @@ $.widget( "mobile.button", {
 	refresh: function( create ) {
 		var originalElement,
 			isDisabled = this.element.prop( "disabled" );
-
 		if ( this.options.icon && this.options.iconpos === "notext" && this.element.attr( "title" ) ) {
 			this.element.attr( "title", this.element.val() );
 		}
