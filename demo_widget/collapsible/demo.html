@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> 	CollapsibleSet </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+		<link rel="stylesheet" href="./resources/jquery.mobile.css" />
+		<script src="http://code.jquery.com/jquery-1.10.2.js">
+		</script>
+		<script src="./resources/jquery.mobile.js">
+		</script>
+		<style >
+		#root p {
+			margin : 0em 1em .5em;
+		}
+		#root .title {
+			font-size: 1em;
+			font-weight: bold;
+		}
+		#root .desc {
+			margin : -.4em 1em .8em 3em;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="root" data-role="page">
+			<div data-role="header">
+				<h1>Deprecate style</h1>
+			</div>
+			<div id="" data-role="content">
+				<p class=""><br></p>
+				<p class=""><br></p>
+				<p class="title">1. Collapsible Demo<br></p>
+				<p class="desc"> - This demo shows that negate css rules are able to affect the widget.<br></p>
+				<p class="title">2. Collapsible-Set Demo (Basic) <br></p>
+				<p class="desc"> - This demo shows that negate css rules are able to affect sub widgets.<br></p>
+				<p class="title">3. Collapsible-Set Demo (Ignore inheritances )<br></p>
+				<p class="desc"> - This demo shows that new defined css rules are able to ignore a inheritance style. <br></p>
+				<p class="desc"> - 'ui-corner-all-force' : This class can ignore 'ui-corner-none' that it is inherited from collapsibleset.<br></p>
+				<p class="desc"> - 'ui-collapsible-inset-force' : This class can ignore 'ui-collapsible-inset-none' that it is inherited from collapsibleset.<br></p>
+				<p class=""><br></p>
+				<p class=""><br></p>
+				<a data-role="button" href="#collapsibleDemo"> Collapsible Demo </a>
+				<a data-role="button" href="#collapsibleSetDemo"> Collapsible-Set Demo (Basic) </a>
+				<a data-role="button" href="#collapsibleSetDemo2"> Collapsible-Set Demo (Ignore inheritances ) </a>
+				<a data-role="button" href="#diffPage">CSS</a>
+			</div>
+		</div>
+		<div id="collapsibleDemo" data-role="page">
+			<div data-role="header">
+				<a data-role="button" href="#root" data-icon="back">Back</a>
+				<h1>Collapsible Demo</h1>
+			</div>
+			<div data-role="content">
+				<div data-role="collapsible" data-collapsed="false" data-corners="false">
+					<h3>Disable Corners</h3>
+					<pre>
+&ltdiv data-role="collapsible" data-collapsed="false" data-corners="false"&gt
+					</pre>
+				</div>
+				<div data-role="collapsible" data-collapsed="false" class="ui-corner-none">
+					<h3>Disable Corners (by class)</h3>
+					<pre>
+&ltdiv data-role="collapsible" data-collapsed="false"  class="ui-corner-none"&gt
+					</pre>
+				</div>
+				<br>	<hr><br>
+				<div data-role="collapsible" data-collapsed="false" data-inset="false">
+					<h3>Disable inset</h3>
+					<pre>
+&ltdiv data-role="collapsible" data-collapsed="false" data-inset="false"&gt
+					</pre>
+				</div>
+				<div data-role="collapsible" data-collapsed="false" class="ui-collapsible-inset-none">
+					<h3>Disable inset (by class)</h3>
+					<pre>
+&ltdiv data-role="collapsible" data-collapsed="false"  class="ui-collapsible-inset-none"&gt
+					</pre>
+				</div>
+				<br>	<hr><br>
+				<div data-role="collapsible" data-collapsed="false" data-inset="false" data-corners="false">
+					<h3>Disable inset & corners</h3>
+					<pre>
+&ltdiv data-role="collapsible" data-collapsed="false" data-corners="false"&gt
+					</pre>
+				</div>
+				<div data-role="collapsible" data-collapsed="false" class="ui-collapsible-inset-none ui-corner-none">
+					<h3>Disable inset & corners(by class)</h3>
+					<pre>
+&ltdiv data-role="collapsible" data-collapsed="false"  class="ui-collapsible-inset-none ui-corner-none"&gt
+					</pre>
+				</div>
+			</div>
+		</div><!-- page end -->
+
+		<div id="collapsibleSetDemo" data-role="page">
+			<div data-role="header">
+				<a data-role="button" href="#root" data-icon="back">Back</a>
+				<h1>Collapsible-Set Demo</h1>
+			</div>
+			<div data-role="content">
+				<div data-role="collapsible-set" data-inset="false" >
+					<div id="test1" data-role="collapsible" >
+						<h3>Disable inset </h3>
+						<p>&ltdiv data-role="collapsible-set" data-inset="false" &gt</p>
+					</div>
+
+					<div id="test2" data-role="collapsible" >
+						<h3>Disable inset </h3>
+						<p>&ltdiv data-role="collapsible-set" data-inset="false" &gt</p>
+					</div>
+				</div>
+				<br>
+				<div data-role="collapsible-set"  class="ui-collapsible-inset-none" >
+					<div id="test3" data-role="collapsible" >
+						<h3>Disable inset (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set" class="ui-collapsible-inset-none" &gt</p>
+					</div>
+
+					<div id="test4" data-role="collapsible" >
+						<h3>Disable inset (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set" class="ui-collapsible-inset-none" &gt</p>
+					</div>
+				</div>
+
+				<br><hr><br>
+
+				<div data-role="collapsible-set" data-corners="false">
+					<div id="test1" data-role="collapsible" >
+						<h3>Disable corners </h3>
+						<p>&ltdiv data-role="collapsible-set" data-corners="false"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv  data-role="collapsible"&gt</p>
+					</div>
+
+					<div id="test2" data-role="collapsible" >
+						<h3>Disable corners </h3>
+						<p>&ltdiv data-role="collapsible-set" data-corners="false"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv  data-role="collapsible"&gt</p>
+					</div>
+				</div>
+				<br>
+				<div data-role="collapsible-set"  class="ui-corner-none " >
+					<div id="test3" data-role="collapsible" >
+						<h3>Disable corners (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set" class="ui-corner-none"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv  data-role="collapsible"&gt</p>
+					</div>
+
+					<div id="test4" data-role="collapsible" >
+						<h3>Disable corners (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set" class="ui-corner-none" &gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible"&gt</p>
+					</div>
+				</div>
+
+				<br><hr><br>
+
+				<div data-role="collapsible-set" data-inset="false" data-corners="false">
+					<div id="test1" data-role="collapsible" >
+						<h3>Disable inset & corners </h3>
+						<p>&ltdiv data-role="collapsible-set" data-inset="false" data-corners="false"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible"&gt</p>
+					</div>
+
+					<div id="test2" data-role="collapsible" >
+						<h3>Disable inset & corners </h3>
+						<p>&ltdiv data-role="collapsible-set" data-inset="false" data-corners="false"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible"&gt</p>
+					</div>
+				</div>
+				<br>
+				<div data-role="collapsible-set"  class="ui-corner-none ui-collapsible-inset-none" >
+					<div id="test3" data-role="collapsible" >
+						<h3>Disable inset & corners (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set" class="ui-corner-none ui-collapsible-inset-none"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible"&gt</p>
+					</div>
+
+					<div id="test4" data-role="collapsible" >
+						<h3>Disable inset & corners (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set" class="ui-corner-none ui-collapsible-inset-none"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible"&gt</p>
+					</div>
+				</div>
+			</div>
+		</div> <!-- page end -->
+
+
+		<div id="collapsibleSetDemo2" data-role="page">
+			<div data-role="header">
+				<a data-role="button" href="#root" data-icon="back">Back</a>
+				<h1>Collapsible-Set Demo (Ignore inheritances )</h1>
+			</div>
+			<div data-role="content">
+				<div data-role="collapsible-set" data-inset="false" >
+					<div  data-role="collapsible" data-inset="true" >
+						<h3>Ignore inset </h3>
+						<p>&ltdiv data-role="collapsible-set" data-inset="false" &gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible" data-inset="true"&gt</p>
+					</div>
+					<div  data-role="collapsible" >
+						<h3> inset </h3>
+						<p>&ltdiv data-role="collapsible-set" data-inset="false" &gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv id="test1" data-role="collapsible" &gt</p>
+					</div>
+				</div>
+				<br>
+				<div data-role="collapsible-set"  class="ui-collapsible-inset-none" >
+					<div data-role="collapsible" class="ui-collapsible-inset-force">
+						<h3>Ignore inset (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set" class="ui-collapsible-inset-none" &gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible" class="ui-collapsible-inset-force" &gt</p>
+					</div>
+					<div id="test4" data-role="collapsible" >
+						<h3>Disable inset (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set" class="ui-collapsible-inset-none" &gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible" &gt</p>
+					</div>
+				</div>
+				<br><hr><br>
+				<div data-role="collapsible-set" data-corners="false" data-inset="false">
+					<div id="test1" data-role="collapsible" data-inset="true" data-corner="true" >
+						<h3>Ignore corners & inset </h3>
+						<p>&ltdiv data-role="collapsible-set" data-corners="false" data-inset="false"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible" data-inset="true" data-corner="true"&gt</p>
+					</div>
+
+					<div id="test2" data-role="collapsible" >
+						<h3>Disable corners & inset </h3>
+						<p>&ltdiv data-role="collapsible-set" data-corners="false" data-inset="false"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv data-role="collapsible"&gt</p>
+					</div>
+				</div>
+				<br>
+				<div data-role="collapsible-set"  class="ui-corner-none ui-collapsible-inset-none" >
+					<div id="test3" data-role="collapsible" class="ui-corner-all-force ui-collapsible-inset-force">
+						<h3>Ignore corners & inset (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set"  class="ui-corner-none ui-collapsible-inset-none"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv id="test3" data-role="collapsible" class="ui-corner-all-force ui-collapsible-inset-force"&gt</p>
+					</div>
+
+					<div id="test4" data-role="collapsible" >
+						<h3>Disable corners (by class)</h3>
+						<p>&ltdiv data-role="collapsible-set"  class="ui-corner-none ui-collapsible-inset-none"&gt<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltdiv id="test3" data-role="collapsible"&gt</p>
+					</div>
+				</div>				
+			</div>
+		</div>
+
+
+		<div id="diffPage" data-role="page">
+			<div data-role="header">
+				<a data-role="button" href="#root" data-icon="back">Back</a>
+				<h1>CSS</h1>
+			</div>
+			<div data-role="content" >
+				<pre>
+--- a/css/structure/jquery.mobile.collapsible.css
++++ b/css/structure/jquery.mobile.collapsible.css
+@@ -1,7 +1,7 @@
+ .ui-collapsible {
+ 	margin: 0 -1em;
+ }
+-.ui-collapsible-inset,
++.ui-collapsible-inset:not(.ui-collapsible-inset-none),
+ .ui-collapsible-set {
+ 	margin: .5em 0;
+ }
+@@ -14,7 +14,7 @@
+ .ui-collapsible-heading .ui-btn {
+ 	text-align: left;
+ 	margin: 0;
+-	border-left-width: 0;
++	border-left-width: 0;'/'
+ 	border-right-width: 0;
+ }
+ .ui-collapsible-heading .ui-btn-icon-top,
+@@ -50,7 +50,7 @@
+ 	border-bottom-width: 1px;
+ 	border-style: solid;
+ }
+-.ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content {
++.ui-collapsible-inset.ui-collapsible-themed-content:not(.ui-collapsible-inset-none) .ui-collapsible-content {
+ 	border-left-width: 1px;
+ 	border-right-width: 1px;
+ }
+@@ -60,7 +60,8 @@
+ .ui-collapsible-content-collapsed {
+ 	display: none;
+ }
+-.ui-collapsible-set > .ui-collapsible.ui-corner-all {
++.ui-collapsible-set > .ui-collapsible.ui-corner-all,
++.ui-collapsible-set.ui-collapsible-inset-none.ui-corner-all {
+ 	-webkit-border-radius: 0;
+ 	border-radius: 0;
+ }
+@@ -91,9 +92,28 @@
+ .ui-collapsible-set .ui-collapsible {
+ 	margin: -1px -1em 0;
+ }
+-.ui-collapsible-set .ui-collapsible-inset {
++.ui-collapsible-set:not(.ui-collapsible-inset-none) .ui-collapsible-inset,
++.ui-collapsible-set.ui-collapsible-inset-none .ui-collapsible-inset-force {
+ 	margin: -1px 0 0;
+ }
+ .ui-collapsible-set .ui-collapsible.ui-first-child {
+ 	margin-top: 0;
+ }
++.ui-collapsible-set > .ui-corner-all-force.ui-collapsible.ui-first-child {
++	-webkit-border-top-right-radius: .3125em /*{global-radii-blocks}*/;
++	border-top-right-radius: .3125em /*{global-radii-blocks}*/;
++	-webkit-border-top-left-radius: .3125em /*{global-radii-blocks}*/;
++	border-top-left-radius: .3125em /*{global-radii-blocks}*/;
++}
++
++.ui-collapsible-set > .ui-corner-all-force.ui-collapsible.ui-last-child {
++	-webkit-border-bottom-right-radius: .3125em /*{global-radii-blocks}*/;
++	border-bottom-right-radius: .3125em /*{global-radii-blocks}*/;
++	-webkit-border-bottom-left-radius: .3125em /*{global-radii-blocks}*/;
++	border-bottom-left-radius: .3125em /*{global-radii-blocks}*/;
++}
++
++.ui-collapsible-set.ui-corner-none > .ui-collapsible.ui-corner-all:not(.ui-corner-all-force) {
++	-webkit-background-clip: border;
++	background-clip: border-box;
++}
+</pre>
+
+
+			</div>
+		</div>
+	</body>
+</html>
