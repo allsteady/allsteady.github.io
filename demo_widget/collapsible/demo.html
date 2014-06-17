@@ -43,7 +43,7 @@
 				<a data-role="button" href="#collapsibleDemo"> Collapsible Demo </a>
 				<a data-role="button" href="#collapsibleSetDemo"> Collapsible-Set Demo (Basic) </a>
 				<a data-role="button" href="#collapsibleSetDemo2"> Collapsible-Set Demo (Ignore inheritances ) </a>
-				<a data-role="button" href="#diffPage">CSS</a>
+				
 			</div>
 		</div>
 		<div id="collapsibleDemo" data-role="page">
@@ -233,86 +233,6 @@
 		</div>
 
 
-		<div id="diffPage" data-role="page">
-			<div data-role="header">
-				<a data-role="button" href="#root" data-icon="back">Back</a>
-				<h1>CSS</h1>
-			</div>
-			<div data-role="content" >
-				<pre>
---- a/css/structure/jquery.mobile.collapsible.css
-+++ b/css/structure/jquery.mobile.collapsible.css
-@@ -1,7 +1,7 @@
- .ui-collapsible {
- 	margin: 0 -1em;
- }
--.ui-collapsible-inset,
-+.ui-collapsible-inset:not(.ui-collapsible-inset-none),
- .ui-collapsible-set {
- 	margin: .5em 0;
- }
-@@ -14,7 +14,7 @@
- .ui-collapsible-heading .ui-btn {
- 	text-align: left;
- 	margin: 0;
--	border-left-width: 0;
-+	border-left-width: 0;'/'
- 	border-right-width: 0;
- }
- .ui-collapsible-heading .ui-btn-icon-top,
-@@ -50,7 +50,7 @@
- 	border-bottom-width: 1px;
- 	border-style: solid;
- }
--.ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content {
-+.ui-collapsible-inset.ui-collapsible-themed-content:not(.ui-collapsible-inset-none) .ui-collapsible-content {
- 	border-left-width: 1px;
- 	border-right-width: 1px;
- }
-@@ -60,7 +60,8 @@
- .ui-collapsible-content-collapsed {
- 	display: none;
- }
--.ui-collapsible-set > .ui-collapsible.ui-corner-all {
-+.ui-collapsible-set > .ui-collapsible.ui-corner-all,
-+.ui-collapsible-set.ui-collapsible-inset-none.ui-corner-all {
- 	-webkit-border-radius: 0;
- 	border-radius: 0;
- }
-@@ -91,9 +92,28 @@
- .ui-collapsible-set .ui-collapsible {
- 	margin: -1px -1em 0;
- }
--.ui-collapsible-set .ui-collapsible-inset {
-+.ui-collapsible-set:not(.ui-collapsible-inset-none) .ui-collapsible-inset,
-+.ui-collapsible-set.ui-collapsible-inset-none .ui-collapsible-inset-force {
- 	margin: -1px 0 0;
- }
- .ui-collapsible-set .ui-collapsible.ui-first-child {
- 	margin-top: 0;
- }
-+.ui-collapsible-set > .ui-corner-all-force.ui-collapsible.ui-first-child {
-+	-webkit-border-top-right-radius: .3125em /*{global-radii-blocks}*/;
-+	border-top-right-radius: .3125em /*{global-radii-blocks}*/;
-+	-webkit-border-top-left-radius: .3125em /*{global-radii-blocks}*/;
-+	border-top-left-radius: .3125em /*{global-radii-blocks}*/;
-+}
-+
-+.ui-collapsible-set > .ui-corner-all-force.ui-collapsible.ui-last-child {
-+	-webkit-border-bottom-right-radius: .3125em /*{global-radii-blocks}*/;
-+	border-bottom-right-radius: .3125em /*{global-radii-blocks}*/;
-+	-webkit-border-bottom-left-radius: .3125em /*{global-radii-blocks}*/;
-+	border-bottom-left-radius: .3125em /*{global-radii-blocks}*/;
-+}
-+
-+.ui-collapsible-set.ui-corner-none > .ui-collapsible.ui-corner-all:not(.ui-corner-all-force) {
-+	-webkit-background-clip: border;
-+	background-clip: border-box;
-+}
-</pre>
-
-
-			</div>
-		</div>
+		
 	</body>
 </html>
