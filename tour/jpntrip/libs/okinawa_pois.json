@@ -1,0 +1,244 @@
+var JSON_DATA = [
+	{
+		"name"	: "오키나와 공항",
+		"code"	: "naha_airport",
+		"icon"	: "airport",
+		"lat"	: "26.206468",
+		"lng"	: "127.652248",
+		"addr"	: "Naha Airport Station, Okinawa, Japan",
+		"ctg"	: "ctg_okinawa",
+		"desc"	: "오키나와 나하 공항",
+		"maker"	: true
+	}, {
+		"name"	: "무지 #1/2",
+		"code"	: "muji_okinawa1",
+		"icon"	: "market",
+		"lat"	: "26.229533",
+		"lng"	: "127.690927",
+		"addr"	: "900-0005 Okinawa-ken, Naha-shi, Ameku, 1 Chome−1−1",
+		"ctg"	: "ctg_okinawa",
+		"desc"	: "무지 - 자유거리",
+		"maker"	: true
+	}, {
+		"name"	: "무지 (8F) #2/2",
+		"code"	: "muji_okinawa2",
+		"icon"	: "market",
+		"lat"	: "26.213801",
+		"lng"	: "127.679257",
+		"addr"	: "〒900-8503 Okinawa, Naha, Kumoji, 1 Chome−1−1 リウボウ 8F",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "국제거리",
+		"code"	: "int_street",
+		"icon"	: "market",
+		"lat"	: "26.215831",
+		"lng"	: "127.68681",
+		"addr"	: "1 Makishi Naha, Okinawa 900-0013",
+		"ctg"	: "ctg_okinawa",
+		"desc"	: "국제거리",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Gushikawa Main City",
+		"jname"	: "Gushikawa Main City",
+		"code"	: "starbucks_577",
+		"lat"	: "26.353061",
+		"lng"	: "127.826018",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=577",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Chatan Kokudo 58 go",
+		"jname"	: "Chatan Kokudo 58 go",
+		"code"	: "starbucks_702",
+		"lat"	: "26.313741",
+		"lng"	: "127.760996",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=702",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Okinawa Kokutai-doro",
+		"jname"	: "Okinawa Kokutai-doro",
+		"code"	: "starbucks_893",
+		"lat"	: "26.328342",
+		"lng"	: "127.770772",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=893",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_AEON Chatan",
+		"jname"	: "AEON Chatan",
+		"code"	: "starbucks_623",
+		"lat"	: "26.314533",
+		"lng"	: "127.756948",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=623",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Mihama American Village",
+		"jname"	: "Mihama American Village",
+		"code"	: "starbucks_398",
+		"lat"	: "26.316215",
+		"lng"	: "127.757987",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=398",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Urasoe BARCLAYS COURT",
+		"jname"	: "Urasoe BARCLAYS COURT",
+		"code"	: "starbucks_636",
+		"lat"	: "26.252317",
+		"lng"	: "127.738345",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=636",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Okinawa Nishihara City",
+		"jname"	: "Okinawa Nishihara City",
+		"code"	: "starbucks_652",
+		"lat"	: "26.224386",
+		"lng"	: "127.765326",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=652",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Okinawa Yomitan",
+		"jname"	: "Okinawa Yomitan",
+		"code"	: "starbucks_842",
+		"lat"	: "26.369597",
+		"lng"	: "127.746643",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=842",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Kyozuka City",
+		"jname"	: "Kyozuka City",
+		"code"	: "starbucks_875",
+		"lat"	: "26.237691",
+		"lng"	: "127.7225",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=875",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_AEON Haebaru",
+		"jname"	: "AEON Haebaru",
+		"code"	: "starbucks_559",
+		"lat"	: "26.200566",
+		"lng"	: "127.737101",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=559",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Okinawa Makabi",
+		"jname"	: "Okinawa Makabi",
+		"code"	: "starbucks_1105",
+		"lat"	: "26.22272",
+		"lng"	: "127.704985",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=1105",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Naha Main Place",
+		"jname"	: "Naha Main Place",
+		"code"	: "starbucks_406",
+		"lat"	: "26.225193",
+		"lng"	: "127.695704",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=406",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Naha Kokusai-dori Makishi",
+		"jname"	: "Naha Kokusai-dori Makishi",
+		"code"	: "starbucks_381",
+		"lat"	: "26.21655",
+		"lng"	: "127.68829",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=381",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_AEON Naha Shopping Center",
+		"jname"	: "AEON Naha Shopping Center",
+		"code"	: "starbucks_428",
+		"lat"	: "26.196723",
+		"lng"	: "127.666228",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=428",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Naha Airport North Wing",
+		"jname"	: "Naha Airport North Wing",
+		"code"	: "starbucks_2009",
+		"lat"	: "26.206776",
+		"lng"	: "127.651031",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=2009",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_Tomishiro Chuo Hospital",
+		"jname"	: "Tomishiro Chuo Hospital",
+		"code"	: "starbucks_2034",
+		"lat"	: "26.175832",
+		"lng"	: "127.675954",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=2034",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}, {
+		"name"	: "스벅_OKINAWA OUTLET MALL ASHIBINAA",
+		"jname"	: "OKINAWA OUTLET MALL ASHIBINAA",
+		"code"	: "starbucks_1000",
+		"lat"	: "26.158986",
+		"lng"	: "127.659026",
+		"b_url"	: "http://www.starbucks.co.jp//en/search/detail.php?id=1000",
+		"icon"	: "coffee",
+		"ctg"	: "ctg_okinawa",
+		"maker"	: true
+	}
+];
+
+
+var index = 0,
+	item,
+	infos = {},
+	makers = [];
+for ( index = 0 ; index < JSON_DATA.length ; index++ ) {
+	item = JSON_DATA[index];
+	infos[ item.code ] = item;
+	if ( !!item.maker ) {
+		makers.push( item.code );
+	}
+}
+
+window.infos = infos;
+window.makers = makers;
+$( document ).ready(function(){
+	var index = 0,
+		startSelect = $( "#startPos"),
+		endPos = $( "#endPos");
+
+	for ( index = 0 ; index < JSON_DATA.length ; index++ ) {
+		item = JSON_DATA[index];
+		if ( item. ctg != null ) {
+			startSelect.find( "." + item.ctg).append ( $( "<option value='"+ item.code+ "'>"+ item.name+ "</option>" ) );
+			endPos.find( "." + item.ctg).append ( $( "<option value='"+ item.code+ "'>"+ item.name+ "</option>" ) );
+		} else {
+			startSelect.append ( $( "<option value='"+ item.code+ "'>"+ item.name+ "</option>" ) );
+			endPos.append ( $( "<option value='"+ item.code+ "'>"+ item.name+ "</option>" ) );
+		}
+	}
+});
