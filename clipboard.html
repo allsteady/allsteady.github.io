@@ -1,124 +1,140 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>
-			Clipboard Test
-		</title>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-		<style type="text/css">
-		#elm1, #elm2{
-			width: 60%;
-			height:300px;
-			border-style:solid;
-			border-color:black;
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<TITLE>CLIPBOARD</TITLE>
+	<META charset="UTF-8">
+	<META http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	<SCRIPT src="http://code.jquery.com/jquery-1.11.2.js"></SCRIPT>
+	<SCRIPT>
+		console = window.console || {log:function(){}};
+		
+		function displayType( msg ) {
+			var $elem = $("#typeInfo");
+			$elem.val( msg );
 		}
-		a:hover {
-			color:#red;
-		}
-		</style>
-	</head>
-	<body id="dropArea2">
-		<button onclick="addForm()" value="Add">Add Form</button>
-		<button onclick="init()" value="Add">Clear</button>
-		<button id="copyBtn"  value="Copy">Copy Content</button>
-		<br>
-		<span>clipboard data types : </span>
-		<input id="elem3" name="elem3" type="text" style="width: 50%;"> </input>
-		<br>
-		<br>
-		<span>HTML : </span> <input type="button" value="view" onclick="viewInPage('elm1')"><br>
-		<textarea id="elm1" name="elm1"  >
-		</textarea>
-		<br></br>
-		<span>RTF</span> <a >view html</a>  <input type="button" value="view" onclick="viewInPage('elm2')"> <br>
-		<textarea id="elm2" name="elm2"  >
-		</textarea>
-		<br>
-		<br>
-		<div id="dropArea" style="width:60%;height:80px;border-style:solid;border-color:black;"></div>
-		<div id='div' contenteditable='true' onpaste='handlepaste(this, event)'>Paste</div>
-		<script>
-			console = window.console || {log:function(){}};
-			var elem = document.getElementById("copyBtn");
-			var elm1 = document.getElementById("elm1");
-			if ( elem ) {
-				elem.addEventListener("click", copyContents );
-				elm1.addEventListener("paste", pasteHandle );
-			}
 
-			function copyContents( event ) {
-				var cBoard, dataTransfer;
-				if ( event.dataTransfer ) {
-					dataTransfer = event.dataTransfer;
-					console.log( dataTransfer );
+		function displayContent( content ) {
+			var $elem = $("#elm1");
+			$elem.val( content );
+		}
+
+		function handlepaste (elem, e) {
+			var savedcontent = elem.innerHTML;
+			if (e && e.clipboardData && e.clipboardData.getData) {
+			// Webkit - get data from clipboard, put into editdiv, cleanup, then cancel event
+				if (/text\/html/.test(e.clipboardData.types)) {
+					elem.innerHTML = e.clipboardData.getData('text/html');
+				} else if (/text\/plain/.test(e.clipboardData.types)) {
+					elem.innerHTML = e.clipboardData.getData('text/plain');
 				} else {
-					alert("Does not know...");
-				}
-			}
-
-			function viewInPage( id ) {
-				var data = "<p>null</p>",
-					elem = document.getElementById( id );
-				if ( id ) {
-					data = elem.value;
+					elem.innerHTML = "";
 				}
 				
-				var newWindow = window.open("", "");
-				newWindow.document.write( data );
-			}
-
-			function init(){
-				var elem1 = document.getElementById("elm1"),
-					elem2 = document.getElementById("elm2"),
-					elem3 = document.getElementById("elem3");
-				elem1.value = "";
-				elem2.value= "";
-				elem3.value = "";
-			}
-
-			function pasteHandle( e ) {
-				var types, data;
-				init();
-				var typeInput = document.getElementById("elem3");
-				if (e && e.clipboardData && e.clipboardData.getData) {
-					// alert(" have a clipboard data.");
-					types =  e.clipboardData.types;
-					if ( types ) {
-						var temps = "[" + e.clipboardData.types.length + "] " ;				
-						for ( var i = 0 ; i < types.length ; i++ ) {
-							temps += types [ i ] + " " ;
-						}
+				var types =  e.clipboardData.types;
+				if ( types ) {
+					var temps = "[" + e.clipboardData.types.length + "] " ;				
+					for ( var i = 0 ; i < types.length ; i++ ) {
+						temps += types [ i ] + " " ;
+					}
 						
-						typeInput.value = temps;
-					} else {
-						typeInput.value = "null"
-					}
-
-
-					var htmlData = e.clipboardData.getData("text/html");
-					var text = document.getElementById("elm1");
-					text.value = htmlData;
-					
-					var rtfData = e.clipboardData.getData("text/rtf");
-					if ( rtfData != null ) {
-						var rtf = document.getElementById("elm2");
-						rtf.value = rtfData;
-					} else {
-
-					}
-				} else {
-					alert(" does not have a clipboard data.");
-					typeInput.value = "does not have a clipboard data.";
+					displayType( temps );
 				}
 
 
-				e.stopPropagation();
-				e.preventDefault();
+				waitforpastedata(elem, savedcontent);
+				
+				if (e.preventDefault) {
+					e.stopPropagation();
+					e.preventDefault();
+				}
+				
+				return false;
+			} else {
+			// Everything else - empty editdiv and allow browser to paste content into it, then cleanup
+				elem.innerHTML = "";
+				displayType( "Can not access clipboard" );
+				waitforpastedata(elem, savedcontent);
+				return true;
 			}
+		}
 
-		
-		</script>
-	</body>
+		function waitforpastedata (elem, savedcontent) {
+			if (elem.childNodes && elem.childNodes.length > 0) {
+				processpaste(elem, savedcontent);
+			} else {
+				that = {
+					e: elem,
+					s: savedcontent
+				}
+				that.callself = function () {
+					waitforpastedata(that.e, that.s);
+				}
+				setTimeout(that.callself,20);
+			}
+		}
 
-</html>
+		function processpaste (elem, savedcontent) {
+			pasteddata = elem.innerHTML;
+			elem.innerHTML = savedcontent;
+			displayContent( pasteddata );
+		}
+
+		function viewInPage( id ) {
+			var newWindow,
+				data = "<p>null</p>",
+				elem = document.getElementById( id ),
+				scriptTag = "<script src=\"http://code.jquery.com/jquery-1.11.2.js\"><\/script>";
+			if ( id ) {
+				data = elem.value;
+			}
+					
+			if ( /<\/head>/i.test(data) ) {
+				data.replace( /<\/head>/i, scriptTag + "\n</head>\n");
+			} else {
+				data = scriptTag + data;
+			}
+			newWindow = window.open("", "");
+			newWindow.document.write( data );
+		}
+	</SCRIPT>
+	<STYLE type="text/css">
+		div {
+			border: 1px solid black;
+			height: 60px;
+			width: 70%;
+		}
+		textarea {
+			width: 70%;
+			height: 300px;
+			border: 1px solid black;
+		}
+	</STYLE>
+</HEAD>
+<BODY style="padding-left:10px;">
+	<DIV id="pasteHere" contenteditable="true" onpaste="handlepaste(this, event)" style="border-style: dotted;border-width: 3px;padding: 4px;">
+Paste Here...
+	</DIV>
+	<br>
+	<DIV style="vertical-align: middle;padding-top: 15px;padding-left: 5px;height: 36px;">
+		<span style="width:30%">Data Type : </span>
+		<input id="typeInfo" name="typeInfo" type="text" style="width: 70%;">
+		</input>
+	</DIV>
+	<br>
+	<br>
+	<span>HTML : </span>
+	<input type="button" value="view" onclick="viewInPage('elm1')">
+	<br>
+	<textarea id="elm1" name="elm1"  >
+	</textarea>
+	<br>
+	</br>
+	<span>Body</span>
+	<input type="button" value="view" onclick="viewInPage('elm2')">
+	<br>
+	<textarea id="elm2" name="elm2"  >
+	</textarea>
+</BODY>
+</HTML>
+
+
