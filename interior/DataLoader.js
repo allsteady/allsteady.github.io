@@ -9,7 +9,8 @@ var DataLoader = function () {
 	this.addData( "library", "서재_01", imgPath + "library_004.png" );
 	this.addData( "library", "서재_02", imgPath + "library_002.jpg" );
 	this.addData( "library", "서재_03", imgPath + "library_003.jpg" );
-	this.addData( "library", "서재_04", imgPath + "library_001.jpg" );
+	this.addData( "library", "서재_04", imgPath + "library_005.jpg" );
+	this.addData( "library", "서재_05", imgPath + "library_001.jpg" );
 
 }
 
