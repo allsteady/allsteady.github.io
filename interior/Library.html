@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interior</title>
+    <meta name="description" content="Pushy is an off-canvas navigation menu for your website.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- PGW CSS -->
+    <link rel="stylesheet" href="../libs/pgwslider/pgwslider.min.css">
+
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="../libs/pgwslider/pgwslider.min.js"></script>
+    <script src="DataLoader.js"></script>
+    <script type="application/javascript" charset="utf-8">
+        $( document ).ready( function() {
+            var $container = $('#item_container');
+
+            DataLoader.writeData( $container, "library" );
+
+//            $container.pgwSlider();
+            $container.pgwSlideshow({
+                transitionEffect: "fading",
+                maxHeight: 600
+            });
+        });
+    </script>
+</head>
+<body style="background-color: #CBC7C7;">
+    <center>
+    <h1>서재</h1>
+        <br>
+    <div style="max-width: 1000px;">
+        <ul id="item_container">
+
+        </ul>
+    </div>
+    </center>
+</body>
+</html>
