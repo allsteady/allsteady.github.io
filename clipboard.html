@@ -96,6 +96,28 @@
 			newWindow = window.open("", "");
 			newWindow.document.write( data );
 		}
+
+		function decode( src, dest ) {
+			var elem = document.getElementById( src ),
+				target = document.getElementById( dest ),
+				encoded, decoded;
+
+			if ( elem && target ) {
+				encoded = elem.value.replace( /[\s\u00A0\n]/g, "" );
+				decoded = b64DecodeUnicode( encoded );
+				target.value = decoded;
+
+			}
+			encoded = null;
+			decoded = null;
+		}
+
+		// ref: https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+		function b64DecodeUnicode(str) {
+			return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+					return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+				}).join(''));
+		}
 	</SCRIPT>
 	<STYLE type="text/css">
 		div {
@@ -117,23 +139,21 @@ Paste Here...
 	<br>
 	<DIV style="vertical-align: middle;padding-top: 15px;padding-left: 5px;height: 36px;">
 		<span style="width:30%">Data Type : </span>
-		<input id="typeInfo" name="typeInfo" type="text" style="width: 70%;">
-		</input>
+		<input id="typeInfo" name="typeInfo" type="text" style="width: 70%;" />
 	</DIV>
 	<br>
 	<br>
 	<span>HTML : </span>
 	<input type="button" value="view" onclick="viewInPage('elm1')">
+	<input type="button" value="decode" onclick="decode( 'elm1', 'elm2' )">
 	<br>
-	<textarea id="elm1" name="elm1"  >
-	</textarea>
+	<textarea id="elm1" name="elm1" ></textarea>
 	<br>
 	</br>
 	<span>Body</span>
 	<input type="button" value="view" onclick="viewInPage('elm2')">
 	<br>
-	<textarea id="elm2" name="elm2"  >
-	</textarea>
+	<textarea id="elm2" name="elm2"  ></textarea>
 </BODY>
 </HTML>
 
