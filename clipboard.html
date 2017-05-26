@@ -7,7 +7,8 @@
 	<SCRIPT src="http://code.jquery.com/jquery-1.11.2.js"></SCRIPT>
 	<SCRIPT>
 		console = window.console || {log:function(){}};
-		
+		var stringFromCharCode = String.fromCharCode;
+
 		function displayType( msg ) {
 			var $elem = $("#typeInfo");
 			$elem.val( msg );
@@ -36,7 +37,7 @@
 					for ( var i = 0 ; i < types.length ; i++ ) {
 						temps += types [ i ] + " " ;
 					}
-						
+
 					displayType( temps );
 				}
 
@@ -112,11 +113,55 @@
 			decoded = null;
 		}
 
+		function encode( src, dest ) {
+			var elem = document.getElementById( src ),
+				target = document.getElementById( dest ),
+				encoded, decoded;
+
+			if ( elem && target ) {
+				target.value = "";
+				encoded = elem.value;
+				decoded = b64EncodeUnicode( encoded );
+				target.value = decoded;
+
+			}
+			encoded = null;
+			decoded = null;
+		}
+
 		// ref: https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 		function b64DecodeUnicode(str) {
 			return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
 					return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
 				}).join(''));
+		}
+
+		function b64EncodeUnicode(str) {
+		// first we use encodeURIComponent to get percent-encoded UTF-8,
+		// then we convert the percent encodings into raw bytes which
+		// can be fed into btoa.
+			return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
+				return String.fromCharCode('0x' + p1);
+			}));
+		}
+
+
+		function decodeQuotedPritable( src, dest ){
+			var elem = document.getElementById( src ),
+				target = document.getElementById( dest ),
+				encoded, decoded;
+
+			if ( elem && target ) {
+				encoded = elem.value.replace( /[\s\u00A0\n]/g, "" );
+				decoded = encoded.replace( /[\t\x20]$/gm, "" ).replace( /=?(?:\r\n?|\n)/g, "" ).replace( /=([a-fA-F0-9]{2})/g, function( $0, $1 ) {
+					var codePoint = parseInt( $1, 16 );
+					return stringFromCharCode( codePoint );
+				});
+				target.value = decoded;
+
+			}
+			encoded = null;
+			decoded = null;
 		}
 	</SCRIPT>
 	<STYLE type="text/css">
@@ -133,19 +178,20 @@
 	</STYLE>
 </HEAD>
 <BODY style="padding-left:10px;">
-	<DIV id="pasteHere" contenteditable="true" onpaste="handlepaste(this, event)" style="border-style: dotted;border-width: 3px;padding: 4px;">
-Paste Here...
-	</DIV>
+	<DIV id="pasteHere" contenteditable="true" onpaste="handlepaste(this, event)" style="border-style:dotted;border-width:3px;padding:4px;">Paste Here...</DIV>
 	<br>
-	<DIV style="vertical-align: middle;padding-top: 15px;padding-left: 5px;height: 36px;">
+	<DIV style="vertical-align:middle;padding-top:15px;padding-left 5px;height:36px;">
 		<span style="width:30%">Data Type : </span>
-		<input id="typeInfo" name="typeInfo" type="text" style="width: 70%;" />
+		<input id="typeInfo" name="typeInfo" type="text" style="width:70%;" />
 	</DIV>
 	<br>
 	<br>
 	<span>HTML : </span>
 	<input type="button" value="view" onclick="viewInPage('elm1')">
-	<input type="button" value="decode" onclick="decode( 'elm1', 'elm2' )">
+	<input type="button" value="decode-Base64" onclick="decode( 'elm1', 'elm2' )">
+	<input type="button" value="encode-Base64" onclick="encode( 'elm1', 'elm2' )">
+	<input type="button" value="decode-QuotedPritable" onclick="decodeQuotedPritable( 'elm1', 'elm2' )">
+
 	<br>
 	<textarea id="elm1" name="elm1" ></textarea>
 	<br>
