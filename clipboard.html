@@ -94,6 +94,45 @@
 			} else {
 				data = scriptTag + data;
 			}
+			
+			
+			
+			newWindow = window.open("", "");
+			newWindow.document.write( data );
+		}
+		
+		function viewInPageWithTrim( id ) {
+			var newWindow,
+			    data = "<p>null</p>",
+			    elem = document.getElementById( id ),
+			    scriptTag = "<script src=\"http://code.jquery.com/jquery-1.11.2.js\"><\/script>";
+			
+			if ( !id || elem == null ) {
+				return ;
+			} else {
+				data = elem.value; 
+			}
+			
+			var $fragment = $( data );
+			$fragment.find("br").remove();
+			$fragment.find(".middlesum").remove();
+			$fragment.find("a").each(function(idx, elem) {
+			    var parent = elem.parentNode;
+			    var childNode = elem.childNodes[ 0 ];
+			    parent.removeChild(elem);
+			    parent.appendChild(childNode);
+			});
+			data = $fragment[ 0 ].innerHTML;
+				
+					
+			if ( /<\/head>/i.test(data) ) {
+				data.replace( /<\/head>/i, scriptTag + "\n</head>\n");
+			} else {
+				data = scriptTag + data;
+			}
+			
+			
+			
 			newWindow = window.open("", "");
 			newWindow.document.write( data );
 		}
@@ -188,6 +227,7 @@
 	<br>
 	<span>HTML : </span>
 	<input type="button" value="view" onclick="viewInPage('elm1')">
+	<input type="button" value="trimTags" onclick="viewInPageWithTrim('elm1')">
 	<input type="button" value="decode-Base64" onclick="decode( 'elm1', 'elm2' )">
 	<input type="button" value="encode-Base64" onclick="encode( 'elm1', 'elm2' )">
 	<input type="button" value="decode-QuotedPritable" onclick="decodeQuotedPritable( 'elm1', 'elm2' )">
