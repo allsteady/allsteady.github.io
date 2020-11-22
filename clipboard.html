@@ -94,9 +94,6 @@
             } else {
                 data = scriptTag + data;
             }
-            
-            
-            
             newWindow = window.open("", "");
             newWindow.document.write( data );
         }
@@ -107,12 +104,13 @@
                 $fragment,
                 elem = document.getElementById( 'elm1' ),
                 scriptTag = "<script src=\"http://code.jquery.com/jquery-1.11.2.js\"><\/script>";
-            
+
             if ( elem == null ) {
                 return ;
             } else {
                 data = elem.value; 
             }
+
             data = data.replace("<!--StartFragment-->", "");
             data = data.replace("<!--EndFragment-->", "");
             $fragment = $( data );
@@ -127,8 +125,7 @@
                 parent.removeChild(elem);
                 parent.appendChild(childNode);
             });
-            data = $fragment.html();
-
+            data = $fragment[ 0 ].outerHTML;
             if ( /<\/head>/i.test(data) ) {
                 data.replace( /<\/head>/i, scriptTag + "\n</head>\n");
             } else {
