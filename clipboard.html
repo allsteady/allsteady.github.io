@@ -1,246 +1,245 @@
 <!DOCTYPE HTML>
 <HTML>
 <HEAD>
-	<TITLE>CLIPBOARD</TITLE>
-	<META charset="UTF-8">
-	<META http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-	<SCRIPT src="http://code.jquery.com/jquery-1.11.2.js"></SCRIPT>
-	<SCRIPT>
-		console = window.console || {log:function(){}};
-		var stringFromCharCode = String.fromCharCode;
+    <TITLE>CLIPBOARD</TITLE>
+    <META charset="UTF-8">
+    <META http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <SCRIPT src="http://code.jquery.com/jquery-1.11.2.js"></SCRIPT>
+    <SCRIPT>
+        console = window.console || {log:function(){}};
+        var stringFromCharCode = String.fromCharCode;
 
-		function displayType( msg ) {
-			var $elem = $("#typeInfo");
-			$elem.val( msg );
-		}
+        function displayType( msg ) {
+            var $elem = $("#typeInfo");
+            $elem.val( msg );
+        }
 
-		function displayContent( content ) {
-			var $elem = $("#elm1");
-			$elem.val( content );
-		}
+        function displayContent( content ) {
+            var $elem = $("#elm1");
+            $elem.val( content );
+        }
 
-		function handlepaste (elem, e) {
-			var savedcontent = elem.innerHTML;
-			if (e && e.clipboardData && e.clipboardData.getData) {
-			// Webkit - get data from clipboard, put into editdiv, cleanup, then cancel event
-				if (/text\/html/.test(e.clipboardData.types)) {
-					elem.innerHTML = e.clipboardData.getData('text/html');
-				} else if (/text\/plain/.test(e.clipboardData.types)) {
-					elem.innerHTML = e.clipboardData.getData('text/plain');
-				} else {
-					elem.innerHTML = "";
-				}
-				
-				var types =  e.clipboardData.types;
-				if ( types ) {
-					var temps = "[" + e.clipboardData.types.length + "] " ;				
-					for ( var i = 0 ; i < types.length ; i++ ) {
-						temps += types [ i ] + " " ;
-					}
+        function handlepaste (elem, e) {
+            var savedcontent = elem.innerHTML;
+            if (e && e.clipboardData && e.clipboardData.getData) {
+            // Webkit - get data from clipboard, put into editdiv, cleanup, then cancel event
+                if (/text\/html/.test(e.clipboardData.types)) {
+                    elem.innerHTML = e.clipboardData.getData('text/html');
+                } else if (/text\/plain/.test(e.clipboardData.types)) {
+                    elem.innerHTML = e.clipboardData.getData('text/plain');
+                } else {
+                    elem.innerHTML = "";
+                }
+                
+                var types =  e.clipboardData.types;
+                if ( types ) {
+                    var temps = "[" + e.clipboardData.types.length + "] " ;                
+                    for ( var i = 0 ; i < types.length ; i++ ) {
+                        temps += types [ i ] + " " ;
+                    }
 
-					displayType( temps );
-				}
-
-
-				waitforpastedata(elem, savedcontent);
-				
-				if (e.preventDefault) {
-					e.stopPropagation();
-					e.preventDefault();
-				}
-				
-				return false;
-			} else {
-			// Everything else - empty editdiv and allow browser to paste content into it, then cleanup
-				elem.innerHTML = "";
-				displayType( "Can not access clipboard" );
-				waitforpastedata(elem, savedcontent);
-				return true;
-			}
-		}
-
-		function waitforpastedata (elem, savedcontent) {
-			if (elem.childNodes && elem.childNodes.length > 0) {
-				processpaste(elem, savedcontent);
-			} else {
-				that = {
-					e: elem,
-					s: savedcontent
-				}
-				that.callself = function () {
-					waitforpastedata(that.e, that.s);
-				}
-				setTimeout(that.callself,20);
-			}
-		}
-
-		function processpaste (elem, savedcontent) {
-			pasteddata = elem.innerHTML;
-			elem.innerHTML = savedcontent;
-			displayContent( pasteddata );
-		}
-
-		function viewInPage( id ) {
-			var newWindow,
-				data = "<p>null</p>",
-				elem = document.getElementById( id ),
-				scriptTag = "<script src=\"http://code.jquery.com/jquery-1.11.2.js\"><\/script>";
-			if ( id ) {
-				data = elem.value;
-			}
-					
-			if ( /<\/head>/i.test(data) ) {
-				data.replace( /<\/head>/i, scriptTag + "\n</head>\n");
-			} else {
-				data = scriptTag + data;
-			}
-			
-			
-			
-			newWindow = window.open("", "");
-			newWindow.document.write( data );
-		}
-		
-		function viewInPageWithTrim( id ) {
-			var newWindow,
-			    data = "<p>null</p>",
-			    elem = document.getElementById( id ),
-			    scriptTag = "<script src=\"http://code.jquery.com/jquery-1.11.2.js\"><\/script>";
-			
-			if ( !id || elem == null ) {
-				return ;
-			} else {
-				data = elem.value; 
-			}
-			
-			var $fragment = $( data );
-			$fragment.find("br").remove();
-			$fragment.find(".middlesum").remove();
-			$fragment.find("a").each(function(idx, elem) {
-			    var parent = elem.parentNode;
-			    var childNode = elem.childNodes[ 0 ];
-			    parent.removeChild(elem);
-			    parent.appendChild(childNode);
-			});
-			data = $fragment[ 0 ].innerHTML;
-				
-					
-			if ( /<\/head>/i.test(data) ) {
-				data.replace( /<\/head>/i, scriptTag + "\n</head>\n");
-			} else {
-				data = scriptTag + data;
-			}
-			
-			
-			
-			newWindow = window.open("", "");
-			newWindow.document.write( data );
-		}
-
-		function decode( src, dest ) {
-			var elem = document.getElementById( src ),
-				target = document.getElementById( dest ),
-				encoded, decoded;
-
-			if ( elem && target ) {
-				encoded = elem.value.replace( /[\s\u00A0\n]/g, "" );
-				decoded = b64DecodeUnicode( encoded );
-				target.value = decoded;
-
-			}
-			encoded = null;
-			decoded = null;
-		}
-
-		function encode( src, dest ) {
-			var elem = document.getElementById( src ),
-				target = document.getElementById( dest ),
-				encoded, decoded;
-
-			if ( elem && target ) {
-				target.value = "";
-				encoded = elem.value;
-				decoded = b64EncodeUnicode( encoded );
-				target.value = decoded;
-
-			}
-			encoded = null;
-			decoded = null;
-		}
-
-		// ref: https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
-		function b64DecodeUnicode(str) {
-			return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
-					return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-				}).join(''));
-		}
-
-		function b64EncodeUnicode(str) {
-		// first we use encodeURIComponent to get percent-encoded UTF-8,
-		// then we convert the percent encodings into raw bytes which
-		// can be fed into btoa.
-			return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
-				return String.fromCharCode('0x' + p1);
-			}));
-		}
+                    displayType( temps );
+                }
 
 
-		function decodeQuotedPritable( src, dest ){
-			var elem = document.getElementById( src ),
-				target = document.getElementById( dest ),
-				encoded, decoded;
+                waitforpastedata(elem, savedcontent);
+                
+                if (e.preventDefault) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+                
+                return false;
+            } else {
+            // Everything else - empty editdiv and allow browser to paste content into it, then cleanup
+                elem.innerHTML = "";
+                displayType( "Can not access clipboard" );
+                waitforpastedata(elem, savedcontent);
+                return true;
+            }
+        }
 
-			if ( elem && target ) {
-				encoded = elem.value.replace( /[\s\u00A0\n]/g, "" );
-				decoded = encoded.replace( /[\t\x20]$/gm, "" ).replace( /=?(?:\r\n?|\n)/g, "" ).replace( /=([a-fA-F0-9]{2})/g, function( $0, $1 ) {
-					var codePoint = parseInt( $1, 16 );
-					return stringFromCharCode( codePoint );
-				});
-				target.value = decoded;
+        function waitforpastedata (elem, savedcontent) {
+            if (elem.childNodes && elem.childNodes.length > 0) {
+                processpaste(elem, savedcontent);
+            } else {
+                that = {
+                    e: elem,
+                    s: savedcontent
+                }
+                that.callself = function () {
+                    waitforpastedata(that.e, that.s);
+                }
+                setTimeout(that.callself,20);
+            }
+        }
 
-			}
-			encoded = null;
-			decoded = null;
-		}
-	</SCRIPT>
-	<STYLE type="text/css">
-		div {
-			border: 1px solid black;
-			height: 60px;
-			width: 70%;
-		}
-		textarea {
-			width: 70%;
-			height: 300px;
-			border: 1px solid black;
-		}
-	</STYLE>
+        function processpaste (elem, savedcontent) {
+            pasteddata = elem.innerHTML;
+            elem.innerHTML = savedcontent;
+            displayContent( pasteddata );
+        }
+
+        function viewInPage( id ) {
+            var newWindow,
+                data = "<p>null</p>",
+                elem = document.getElementById( id ),
+                scriptTag = "<script src=\"http://code.jquery.com/jquery-1.11.2.js\"><\/script>";
+            if ( id ) {
+                data = elem.value;
+            }
+                    
+            if ( /<\/head>/i.test(data) ) {
+                data.replace( /<\/head>/i, scriptTag + "\n</head>\n");
+            } else {
+                data = scriptTag + data;
+            }
+            
+            
+            
+            newWindow = window.open("", "");
+            newWindow.document.write( data );
+        }
+        
+        function viewInPageWithTrim() {
+            var newWindow,
+                data = "<p>null</p>",
+                $fragment,
+                elem = document.getElementById( 'elm1' ),
+                scriptTag = "<script src=\"http://code.jquery.com/jquery-1.11.2.js\"><\/script>";
+            
+            if ( elem == null ) {
+                return ;
+            } else {
+                data = elem.value; 
+            }
+            data = data.replace("<!--StartFragment-->", "");
+            data = data.replace("<!--EndFragment-->", "");
+            $fragment = $( data );
+            $fragment.find("br").remove();
+            $fragment.find("caption").remove();
+            $fragment.find("colgroup").remove();
+            $fragment.find(".middleSum").remove();
+
+            $("a", $fragment ).each(function(idx, elem) {
+                var parent = elem.parentNode;
+                var childNode = elem.childNodes[ 0 ];
+                parent.removeChild(elem);
+                parent.appendChild(childNode);
+            });
+            data = $fragment.html();
+
+            if ( /<\/head>/i.test(data) ) {
+                data.replace( /<\/head>/i, scriptTag + "\n</head>\n");
+            } else {
+                data = scriptTag + data;
+            }
+            newWindow = window.open("", "");
+            newWindow.document.write( data );
+        }
+
+        function decode( src, dest ) {
+            var elem = document.getElementById( src ),
+                target = document.getElementById( dest ),
+                encoded, decoded;
+
+            if ( elem && target ) {
+                encoded = elem.value.replace( /[\s\u00A0\n]/g, "" );
+                decoded = b64DecodeUnicode( encoded );
+                target.value = decoded;
+
+            }
+            encoded = null;
+            decoded = null;
+        }
+
+        function encode( src, dest ) {
+            var elem = document.getElementById( src ),
+                target = document.getElementById( dest ),
+                encoded, decoded;
+
+            if ( elem && target ) {
+                target.value = "";
+                encoded = elem.value;
+                decoded = b64EncodeUnicode( encoded );
+                target.value = decoded;
+
+            }
+            encoded = null;
+            decoded = null;
+        }
+
+        // ref: https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+        function b64DecodeUnicode(str) {
+            return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+        }
+
+        function b64EncodeUnicode(str) {
+        // first we use encodeURIComponent to get percent-encoded UTF-8,
+        // then we convert the percent encodings into raw bytes which
+        // can be fed into btoa.
+            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+        }
+
+
+        function decodeQuotedPritable( src, dest ){
+            var elem = document.getElementById( src ),
+                target = document.getElementById( dest ),
+                encoded, decoded;
+
+            if ( elem && target ) {
+                encoded = elem.value.replace( /[\s\u00A0\n]/g, "" );
+                decoded = encoded.replace( /[\t\x20]$/gm, "" ).replace( /=?(?:\r\n?|\n)/g, "" ).replace( /=([a-fA-F0-9]{2})/g, function( $0, $1 ) {
+                    var codePoint = parseInt( $1, 16 );
+                    return stringFromCharCode( codePoint );
+                });
+                target.value = decoded;
+
+            }
+            encoded = null;
+            decoded = null;
+        }
+    </SCRIPT>
+    <STYLE type="text/css">
+        div {
+            border: 1px solid black;
+            height: 60px;
+            width: 70%;
+        }
+        textarea {
+            width: 70%;
+            height: 300px;
+            border: 1px solid black;
+        }
+    </STYLE>
 </HEAD>
 <BODY style="padding-left:10px;">
-	<DIV id="pasteHere" contenteditable="true" onpaste="handlepaste(this, event)" style="border-style:dotted;border-width:3px;padding:4px;">Paste Here...</DIV>
-	<br>
-	<DIV style="vertical-align:middle;padding-top:15px;padding-left 5px;height:36px;">
-		<span style="width:30%">Data Type : </span>
-		<input id="typeInfo" name="typeInfo" type="text" style="width:70%;" />
-	</DIV>
-	<br>
-	<br>
-	<span>HTML : </span>
-	<input type="button" value="view" onclick="viewInPage('elm1')">
-	<input type="button" value="trimTags" onclick="viewInPageWithTrim('elm1')">
-	<input type="button" value="decode-Base64" onclick="decode( 'elm1', 'elm2' )">
-	<input type="button" value="encode-Base64" onclick="encode( 'elm1', 'elm2' )">
-	<input type="button" value="decode-QuotedPritable" onclick="decodeQuotedPritable( 'elm1', 'elm2' )">
+    <DIV id="pasteHere" contenteditable="true" onpaste="handlepaste(this, event)" style="border-style:dotted;border-width:3px;padding:4px;">Paste Here...</DIV>
+    <br>
+    <DIV style="vertical-align:middle;padding-top:15px;padding-left 5px;height:36px;">
+        <span style="width:30%">Data Type : </span>
+        <input id="typeInfo" name="typeInfo" type="text" style="width:70%;" />
+    </DIV>
+    <br>
+    <br>
+    <span>HTML : </span>
+    <input type="button" value="view" onclick="viewInPage('elm1')">
+    <input type="button" value="trimTags" onclick="viewInPageWithTrim()">
+    <input type="button" value="decode-Base64" onclick="decode( 'elm1', 'elm2' )">
+    <input type="button" value="encode-Base64" onclick="encode( 'elm1', 'elm2' )">
+    <input type="button" value="decode-QuotedPritable" onclick="decodeQuotedPritable( 'elm1', 'elm2' )">
 
-	<br>
-	<textarea id="elm1" name="elm1" ></textarea>
-	<br>
-	</br>
-	<span>Body</span>
-	<input type="button" value="view" onclick="viewInPage('elm2')">
-	<br>
-	<textarea id="elm2" name="elm2"  ></textarea>
+    <br>
+    <textarea id="elm1" name="elm1" ></textarea>
+    <br>
+    </br>
+    <span>Body</span>
+    <input type="button" value="view" onclick="viewInPage('elm2')">
+    <br>
+    <textarea id="elm2" name="elm2"  ></textarea>
 </BODY>
 </HTML>
-
-
