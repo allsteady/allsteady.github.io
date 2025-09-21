@@ -1,33 +1,376 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-	<script>
-	window.addEventListener("orientationchange", function() {
-		// Announce the new orientation number
-		var dom = document.getElementById("status");
-		dom.innerText = window.orientation;
-	});
-
-	var mql = window.matchMedia("(orientation: portrait)");
-	mql.addListener(function( m ) {
-		var dom = document.getElementById("mqlStatus");
-		if(m.matches) {
-			// Changed to portrait			
-			dom.innerText = "portrait";
-		}
-		else {
-			// Changed to landscape
-			dom.innerText = "landscape";
-		}
-	});
-
-	</script>
-	<title>orientationchange</title>
+  <meta charset="utf-8" />
+  <title>CLIPBOARD (Refactored)</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!-- jQuery (HTTPS + SRI) -->
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+  <style>
+    div.box {
+      border: 1px solid #000;
+      height: 60px;
+      width: 70%;
+    }
+    textarea {
+      width: 70%;
+      height: 300px;
+      border: 1px solid #000;
+    }
+    .toolbar { margin: 6px 0; }
+    .toolbar input[type="button"] { margin-right: 6px; }
+  </style>
 </head>
-<body>
+<body style="padding-left:10px;">
+  <!-- 붙여넣기 타겟 -->
+  <div id="pasteHere" class="box" contenteditable="true" aria-label="붙여넣기 영역">Paste Here...</div>
+  <br>
+
+  <!-- 타입/상태 표시 -->
+  <div class="box" style="vertical-align:middle;padding:8px;height:36px;">
+    <span style="display:inline-block;width:30%">Data Type :</span>
+    <input id="typeInfo" name="typeInfo" type="text" style="width:68%;" />
+  </div>
+
+  <br><br>
+
+  <!-- 명령 버튼들 -->
+  <span>Command :</span>
+  <div class="toolbar">
+    <input type="button" value="view (elm1)" data-cmd="view-elm1">
+    <input type="button" value="trimTags → view" data-cmd="trim-view">
+    <input type="button" value="handleHCard → view" data-cmd="hcard">
+    <input type="button" value="decode-Base64" data-cmd="b64-decode">
+    <input type="button" value="encode-Base64" data-cmd="b64-encode">
+    <input type="button" value="decode-QuotedPrintable" data-cmd="qp-decode">
+  </div>
+
+  <textarea id="elm1" name="elm1" aria-label="입력/소스"></textarea>
+  <br><br>
+
+  <span>Body</span>
+  <input type="button" value="view (elm2)" data-cmd="view-elm2">
+  <br>
+  <textarea id="elm2" name="elm2" aria-label="결과/바디"></textarea>
+
+  <script>
+  (function () {
+    'use strict';
+
+    // ---------- DOM 캐시 ----------
+    const $pasteHere = $('#pasteHere');
+    const $typeInfo  = $('#typeInfo');
+    const $elm1      = $('#elm1');
+    const $elm2      = $('#elm2');
+
+    // ---------- 안전한 console ----------
+    const safeConsole = window.console || { log: function(){} };
+
+    // ---------- 유틸 ----------
+    const setTypeInfo = (msg) => $typeInfo.val(msg || '');
+    const setElm1     = (content) => $elm1.val(content || '');
+    const winOpen = (html) => {
+      const w = window.open('', '');
+      if (!w) return;
+      w.document.open();
+      w.document.write(html);
+      w.document.close();
+    };
+    const ensureJQ = (html) => {
+      const scriptTag = '<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"><\/script>';
+      // head가 있으면 head 끝나기 전에 삽입, 없으면 선두 삽입
+      if (/<\/head>/i.test(html)) {
+        return html.replace(/<\/head>/i, scriptTag + '\n</head>');
+      }
+      return scriptTag + '\n' + html;
+    };
+
+    // ---------- 붙여넣기 처리 (클립보드 접근 가용 시) ----------
+    // 원 코드의 로직을 보강: clipboardData 우선 사용, 폴백으로 브라우저 기본 동작 후 polling
+    function handlePaste(elem, e) {
+      const saved = elem.innerHTML;
+
+      // 최신 브라우저 분기
+      if (e && e.clipboardData && typeof e.clipboardData.getData === 'function') {
+        // 타입 수집
+        const types = e.clipboardData.types || [];
+        const typeLabel = '[' + types.length + '] ' + Array.from(types).join(' ');
+        setTypeInfo(typeLabel || 'unknown');
+
+        // 내용 추출 (html 우선, 다음 plain)
+        let pasted = '';
+        if (types.includes('text/html')) {
+          pasted = e.clipboardData.getData('text/html') || '';
+        } else if (types.includes('text/plain')) {
+          pasted = e.clipboardData.getData('text/plain') || '';
+        }
+
+        // 편집 영역에 잠시 채운 뒤 읽고 원복하던 방식 → 직접 적용
+        setElm1(pasted);
+
+        // 기본 붙여넣기 막기(커서 위치에 중복 삽입 방지)
+        e.stopPropagation();
+        e.preventDefault();
+        return false;
+      }
+
+      // 구형 브라우저: 기본 붙여넣기 허용 후 polling
+      setTypeInfo('Can not access clipboard');
+      elem.innerHTML = '';
+      waitForPaste(elem, saved);
+      return true;
+    }
+
+    function waitForPaste(elem, saved) {
+      if (elem.childNodes && elem.childNodes.length > 0) {
+        processPaste(elem, saved);
+      } else {
+        setTimeout(() => waitForPaste(elem, saved), 20);
+      }
+    }
+
+    function processPaste(elem, saved) {
+      const pasted = elem.innerHTML;
+      elem.innerHTML = saved;
+      setElm1(pasted);
+    }
+
+    // ---------- View 기능 ----------
+    function viewInPageById(textareaId) {
+      const el = document.getElementById(textareaId);
+      const data = el ? el.value : '<p>null</p>';
+      const withLib = ensureJQ(data);
+      winOpen(withLib);
+    }
+
+    // ---------- trim + 보기 ----------
+    function viewInPageWithTrim() {
+      const el = document.getElementById('elm1');
+      if (!el) return;
+      let data = el.value || '<p>null</p>';
+
+      // 클립보드 조각 주석 제거
+      data = data.replace('<!--StartFragment-->', '')
+                 .replace('<!--EndFragment-->', '');
+
+      // 조각으로 파싱
+      const $frag = $(data);
+
+      // 제거 대상
+      $frag.find('br, caption, colgroup, .middleSum').remove();
+
+      // a 태그를 텍스트 노드로 치환 (원본 로직 유지)
+      $frag.find('a').each(function () {
+        const parent = this.parentNode;
+        const firstChild = this.firstChild;
+        if (parent && firstChild) {
+          parent.replaceChild(firstChild, this);
+        } else if (parent) {
+          parent.removeChild(this);
+        }
+      });
+
+      const html = $frag[0] ? $frag[0].outerHTML : '<p></p>';
+      winOpen(ensureJQ(html));
+    }
+
+    // ---------- HCard 파서 ----------
+    function parseHCardPriceElem(elem) {
+      // 콤마/공백/원 제거 후 정수화
+      const t = (elem && elem.textContent) ? elem.textContent : '';
+      const norm = t.replace(/[,\s원]/g, '');
+      const val = parseInt(norm, 10);
+      return Number.isFinite(val) ? val : 0;
+    }
+
+    function parseHCardLabel(elem, price) {
+      const $el = $(elem);
+      const $subList = $el.find('li');
+      const $title = $el.find('p');
+
+      // textContent(s) 오타 수정 및 방어
+      const dateRaw  = ($title[0] && $title[0].textContent) ? $title[0].textContent : '';
+      const shop     = ($title[1] && $title[1].textContent) ? $title[1].textContent : '';
+
+      const creadtedBy = ($subList[0] && $subList[0].textContent) ? $subList[0].textContent : '';
+      const cardName   = ($subList[1] && $subList[1].textContent) ? $subList[1].textContent : '';
+      const orderType  = ($subList[2] && $subList[2].textContent) ? $subList[2].textContent : '';
+      const dcRateRaw  = ($subList[3] && $subList[3].textContent) ? $subList[3].textContent : '';
+      const rewardRaw  = ($subList[4] && $subList[4].textContent) ? $subList[4].textContent : '0';
+
+      // replaceAll 호환: 정규식 g 사용
+      const dateNorm = ('20' + dateRaw.replace(/\s+/g, '')
+                                     .replace('년','')
+                                     .replace('월','')
+                                     .replace('일',''));
+
+      const dcRate = dcRateRaw.replace('적립/할인율', '');
+      const reward = rewardRaw.replace('예상적립/할인', '');
+
+      return {
+        date: dateNorm,
+        shop,
+        price,
+        creadtedBy,
+        cardName,
+        orderType,
+        dcRate,
+        reward
+      };
+    }
+
+    function handleHCard() {
+      const el = document.getElementById('elm1');
+      if (!el) return;
+
+      let data = el.value || '<p>null</p>';
+      data = data.replace('<!--StartFragment-->', '')
+                 .replace('<!--EndFragment-->', '');
+
+      const $frag = $(data);
+
+      // 불필요 요소 제거
+      $frag.find('caption, colgroup, .middleSum').remove();
+
+      const list = [];
+
+      $frag.find('tr').each(function () {
+        const row = this;
+        const labelNode = row.childNodes[0];
+        const priceNode = row.childNodes[1];
+
+        if (!labelNode || !priceNode) {
+          row.parentNode && row.parentNode.removeChild(row);
+          return;
+        }
+
+        // 특정 클래스 스킵 규칙 유지
+        if (priceNode.className === 'con_btm2') return;
+
+        const price  = parseHCardPriceElem(priceNode);
+        const record = parseHCardLabel(labelNode, price);
+        list.push(record);
+      });
+
+      safeConsole.log('list.size:', list.length);
+
+      // 결과 테이블 HTML 생성
+      let html = '<body><table border="1" cellpadding="4" cellspacing="0">'
+               + '<thead><tr>'
+               + '<th>이용일</th><th>구분</th><th>가맹점</th><th>이용금액</th>'
+               + '<th>총 할부금액</th><th>이용혜택</th><th>혜택금액</th>'
+               + '<th>개월</th><th>구분필드</th><th>원금</th>'
+               + '</tr></thead><tbody>';
+
+      for (let i = 0; i < list.length; i++) {
+        const r = list[i];
+        html += '<tr>'
+             + `<td>${r.date}</td>`
+             + `<td>${r.creadtedBy}</td>`
+             + `<td>${r.shop}</td>`
+             + `<td>${r.price}</td>`
+             + `<td></td><td></td><td>${parseInt(r.reward || '0', 10)}</td><td></td><td></td>`
+             + `<td>${r.price}</td>`
+             + '</tr>';
+        safeConsole.log(r);
+      }
+      html += '</tbody></table></body>';
+
+      winOpen(ensureJQ(html));
+    }
+
+    // ---------- Base64 / Quoted-Printable ----------
+    // ref: MDN (Base64 유니코드 안전 인코딩/디코딩)
+    function b64DecodeUnicode(str) {
+      return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+    }
+    function b64EncodeUnicode(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (_m, p1) {
+        return String.fromCharCode('0x' + p1);
+      }));
+    }
+    function decodeBase64(srcId, destId) {
+      const src = document.getElementById(srcId);
+      const dst = document.getElementById(destId);
+      if (!src || !dst) return;
+
+      const encoded = (src.value || '').replace(/[\s\u00A0\n]/g, '');
+      try {
+        dst.value = b64DecodeUnicode(encoded);
+      } catch (err) {
+        dst.value = '[Base64 Decode Error] ' + (err && err.message ? err.message : String(err));
+      }
+    }
+    function encodeBase64(srcId, destId) {
+      const src = document.getElementById(srcId);
+      const dst = document.getElementById(destId);
+      if (!src || !dst) return;
+
+      try {
+        dst.value = b64EncodeUnicode(src.value || '');
+      } catch (err) {
+        dst.value = '[Base64 Encode Error] ' + (err && err.message ? err.message : String(err));
+      }
+    }
+
+    function decodeQuotedPrintable(srcId, destId) {
+      const src = document.getElementById(srcId);
+      const dst = document.getElementById(destId);
+      if (!src || !dst) return;
+
+      // 공백/줄바꿈 제거 → soft line breaks 제거 → =HH to byte
+      const encoded = (src.value || '').replace(/[\s\u00A0\n]/g, '');
+      const decoded = encoded
+        .replace(/[\t\x20]$/gm, '')
+        .replace(/=?(?:\r\n?|\n)/g, '')
+        .replace(/=([a-fA-F0-9]{2})/g, (_m, h) => String.fromCharCode(parseInt(h, 16)));
+      dst.value = decoded;
+    }
+
+    // ---------- 이벤트 바인딩 ----------
+    // 붙여넣기
+    $pasteHere.on('paste', function (e) {
+      handlePaste(this, e.originalEvent || e);
+    });
+
+    // 툴바 클릭 (이벤트 위임)
+    $(document).on('click', 'input[type="button"][data-cmd]', function () {
+      const cmd = this.getAttribute('data-cmd');
+
+      switch (cmd) {
+        case 'view-elm1':
+          viewInPageById('elm1');
+          break;
+        case 'trim-view':
+          viewInPageWithTrim();
+          break;
+        case 'hcard':
+          handleHCard();
+          break;
+        case 'b64-decode':
+          decodeBase64('elm1', 'elm2');
+          break;
+        case 'b64-encode':
+          encodeBase64('elm1', 'elm2');
+          break;
+        case 'qp-decode':
+          decodeQuotedPrintable('elm1', 'elm2');
+          break;
+        case 'view-elm2':
+          viewInPageById('elm2');
+          break;
+        default:
+          // no-op
+          break;
+      }
+    });
+
+  })();
+  </script>
 </body>
-	Hellow!! :-) <br>
-	orientationchange test <br>
-	Current orientation ( event ): <span id="status"> </span> <br>
-	Current orientation ( media ): <span id="mqlStatus"> </span>
 </html>
