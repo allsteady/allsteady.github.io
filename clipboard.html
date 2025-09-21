@@ -135,6 +135,76 @@
             newWindow.document.write( data );
         }
 
+        function handleHCard() {
+            var newWindow,
+                data = "<p>null</p>",
+                $fragment,
+                elem = document.getElementById( 'elm1' ),
+                scriptTag = "<script src=\"http://code.jquery.com/jquery-1.11.2.js\"><\/script>";
+
+            if ( elem == null ) {
+                return ;
+            } else {
+                data = elem.value; 
+            }
+
+            data = data.replace("<!--StartFragment-->", "");
+            data = data.replace("<!--EndFragment-->", "");
+            $fragment = $( data );
+            
+            $fragment.find("caption").remove();
+            $fragment.find("colgroup").remove();
+            $fragment.find(".middleSum").remove();
+
+            
+            var list = []
+
+            $("tr", $fragment ).each(function(idx, elem) {
+                var parent = elem.parentNode;
+                var lableNode = elem.childNodes[ 0 ];
+                
+                var priceNode = elem.childNodes[ 1 ];
+                
+                if ( lableNode == null || priceNode == null) {
+                    parent.removeChild(elem);
+                } else {
+                    if(priceNode.className != "con_btm2") {
+                        var price = parseHCardPriceElem(priceNode)
+                        var record = parseHCardLabel(lableNode, price)
+                        list.push(record)
+                    }
+                }
+            });
+
+            console.log("list.size: " + list.length)
+
+            var htmlTag = "<body><table><thead><td>이용일</td><td>구분</td><td>가맹점</td><td>이용금액</td><td>총 할부금액</td><td>이용혜택</td><td>혜택금액</td><td>개월</td><td>구분필드</td><td>원금</td></thead>";
+            
+            htmlTag += "\n<tbody>\n"
+            for(var i = 0; i < list.length ; i++ ) {
+                htmlTag += "<tr>"
+                htmlTag += "<td>" + list[i].date +"</td>\n"
+                htmlTag += "<td>" + list[i].creadtedBy +"</td>\n"
+                htmlTag += "<td>" + list[i].shop +"</td>\n"
+                htmlTag += "<td>" + list[i].price +"</td>\n"
+                htmlTag += "<td></td><td></td><td>"+ parseInt(list[i].reward)+"</td><td></td><td></td>"
+                htmlTag += "<td>" + list[i].price +"</td>\n"
+                htmlTag += "</tr>"
+                console.log(list[i])
+            }
+            htmlTag += "</tbody></table></body>"
+
+            data = $fragment[ 0 ].outerHTML;
+            if ( /<\/head>/i.test(data) ) {
+                data.replace( /<\/head>/i, scriptTag + "\n</head>\n");
+            } else {
+                data = scriptTag + htmlTag;
+            }
+
+            newWindow = window.open("", "");
+            newWindow.document.write( data );
+        }
+
         function decode( src, dest ) {
             var elem = document.getElementById( src ),
                 target = document.getElementById( dest ),
@@ -182,6 +252,39 @@
             }));
         }
 
+        function parseHCardLabel(elem, price) {
+            var subList = $(elem).find("li")
+            var title = $(elem).find("p")
+            console.log(elem)
+            
+            console.log(elem.childNodes[0])
+            console.log(elem.childNodes[0].textContents)
+            console.log(elem.childNodes[1])
+            console.log(elem.childNodes[1].textContents)
+
+            var recordObj = {
+                "date" : "20" + ( title[0].textContent.replaceAll(" ", "").replace("년","").replace("월","").replace("일","") ),
+                "shop": title[1].textContent,
+                "price": price,
+                "creadtedBy": subList[0].textContent,
+                "cardName": subList[1].textContent,
+                "orderType": subList[2].textContent,
+                "dcRate": subList[3].textContent.replace("적립\/할인율", "")
+            };
+
+            if ( subList[4] != null) {
+                recordObj[ "reward"] = subList[4].textContent.replace("예상적립\/할인", "")
+            } else {
+                recordObj[ "reward"] = 0
+            }
+
+            return recordObj;
+        }
+
+        function parseHCardPriceElem(elem) {
+                return parseInt(elem.textContent.replace("\,", "").replace("원", ""))
+        }
+
 
         function decodeQuotedPritable( src, dest ){
             var elem = document.getElementById( src ),
@@ -223,13 +326,15 @@
     </DIV>
     <br>
     <br>
-    <span>HTML : </span>
+    <span>Command : </span>
+    <div style="margin: 5px;">
     <input type="button" value="view" onclick="viewInPage('elm1')">
     <input type="button" value="trimTags" onclick="viewInPageWithTrim()">
+    <input type="button" value="handleHCard" onclick="handleHCard()">
     <input type="button" value="decode-Base64" onclick="decode( 'elm1', 'elm2' )">
     <input type="button" value="encode-Base64" onclick="encode( 'elm1', 'elm2' )">
     <input type="button" value="decode-QuotedPritable" onclick="decodeQuotedPritable( 'elm1', 'elm2' )">
-
+    </div>
     <br>
     <textarea id="elm1" name="elm1" ></textarea>
     <br>
@@ -240,3 +345,4 @@
     <textarea id="elm2" name="elm2"  ></textarea>
 </BODY>
 </HTML>
+
